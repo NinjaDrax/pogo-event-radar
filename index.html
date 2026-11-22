@@ -5,16 +5,30 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#F7F1E8">
 <title>Event Radar · Pokémon GO events</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Event Radar">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
 <style>
 :root{--bg:#F7F1E8;--ink:#1E1E1E;--mut:#7A736A;--card:#fff;--orange:#FF8A3D;--peach:#FFD4B5;--brown:#5A2A0C;--gold:#C99A12}
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;line-height:1.35;-webkit-font-smoothing:antialiased}
 button{font-family:inherit;border:none;cursor:pointer;color:inherit;background:none;padding:0}
 a{color:inherit}
+button:focus,a:focus{outline:none}
+button:focus-visible,a:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+button,.ev,.banner,.tile,.chip,.tzbtn{transition:transform .18s cubic-bezier(.2,.9,.3,1.2),background-color .2s,color .2s,opacity .2s}
+@media (hover:hover){.ev:hover,.banner:hover{transform:translateY(-2px)}}
+.ev:active,.banner:active{transform:scale(.975)}
+button:active,.tile:active{transform:scale(.92)}
 .app{max-width:480px;margin:0 auto;padding:22px 16px 120px;min-height:100vh}
+.app.enter{animation:enter .32s cubic-bezier(.2,.8,.2,1)}
+@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .muted{color:var(--mut)}
 .row{display:flex;align-items:center;gap:8px}
 .between{display:flex;justify-content:space-between;align-items:center;gap:8px}
@@ -29,7 +43,7 @@ a{color:inherit}
 .chip.gold{background:#F8E39A;color:#5C4300}
 .week{display:flex;justify-content:space-between;margin-top:18px}
 .day{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:12px;color:var(--mut)}
-.dc{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--ink)}
+.dc{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--ink);transition:background-color .2s,color .2s}
 .day.sel .dc{background:var(--ink);color:#fff}
 .day.today:not(.sel) .dc{box-shadow:inset 0 0 0 1.5px var(--ink)}
 .dots{display:flex;gap:2px;height:5px}.dots i{width:5px;height:5px;border-radius:50%;display:block}
@@ -71,11 +85,17 @@ a{color:inherit}
 .rw{display:inline-flex;align-items:center;gap:6px;background:var(--bg);border-radius:14px;padding:6px 11px 6px 6px;font-size:12.5px;margin:0 6px 6px 0}
 .rw img{width:24px;height:24px;object-fit:contain}
 .circle{width:42px;height:42px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:19px}
-.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:min(448px,calc(100% - 32px));background:var(--ink);border-radius:999px;padding:8px 22px;display:flex;justify-content:space-between;align-items:center;color:#fff;z-index:10}
-.nav button{font-size:22px;color:#fff;opacity:.85}
-.nav .mid{width:48px;height:48px;border-radius:50%;background:var(--orange);opacity:1;display:flex;align-items:center;justify-content:center}
+.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:min(448px,calc(100% - 32px));background:var(--ink);border-radius:999px;padding:8px 18px;display:flex;justify-content:space-between;align-items:center;color:#fff;z-index:10}
+.nav button{position:relative;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:22px;color:#fff;opacity:.55}
+.nav button.cur{opacity:1;color:var(--orange)}
+.nav button.cur::after{content:"";position:absolute;bottom:0;width:5px;height:5px;border-radius:50%;background:var(--orange)}
+.nav .mid{width:48px;height:48px;background:var(--orange);opacity:1;color:#fff}
+.nav button:active{transform:scale(.85)}
+.install{background:var(--ink);color:#fff;border-radius:24px;padding:14px 16px;margin-top:16px;display:flex;gap:12px;align-items:center}
+.install .ic{width:44px;height:44px;border-radius:14px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .empty{background:#fff;border-radius:22px;padding:20px;text-align:center;font-size:13.5px;color:var(--mut)}
 select{width:100%;margin-top:10px;font-family:inherit;font-size:14px;padding:10px;border-radius:14px;border:1px solid #E6DED2;background:var(--bg)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -111,6 +131,9 @@ let mode = LS.get('mode', 'main');
 let reminded = new Set(LS.get('reminded', []));
 let sel = null, tzOpen = false, aboutOpen = false, cameFromList = false;
 let DATA = { events: [], updatedAt: null, sources: {} };
+let installPrompt = null;
+const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 const freshDetail = () => ({ filter: 'all', shinyOnly: false, expanded: new Set(), shiny: new Set() });
 let det = freshDetail();
 
@@ -172,6 +195,15 @@ function srcHtml(e) {
     ${e.official
       ? `<a href="${esc(e.official)}" target="_blank" rel="noopener">Official post</a><span class="ok"><i class="ti ti-circle-check"></i>Confirmed</span>`
       : `<a href="https://pokemongolive.com/news" target="_blank" rel="noopener">Official news</a>`}`;
+}
+function installHtml() {
+  if (isStandalone() || LS.get('installHidden', false) || (!installPrompt && !isIOS)) return '';
+  return `<div class="install">
+    <div class="ic"><i class="ti ti-download"></i></div>
+    <div style="flex:1;font-size:13px"><div style="font-weight:600;font-size:15px">Install Event Radar</div>
+      ${isIOS ? 'Tap Share, then Add to Home Screen.' : 'Opens like an app, even offline.'}</div>
+    ${installPrompt ? '<button class="btn" data-act="install" style="background:var(--orange);color:#fff">Install</button>' : ''}
+    <button data-act="hideinstall" aria-label="Dismiss" style="color:#fff;opacity:.6;font-size:18px"><i class="ti ti-x"></i></button></div>`;
 }
 
 /* ---------- list view ---------- */
@@ -237,7 +269,7 @@ function renderList() {
   return `<div class="between" style="align-items:flex-start">
       <div><div class="muted" style="font-size:13.5px">${fD(n, tz, { weekday: 'long', day: 'numeric', month: 'long' })}</div><div class="h1">Event radar</div></div>
       <button class="tzbtn" data-act="tz"><span class="row" style="gap:5px"><i class="ti ti-world"></i>${esc(zoneName(tz))}<i class="ti ti-chevron-${tzOpen ? 'up' : 'down'}"></i></span><span class="muted" style="font-size:11.5px">${fT(n, tz)} ${ab(n, tz)}</span></button></div>
-    ${tzPanel}${aboutPanel}
+    ${tzPanel}${aboutPanel}${installHtml()}
     <div class="week">${week}</div>
     ${bannerHtml(all, n, tk)}
     <div class="between" style="margin:20px 0 4px">
@@ -333,6 +365,7 @@ async function share(e) {
   try { await navigator.clipboard.writeText(url); alert('Link copied'); } catch {}
 }
 function setTz(z) { tz = z; LS.set('tz', z); sel = null; tzOpen = false; render(); }
+function goList() { if (location.hash) location.hash = ''; else render(); scrollTo(0, 0); }
 
 document.addEventListener('click', ev => {
   const a = ev.target.closest('[data-act]');
@@ -344,14 +377,14 @@ document.addEventListener('click', ev => {
   ev.stopPropagation();
   const v = a.dataset.v;
   switch (a.dataset.act) {
-    case 'tz': tzOpen = !tzOpen; aboutOpen = false; if (location.hash) location.hash = ''; else render(); scrollTo(0, 0); break;
+    case 'tz': tzOpen = !tzOpen; aboutOpen = false; goList(); break;
+    case 'about': aboutOpen = !aboutOpen; tzOpen = false; goList(); break;
+    case 'home': sel = null; tzOpen = aboutOpen = false; goList(); break;
+    case 'today': sel = dk(Date.now(), tz); tzOpen = aboutOpen = false; goList(); break;
     case 'zone': setTz(v); break;
     case 'day': sel = sel === +v ? null : +v; render(); break;
     case 'mode': mode = v; LS.set('mode', v); render(); break;
     case 'clear': sel = null; render(); break;
-    case 'today': sel = dk(Date.now(), tz); if (location.hash) location.hash = ''; else render(); break;
-    case 'home': sel = null; tzOpen = aboutOpen = false; if (location.hash) location.hash = ''; else render(); scrollTo(0, 0); break;
-    case 'about': aboutOpen = !aboutOpen; tzOpen = false; if (location.hash) location.hash = ''; else render(); scrollTo(0, 0); break;
     case 'sub': subscribe(v === 'all' ? 'all' : 'main'); break;
     case 'remind': remind(find(v)); break;
     case 'back': if (cameFromList) history.back(); else location.hash = ''; break;
@@ -360,14 +393,25 @@ document.addEventListener('click', ev => {
     case 'shonly': det.shinyOnly = !det.shinyOnly; render(); break;
     case 'more': det.expanded.add(v); render(); break;
     case 'tile': if (a.hasAttribute('data-noshiny')) return; det.shiny.has(v) ? det.shiny.delete(v) : det.shiny.add(v); render(); break;
+    case 'install':
+      if (installPrompt) { installPrompt.prompt(); installPrompt.userChoice.finally(() => { installPrompt = null; render(); }); }
+      break;
+    case 'hideinstall': LS.set('installHidden', true); render(); break;
   }
 });
 document.addEventListener('change', ev => { if (ev.target.id === 'zsel' && ev.target.value) setTz(ev.target.value); });
-window.addEventListener('hashchange', () => { det = freshDetail(); render(); scrollTo(0, 0); });
+window.addEventListener('hashchange', () => {
+  det = freshDetail(); render(); scrollTo(0, 0);
+  const app = $('#app'); app.classList.remove('enter'); void app.offsetWidth; app.classList.add('enter');
+});
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; render(); });
+window.addEventListener('appinstalled', () => { installPrompt = null; LS.set('installHidden', true); render(); });
 
 function render() {
   const m = location.hash.match(/^#e=(.+)$/), e = m && find(decodeURIComponent(m[1]));
   $('#app').innerHTML = e ? renderDetail(e) : renderList();
+  const cur = e ? '' : tzOpen ? 'tz' : aboutOpen ? 'about' : sel === dk(Date.now(), tz) ? 'today' : 'home';
+  document.querySelectorAll('.nav [data-act]').forEach(b => b.classList.toggle('cur', b.dataset.act === cur));
 }
 function tick() {
   document.querySelectorAll('[data-s]').forEach(el => { const t = el.querySelector('.cdt'); if (t) t.textContent = cdText(+el.dataset.s, +el.dataset.e); });
@@ -376,7 +420,9 @@ function tick() {
 fetch('data/events.json', { cache: 'no-store' })
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then(j => { DATA = j; render(); setInterval(tick, 30e3); setInterval(render, 5 * 60e3); })
-  .catch(() => { $('#app').innerHTML = `<div class="h1">Event radar</div><div class="empty" style="margin-top:16px">No event data yet. Open the Actions tab on GitHub and run "Update events and deploy" once.</div>`; });
+  .catch(() => { $('#app').innerHTML = `<div class="h1">Event radar</div><div class="empty" style="margin-top:16px">Couldn't load events. Check your connection, or run "Update events and deploy" on GitHub.</div>`; });
+
+if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
 </body>
 </html>
