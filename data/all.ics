@@ -7,7 +7,7 @@ REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H
 BEGIN:VEVENT
 UID:season-24-twilight-trails@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20260908T100000
 DTEND:20261201T100000
 SUMMARY:Twilight Trails
@@ -66,7 +66,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-x-adidas-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20260925T100000
 DTEND:20270115T200000
 SUMMARY:adidas × Pokémon Timed Research
@@ -86,7 +86,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:go-pass-november-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261103T100000
 DTEND:20261201T100000
 SUMMARY:GO Pass: November
@@ -102,56 +102,12 @@ END:VEVENT
 BEGIN:VEVENT
 UID:cresselia-darkrai-in-5-star-raid-battles-november-2026@pogo-event-rad
  ar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261116T060000
 DTEND:20261124T220000
 SUMMARY:Cresselia and Darkrai in 5-star Raid Battles
-DESCRIPTION:Raid Battles\nRaids right now: Alolan Meowth ✨\, Misdreavus ✨
- \, Galarian Yamask ✨\, Sandygast ✨\, Alolan Marowak ✨\, Liepard ✨\, Golur
- k ✨\, Cresselia ✨\, Darkrai ✨\, Mega Banette ✨\, Shadow Larvitar ✨\, Shad
- ow Mudkip ✨\, Shadow Makuhita ✨\, Shadow Cranidos ✨\, Shadow Poliwhirl ✨\
- , Shadow Piloswine ✨\, Shadow Prinplup ✨\, Shadow Tornadus (Incarnate) ✨\
- nEggs right now: Bulbasaur ✨\, Charmander ✨\, Squirtle ✨\, Chikorita ✨\, 
- Cyndaquil ✨\, Totodile ✨\, Treecko ✨\, Torchic ✨\, Mudkip ✨\, Turtwig ✨\,
-  Chimchar ✨\, Piplup ✨\, Snivy ✨\, Tepig ✨\, Oshawott ✨\, Chespin ✨\, Fen
- nekin ✨\, Froakie ✨\, Rowlet ✨\, Litten ✨\, Popplio ✨\, Grookey ✨\, Scorb
- unny ✨\, Sobble ✨\, Sprigatito ✨\, Fuecoco ✨\, Quaxly ✨\, Pichu ✨\, Togep
- i ✨\, Elekid ✨\, Magby ✨\, Azurill ✨\, Tadbulb ✨\, Larvesta ✨\, Snom ✨\, 
- Fidough ✨\, Munchlax ✨\, Sizzlipede ✨\, Maschiff\, Mime Jr ✨\, Indeedee (
- Male) ✨\, Indeedee (Female) ✨\, Larvesta ✨\, Chingling ✨\, Happiny ✨\, Bu
- dew ✨\, Sableye ✨\, Tyrogue ✨\, Galarian Meowth ✨\, Galarian Darumaka ✨\,
-  Galarian Corsola ✨\, Galarian Zigzagoon ✨\, Galarian Stunfisk ✨\, Alolan
-  Geodude ✨\, Alolan Diglett ✨\, Hisuian Sneasel ✨\, Basculin (White Strip
- ed) ✨\, Hisuian Growlithe ✨\, Galarian Slowpoke ✨\, Charcadet ✨\, Tinkati
- nk ✨\, Honedge ✨\, Frigibax ✨\, Impidimp ✨\, Dratini ✨\, Larvesta ✨\, Gib
- le ✨\, Toxel ✨\, Druddigon ✨\, Bagon ✨\, Drampa ✨\, Sandile ✨\, Vullaby ✨
- \, Shroodle ✨\, Pancham ✨\, Salandit ✨\, Varoom ✨\nField research right n
- ow: Bulbasaur\, Charmander\, Squirtle\, Grookey\, Scorbunny\, Sobble\, Ma
- gikarp\, Feebas\, Eevee\, Drampa\, Duraludon\, Stufful\, Wimpod\, Dratini
- \, Bagon\, Axew\, Psyduck\, Seaking\, Marill\, Teddiursa\, Lombre\, Stunk
- y\, Liepard\, Darumaka\, Clauncher\, Dedenne\, Cutiefly\, Smoliv\, Sunker
- n\, Seedot\, Shroomish\, Petilil\, Skiddo\, Gastly\, Shuppet\, Duskull\, 
- Drifloon\, Yamask\, Golett\, Murkrow\, Sneasel\, Poochyena\, Purrloin\, I
- nkay\, Nickit\, Vulpix\, Poliwag\, Wingull\, Hippopotas\, Snover\, Roggen
- rola\, Vanillite\, Alolan Geodude\, Electabuzz\, Makuhita\, Swablu\, Balt
- oy\, Dusclops\, Staravia\, Emolga\, Ferroseed\, Lechonk\, Magmar\, Nuzlea
- f\, Galarian Stunfisk\, Stunfisk\, Trumbeak\, Mareanie\, Nymble\, Larvita
- r\, Beldum\, Gible\, Omanyte\, Kabuto\, Clamperl\, Elgyem\, Binacle\, Lil
- eep\, Anorith\, Spinda 4\, Spinda 5\, Alolan Diglett\, Diglett\, Sudowood
- o\, Lapras\, Vaporeon\, Jolteon\, Flareon\, Snorlax\, Piloswine\, Sealeo\
- , Metang\, Luxio\, Gabite\, Lampent\, Fletchinder\, Tirtouga\, Archen\, A
- lolan Exeggutor\, Alolan Marowak\, Aerodactyl\, Growlithe\, Galarian Pony
- ta\, Ponyta\, Galarian Slowpoke\, Slowpoke\, Houndour\, Electrike\, Wailm
- er\, Herdier\, Scyther\, Noctowl\, Nincada\, Combee\, Audino\, Trubbish\,
-  Cubchoo\, Fidough\, Mawile\, Doduo\, Remoraid\, Ralts\, Aron\, Alolan Sa
- ndshrew\, Sandshrew\, Dunsparce\, Galarian Zigzagoon\, Zigzagoon\, Snorun
- t\, Bidoof\, Ducklett\, Dewpider\, Skwovet\, Blipbug\, Arrokuda\, Tarount
- ula\, Nacli\, Hisuian Growlithe\, Trapinch\, Croagunk\, Cottonee\, Seadra
- \, Ursaring\, Magcargo\, Grumpig\, Whirlipede\, Eelektrik\, Diggersby\, S
- nivy\, Tepig\, Oshawott\, Rowlet\, Litten\, Popplio\, Jigglypuff\, Bunear
- y\, Glameow\, Bunnelby\, Litleo\, Clefairy\, Togetic\, Poliwhirl\, Kadabr
- a\, Machoke\, Haunter\, Arbok\, Meowth\, Weezing\nDetails: https://leekdu
- ck.com/events/cresselia-darkrai-in-5-star-raid-battles-november-2026/
+DESCRIPTION:Raid Battles\nShiny: Cresselia\, Darkrai\nDetails: https://le
+ ekduck.com/events/cresselia-darkrai-in-5-star-raid-battles-november-2026/
 URL:https://leekduck.com/events/cresselia-darkrai-in-5-star-raid-battles-
  november-2026/
 BEGIN:VALARM
@@ -162,52 +118,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mega-banette-in-mega-raids-november-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261116T060000
 DTEND:20261124T220000
 SUMMARY:Mega Banette in Mega Raids
-DESCRIPTION:Raid Battles\nRaid bosses: Mega Banette ✨\nEggs right now: Bu
- lbasaur ✨\, Charmander ✨\, Squirtle ✨\, Chikorita ✨\, Cyndaquil ✨\, Totod
- ile ✨\, Treecko ✨\, Torchic ✨\, Mudkip ✨\, Turtwig ✨\, Chimchar ✨\, Piplu
- p ✨\, Snivy ✨\, Tepig ✨\, Oshawott ✨\, Chespin ✨\, Fennekin ✨\, Froakie ✨
- \, Rowlet ✨\, Litten ✨\, Popplio ✨\, Grookey ✨\, Scorbunny ✨\, Sobble ✨\,
-  Sprigatito ✨\, Fuecoco ✨\, Quaxly ✨\, Pichu ✨\, Togepi ✨\, Elekid ✨\, Ma
- gby ✨\, Azurill ✨\, Tadbulb ✨\, Larvesta ✨\, Snom ✨\, Fidough ✨\, Munchla
- x ✨\, Sizzlipede ✨\, Maschiff\, Mime Jr ✨\, Indeedee (Male) ✨\, Indeedee 
- (Female) ✨\, Larvesta ✨\, Chingling ✨\, Happiny ✨\, Budew ✨\, Sableye ✨\,
-  Tyrogue ✨\, Galarian Meowth ✨\, Galarian Darumaka ✨\, Galarian Corsola ✨
- \, Galarian Zigzagoon ✨\, Galarian Stunfisk ✨\, Alolan Geodude ✨\, Alolan
-  Diglett ✨\, Hisuian Sneasel ✨\, Basculin (White Striped) ✨\, Hisuian Gro
- wlithe ✨\, Galarian Slowpoke ✨\, Charcadet ✨\, Tinkatink ✨\, Honedge ✨\, 
- Frigibax ✨\, Impidimp ✨\, Dratini ✨\, Larvesta ✨\, Gible ✨\, Toxel ✨\, Dr
- uddigon ✨\, Bagon ✨\, Drampa ✨\, Sandile ✨\, Vullaby ✨\, Shroodle ✨\, Pan
- cham ✨\, Salandit ✨\, Varoom ✨\nField research right now: Bulbasaur\, Cha
- rmander\, Squirtle\, Grookey\, Scorbunny\, Sobble\, Magikarp\, Feebas\, E
- evee\, Drampa\, Duraludon\, Stufful\, Wimpod\, Dratini\, Bagon\, Axew\, P
- syduck\, Seaking\, Marill\, Teddiursa\, Lombre\, Stunky\, Liepard\, Darum
- aka\, Clauncher\, Dedenne\, Cutiefly\, Smoliv\, Sunkern\, Seedot\, Shroom
- ish\, Petilil\, Skiddo\, Gastly\, Shuppet\, Duskull\, Drifloon\, Yamask\,
-  Golett\, Murkrow\, Sneasel\, Poochyena\, Purrloin\, Inkay\, Nickit\, Vul
- pix\, Poliwag\, Wingull\, Hippopotas\, Snover\, Roggenrola\, Vanillite\, 
- Alolan Geodude\, Electabuzz\, Makuhita\, Swablu\, Baltoy\, Dusclops\, Sta
- ravia\, Emolga\, Ferroseed\, Lechonk\, Magmar\, Nuzleaf\, Galarian Stunfi
- sk\, Stunfisk\, Trumbeak\, Mareanie\, Nymble\, Larvitar\, Beldum\, Gible\
- , Omanyte\, Kabuto\, Clamperl\, Elgyem\, Binacle\, Lileep\, Anorith\, Spi
- nda 4\, Spinda 5\, Alolan Diglett\, Diglett\, Sudowoodo\, Lapras\, Vapore
- on\, Jolteon\, Flareon\, Snorlax\, Piloswine\, Sealeo\, Metang\, Luxio\, 
- Gabite\, Lampent\, Fletchinder\, Tirtouga\, Archen\, Alolan Exeggutor\, A
- lolan Marowak\, Aerodactyl\, Growlithe\, Galarian Ponyta\, Ponyta\, Galar
- ian Slowpoke\, Slowpoke\, Houndour\, Electrike\, Wailmer\, Herdier\, Scyt
- her\, Noctowl\, Nincada\, Combee\, Audino\, Trubbish\, Cubchoo\, Fidough\
- , Mawile\, Doduo\, Remoraid\, Ralts\, Aron\, Alolan Sandshrew\, Sandshrew
- \, Dunsparce\, Galarian Zigzagoon\, Zigzagoon\, Snorunt\, Bidoof\, Duckle
- tt\, Dewpider\, Skwovet\, Blipbug\, Arrokuda\, Tarountula\, Nacli\, Hisui
- an Growlithe\, Trapinch\, Croagunk\, Cottonee\, Seadra\, Ursaring\, Magca
- rgo\, Grumpig\, Whirlipede\, Eelektrik\, Diggersby\, Snivy\, Tepig\, Osha
- wott\, Rowlet\, Litten\, Popplio\, Jigglypuff\, Buneary\, Glameow\, Bunne
- lby\, Litleo\, Clefairy\, Togetic\, Poliwhirl\, Kadabra\, Machoke\, Haunt
- er\, Arbok\, Meowth\, Weezing\nDetails: https://leekduck.com/events/mega-
- banette-in-mega-raids-november-2026/
+DESCRIPTION:Raid Battles\nRaid bosses: Mega Banette ✨\nDetails: https://l
+ eekduck.com/events/mega-banette-in-mega-raids-november-2026/
 URL:https://leekduck.com/events/mega-banette-in-mega-raids-november-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -218,52 +134,13 @@ END:VEVENT
 BEGIN:VEVENT
 UID:shadow-tornadus-incarnate-forme-in-shadow-raids-november-16-2026@pogo
  -event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261116T060000
 DTEND:20261201T220000
 SUMMARY:Shadow Tornadus (Incarnate Forme) in Shadow Raids
-DESCRIPTION:Raid Battles\nRaid bosses: Tornadus (Incarnate)\nEggs right n
- ow: Bulbasaur ✨\, Charmander ✨\, Squirtle ✨\, Chikorita ✨\, Cyndaquil ✨\,
-  Totodile ✨\, Treecko ✨\, Torchic ✨\, Mudkip ✨\, Turtwig ✨\, Chimchar ✨\,
-  Piplup ✨\, Snivy ✨\, Tepig ✨\, Oshawott ✨\, Chespin ✨\, Fennekin ✨\, Fro
- akie ✨\, Rowlet ✨\, Litten ✨\, Popplio ✨\, Grookey ✨\, Scorbunny ✨\, Sobb
- le ✨\, Sprigatito ✨\, Fuecoco ✨\, Quaxly ✨\, Pichu ✨\, Togepi ✨\, Elekid 
- ✨\, Magby ✨\, Azurill ✨\, Tadbulb ✨\, Larvesta ✨\, Snom ✨\, Fidough ✨\, M
- unchlax ✨\, Sizzlipede ✨\, Maschiff\, Mime Jr ✨\, Indeedee (Male) ✨\, Ind
- eedee (Female) ✨\, Larvesta ✨\, Chingling ✨\, Happiny ✨\, Budew ✨\, Sable
- ye ✨\, Tyrogue ✨\, Galarian Meowth ✨\, Galarian Darumaka ✨\, Galarian Cor
- sola ✨\, Galarian Zigzagoon ✨\, Galarian Stunfisk ✨\, Alolan Geodude ✨\, 
- Alolan Diglett ✨\, Hisuian Sneasel ✨\, Basculin (White Striped) ✨\, Hisui
- an Growlithe ✨\, Galarian Slowpoke ✨\, Charcadet ✨\, Tinkatink ✨\, Honedg
- e ✨\, Frigibax ✨\, Impidimp ✨\, Dratini ✨\, Larvesta ✨\, Gible ✨\, Toxel 
- ✨\, Druddigon ✨\, Bagon ✨\, Drampa ✨\, Sandile ✨\, Vullaby ✨\, Shroodle ✨
- \, Pancham ✨\, Salandit ✨\, Varoom ✨\nField research right now: Bulbasaur
- \, Charmander\, Squirtle\, Grookey\, Scorbunny\, Sobble\, Magikarp\, Feeb
- as\, Eevee\, Drampa\, Duraludon\, Stufful\, Wimpod\, Dratini\, Bagon\, Ax
- ew\, Psyduck\, Seaking\, Marill\, Teddiursa\, Lombre\, Stunky\, Liepard\,
-  Darumaka\, Clauncher\, Dedenne\, Cutiefly\, Smoliv\, Sunkern\, Seedot\, 
- Shroomish\, Petilil\, Skiddo\, Gastly\, Shuppet\, Duskull\, Drifloon\, Ya
- mask\, Golett\, Murkrow\, Sneasel\, Poochyena\, Purrloin\, Inkay\, Nickit
- \, Vulpix\, Poliwag\, Wingull\, Hippopotas\, Snover\, Roggenrola\, Vanill
- ite\, Alolan Geodude\, Electabuzz\, Makuhita\, Swablu\, Baltoy\, Dusclops
- \, Staravia\, Emolga\, Ferroseed\, Lechonk\, Magmar\, Nuzleaf\, Galarian 
- Stunfisk\, Stunfisk\, Trumbeak\, Mareanie\, Nymble\, Larvitar\, Beldum\, 
- Gible\, Omanyte\, Kabuto\, Clamperl\, Elgyem\, Binacle\, Lileep\, Anorith
- \, Spinda 4\, Spinda 5\, Alolan Diglett\, Diglett\, Sudowoodo\, Lapras\, 
- Vaporeon\, Jolteon\, Flareon\, Snorlax\, Piloswine\, Sealeo\, Metang\, Lu
- xio\, Gabite\, Lampent\, Fletchinder\, Tirtouga\, Archen\, Alolan Exeggut
- or\, Alolan Marowak\, Aerodactyl\, Growlithe\, Galarian Ponyta\, Ponyta\,
-  Galarian Slowpoke\, Slowpoke\, Houndour\, Electrike\, Wailmer\, Herdier\
- , Scyther\, Noctowl\, Nincada\, Combee\, Audino\, Trubbish\, Cubchoo\, Fi
- dough\, Mawile\, Doduo\, Remoraid\, Ralts\, Aron\, Alolan Sandshrew\, San
- dshrew\, Dunsparce\, Galarian Zigzagoon\, Zigzagoon\, Snorunt\, Bidoof\, 
- Ducklett\, Dewpider\, Skwovet\, Blipbug\, Arrokuda\, Tarountula\, Nacli\,
-  Hisuian Growlithe\, Trapinch\, Croagunk\, Cottonee\, Seadra\, Ursaring\,
-  Magcargo\, Grumpig\, Whirlipede\, Eelektrik\, Diggersby\, Snivy\, Tepig\
- , Oshawott\, Rowlet\, Litten\, Popplio\, Jigglypuff\, Buneary\, Glameow\,
-  Bunnelby\, Litleo\, Clefairy\, Togetic\, Poliwhirl\, Kadabra\, Machoke\,
-  Haunter\, Arbok\, Meowth\, Weezing\nDetails: https://leekduck.com/events
- /shadow-tornadus-incarnate-forme-in-shadow-raids-november-16-2026/
+DESCRIPTION:Raid Battles\nRaid bosses: Tornadus (Incarnate)\nDetails: htt
+ ps://leekduck.com/events/shadow-tornadus-incarnate-forme-in-shadow-raids-
+ november-16-2026/
 URL:https://leekduck.com/events/shadow-tornadus-incarnate-forme-in-shadow
  -raids-november-16-2026/
 BEGIN:VALARM
@@ -274,56 +151,48 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:dynamax-trails-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261116T100000
 DTEND:20261123T200000
 SUMMARY:Dynamax Trails
-DESCRIPTION:Event\nRaids right now: Alolan Meowth ✨\, Misdreavus ✨\, Gala
- rian Yamask ✨\, Sandygast ✨\, Alolan Marowak ✨\, Liepard ✨\, Golurk ✨\, C
- resselia ✨\, Darkrai ✨\, Mega Banette ✨\, Shadow Larvitar ✨\, Shadow Mudk
- ip ✨\, Shadow Makuhita ✨\, Shadow Cranidos ✨\, Shadow Poliwhirl ✨\, Shado
- w Piloswine ✨\, Shadow Prinplup ✨\, Shadow Tornadus (Incarnate) ✨\nEggs r
- ight now: Bulbasaur ✨\, Charmander ✨\, Squirtle ✨\, Chikorita ✨\, Cyndaqu
- il ✨\, Totodile ✨\, Treecko ✨\, Torchic ✨\, Mudkip ✨\, Turtwig ✨\, Chimch
- ar ✨\, Piplup ✨\, Snivy ✨\, Tepig ✨\, Oshawott ✨\, Chespin ✨\, Fennekin ✨
- \, Froakie ✨\, Rowlet ✨\, Litten ✨\, Popplio ✨\, Grookey ✨\, Scorbunny ✨\
- , Sobble ✨\, Sprigatito ✨\, Fuecoco ✨\, Quaxly ✨\, Pichu ✨\, Togepi ✨\, E
- lekid ✨\, Magby ✨\, Azurill ✨\, Tadbulb ✨\, Larvesta ✨\, Snom ✨\, Fidough
-  ✨\, Munchlax ✨\, Sizzlipede ✨\, Maschiff\, Mime Jr ✨\, Indeedee (Male) ✨
- \, Indeedee (Female) ✨\, Larvesta ✨\, Chingling ✨\, Happiny ✨\, Budew ✨\,
-  Sableye ✨\, Tyrogue ✨\, Galarian Meowth ✨\, Galarian Darumaka ✨\, Galari
- an Corsola ✨\, Galarian Zigzagoon ✨\, Galarian Stunfisk ✨\, Alolan Geodud
- e ✨\, Alolan Diglett ✨\, Hisuian Sneasel ✨\, Basculin (White Striped) ✨\,
-  Hisuian Growlithe ✨\, Galarian Slowpoke ✨\, Charcadet ✨\, Tinkatink ✨\, 
- Honedge ✨\, Frigibax ✨\, Impidimp ✨\, Dratini ✨\, Larvesta ✨\, Gible ✨\, 
- Toxel ✨\, Druddigon ✨\, Bagon ✨\, Drampa ✨\, Sandile ✨\, Vullaby ✨\, Shro
- odle ✨\, Pancham ✨\, Salandit ✨\, Varoom ✨\nField research right now: Bul
- basaur\, Charmander\, Squirtle\, Grookey\, Scorbunny\, Sobble\, Magikarp\
- , Feebas\, Eevee\, Drampa\, Duraludon\, Stufful\, Wimpod\, Dratini\, Bago
- n\, Axew\, Psyduck\, Seaking\, Marill\, Teddiursa\, Lombre\, Stunky\, Lie
- pard\, Darumaka\, Clauncher\, Dedenne\, Cutiefly\, Smoliv\, Sunkern\, See
- dot\, Shroomish\, Petilil\, Skiddo\, Gastly\, Shuppet\, Duskull\, Drifloo
- n\, Yamask\, Golett\, Murkrow\, Sneasel\, Poochyena\, Purrloin\, Inkay\, 
- Nickit\, Vulpix\, Poliwag\, Wingull\, Hippopotas\, Snover\, Roggenrola\, 
- Vanillite\, Alolan Geodude\, Electabuzz\, Makuhita\, Swablu\, Baltoy\, Du
- sclops\, Staravia\, Emolga\, Ferroseed\, Lechonk\, Magmar\, Nuzleaf\, Gal
- arian Stunfisk\, Stunfisk\, Trumbeak\, Mareanie\, Nymble\, Larvitar\, Bel
- dum\, Gible\, Omanyte\, Kabuto\, Clamperl\, Elgyem\, Binacle\, Lileep\, A
- norith\, Spinda 4\, Spinda 5\, Alolan Diglett\, Diglett\, Sudowoodo\, Lap
- ras\, Vaporeon\, Jolteon\, Flareon\, Snorlax\, Piloswine\, Sealeo\, Metan
- g\, Luxio\, Gabite\, Lampent\, Fletchinder\, Tirtouga\, Archen\, Alolan E
- xeggutor\, Alolan Marowak\, Aerodactyl\, Growlithe\, Galarian Ponyta\, Po
- nyta\, Galarian Slowpoke\, Slowpoke\, Houndour\, Electrike\, Wailmer\, He
- rdier\, Scyther\, Noctowl\, Nincada\, Combee\, Audino\, Trubbish\, Cubcho
- o\, Fidough\, Mawile\, Doduo\, Remoraid\, Ralts\, Aron\, Alolan Sandshrew
- \, Sandshrew\, Dunsparce\, Galarian Zigzagoon\, Zigzagoon\, Snorunt\, Bid
- oof\, Ducklett\, Dewpider\, Skwovet\, Blipbug\, Arrokuda\, Tarountula\, N
- acli\, Hisuian Growlithe\, Trapinch\, Croagunk\, Cottonee\, Seadra\, Ursa
- ring\, Magcargo\, Grumpig\, Whirlipede\, Eelektrik\, Diggersby\, Snivy\, 
- Tepig\, Oshawott\, Rowlet\, Litten\, Popplio\, Jigglypuff\, Buneary\, Gla
- meow\, Bunnelby\, Litleo\, Clefairy\, Togetic\, Poliwhirl\, Kadabra\, Mac
- hoke\, Haunter\, Arbok\, Meowth\, Weezing\nDetails: https://leekduck.com/
- events/dynamax-trails-2026/
+DESCRIPTION:Event\nMax Battles: Bulbasaur100% IV CPLevel 20637 ✨\, Charma
+ nder100% IV CPLevel 20560 ✨\, Squirtle100% IV CPLevel 20540 ✨\, Caterpie1
+ 00% IV CPLevel 20249 ✨\, Pikachu100% IV CPLevel 20536 ✨\, Growlithe100% I
+ V CPLevel 20710 ✨\, Abra100% IV CPLevel 20767 ✨\, Machop100% IV CPLevel 2
+ 0730 ✨\, Gastly100% IV CPLevel 20702 ✨\, Krabby100% IV CPLevel 20892 ✨\, 
+ Hitmonlee100% IV CPLevel 201472 ✨\, Hitmonchan100% IV CPLevel 201332 ✨\, 
+ Rhyhorn100% IV CPLevel 20943 ✨\, Chansey100% IV CPLevel 20717 ✨\, Electab
+ uzz100% IV CPLevel 201333 ✨\, Magmar100% IV CPLevel 201367 ✨\, Magikarp10
+ 0% IV CPLevel 20157 ✨\, Eevee100% IV CPLevel 20612 ✨\, Omanyte100% IV CPL
+ evel 20882 ✨\, Kabuto100% IV CPLevel 20783 ✨\, Hoothoot100% IV CPLevel 20
+ 387 ✨\, Shuckle100% IV CPLevel 20231 ✨\, Sneasel100% IV CPLevel 201172 ✨\
+ , Hitmontop100% IV CPLevel 201232 ✨\, Ralts100% IV CPLevel 20308 ✨\, Sabl
+ eye100% IV CPLevel 20843 ✨\, Wailmer100% IV CPLevel 20838 ✨\, Trapinch100
+ % IV CPLevel 20728 ✨\, Feebas100% IV CPLevel 20157 ✨\, Spheal100% IV CPLe
+ vel 20550 ✨\, Beldum100% IV CPLevel 20558 ✨\, Combee100% IV CPLevel 20282
+  ✨\, Pidove100% IV CPLevel 20484 ✨\, Roggenrola100% IV CPLevel 20688 ✨\, 
+ Woobat100% IV CPLevel 20580 ✨\, Drilbur100% IV CPLevel 20786 ✨\, Cottonee
+ 100% IV CPLevel 20400 ✨\, Darumaka100% IV CPLevel 20823 ✨\, Trubbish100% 
+ IV CPLevel 20571 ✨\, Cryogonal100% IV CPLevel 201598 ✨\, Deino100% IV CPL
+ evel 20606 ✨\, Inkay100% IV CPLevel 20529 ✨\, Bounsweet100% IV CPLevel 20
+ 268 ✨\, Passimian100% IV CPLevel 201733 ✨\, Drampa100% IV CPLevel 201665 
+ ✨\, Grookey100% IV CPLevel 20620 ✨\, Scorbunny100% IV CPLevel 20627 ✨\, S
+ obble100% IV CPLevel 20627 ✨\, Skwovet100% IV CPLevel 20539 ✨\, Rookidee1
+ 00% IV CPLevel 20380 ✨\, Wooloo100% IV CPLevel 20403 ✨\, Sizzlipede100% I
+ V CPLevel 20599 ✨\, Hatenna100% IV CPLevel 20492 ✨\, Falinks100% IV CPLev
+ el 201347 ✨\, Duraludon100% IV CPLevel 201753 ✨\nSpotlight Hour: Grookey 
+ ✨\, Scorbunny ✨\, Sobble ✨\nWild Encounters: Bulbasaur ✨\, Charmander ✨\,
+  Squirtle ✨\, Caterpie ✨\, Pikachu ✨\, Growlithe ✨\, Abra ✨\, Machop ✨\, 
+ Gastly ✨\, Krabby ✨\, Hitmonlee ✨\, Hitmonchan ✨\, Rhyhorn ✨\, Chansey ✨\
+ , Electabuzz ✨\, Magmar ✨\, Magikarp ✨\, Eevee ✨\, Omanyte ✨\, Kabuto ✨\,
+  Hoothoot ✨\, Shuckle ✨\, Sneasel ✨\, Hitmontop ✨\, Ralts ✨\, Sableye ✨\,
+  Wailmer ✨\, Trapinch ✨\, Feebas ✨\, Spheal ✨\, Beldum ✨\, Combee ✨\, Pid
+ ove ✨\, Roggenrola ✨\, Woobat ✨\, Drilbur ✨\, Cottonee ✨\, Darumaka ✨\, T
+ rubbish ✨\, Cryogonal ✨\, Deino ✨\, Inkay ✨\, Bounsweet ✨\, Passimian ✨\,
+  Drampa ✨\, Grookey ✨\, Scorbunny ✨\, Sobble ✨\, Skwovet ✨\, Rookidee ✨\,
+  Wooloo ✨\, Toxtricity (Amped Form) ✨\, Toxtricity (Low Key Form) ✨\, Siz
+ zlipede ✨\, Hatenna ✨\, Falinks ✨\, Duraludon ✨\nEternatus Returns: Etern
+ amax Eternatus\nDetails: https://leekduck.com/events/dynamax-trails-2026/
 URL:https://leekduck.com/events/dynamax-trails-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -338,7 +207,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:duolingo-timed-research-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261117T100000
 DTEND:20261231T235900
 SUMMARY:Pokémon GO and Duolingo Timed Research
@@ -359,7 +228,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-twilight-trails_ultra-league_master-league-mega-edition_2026-go-l
  aic-cup@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261118T210000Z
 DTEND:20261125T210000Z
 SUMMARY:Ultra League\, Master League: Mega Edition\, and 2026 GO LAIC Cup
@@ -378,7 +247,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-latin-america-international-championships-2027-timed-research
  -twitch-drops@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261120T120000Z
 DTEND:20261122T230000Z
 SUMMARY:Twitch Drops for 2027 Pokémon Latin America International Champio
@@ -402,12 +271,13 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:eternamax-eternatus-max-battles-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261121T110000
 DTEND:20261121T140000
 SUMMARY:Eternamax Eternatus Returns
-DESCRIPTION:Max Battles\nDetails: https://leekduck.com/events/eternamax-e
- ternatus-max-battles-2026/
+DESCRIPTION:Max Battles\nEternamax Eternatus in Max Battles: Eternamax Et
+ ernatus\nDetails: https://leekduck.com/events/eternamax-eternatus-max-bat
+ tles-2026/
 URL:https://leekduck.com/events/eternamax-eternatus-max-battles-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -422,7 +292,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:november-communityday2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261121T140000
 DTEND:20261121T170000
 SUMMARY:Pawniard Community Day
@@ -446,12 +316,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-mondays-2026-11-23@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261123T060000
 DTEND:20261123T210000
 SUMMARY:Dynamax Espurr during Max Monday
-DESCRIPTION:Max Mondays\nDetails: https://leekduck.com/events/max-mondays
- -2026-11-23/
+DESCRIPTION:Max Mondays\nMenu: Espurr ✨\nDetails: https://leekduck.com/ev
+ ents/max-mondays-2026-11-23/
 URL:https://leekduck.com/events/max-mondays-2026-11-23/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -461,12 +331,19 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:twilight-wishes-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261124T100000
 DTEND:20261130T200000
 SUMMARY:Twilight Wishes
-DESCRIPTION:Event\nDetails: https://leekduck.com/events/twilight-wishes-2
- 026/
+DESCRIPTION:Event\nFeatured Pokémon: Espeon wearing a sun scarf\, Umbreon
+  wearing a moon scarf\, Rockruff\nSpawns: Clefairy\, Staryu\, Elgyem\, Ro
+ ckruff\nOne-Star Raids: Pikachu wearing a sun crown\, Pikachu wearing a m
+ oon crown\nThree-Star Raids: Espeon wearing a sun scarf\, Umbreon wearing
+  a moon scarf\nMega Raids: Mega Beedrill\, Mega Houndoom\, Mega Sableye\,
+  Mega Manectric\nNovember 24 at 10:00 a.m. to November 26 at 10:00 a.m. l
+ ocal time: Applin\, Maschiff\nNovember 26 at 10:00 a.m. to November 30 at
+  8:00 p.m. local time: Gengar wearing a Spooky Festival costume\, Brambli
+ n\nDetails: https://leekduck.com/events/twilight-wishes-2026/
 URL:https://leekduck.com/events/twilight-wishes-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -482,7 +359,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-twilight-trails_master-league_mega-catch-cup-great-league-edition
  @pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261124T210000Z
 DTEND:20261201T210000Z
 SUMMARY:Master League and Mega Catch Cup: Great League Edition | Twilight
@@ -501,7 +378,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:deoxys-normal-defense-attack-speed-formes-in-5-star-raid-battles-nove
  mber-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261125T060000
 DTEND:20261201T220000
 SUMMARY:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) in 5-star R
@@ -521,7 +398,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mega-metagross-in-mega-raids-november-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261125T060000
 DTEND:20261201T220000
 SUMMARY:Mega Metagross in Mega Raids
@@ -537,7 +414,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raidhour20261125@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261125T180000
 DTEND:20261125T190000
 SUMMARY:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) Raid Hour
@@ -553,7 +430,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemonspotlighthour2026-11-26@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261126T180000
 DTEND:20261126T190000
 SUMMARY:Noibat Spotlight Hour
@@ -569,12 +446,13 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clefable-super-mega-raid-day-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261128T140000
 DTEND:20261128T170000
 SUMMARY:Clefable Super Mega Raid Day
-DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/clefable-super
- -mega-raid-day-2026/
+DESCRIPTION:Raid Day\nEncounter after defeating Mega Clefable: Clefable ✨
+ \nShiny: Clefable\nDetails: https://leekduck.com/events/clefable-super-me
+ ga-raid-day-2026/
 URL:https://leekduck.com/events/clefable-super-mega-raid-day-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -589,12 +467,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-mondays-2026-11-30@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261130T060000
 DTEND:20261130T210000
 SUMMARY:Dynamax Cryogonal during Max Monday
-DESCRIPTION:Max Mondays\nDetails: https://leekduck.com/events/max-mondays
- -2026-11-30/
+DESCRIPTION:Max Mondays\nMenu: Cryogonal ✨\nDetails: https://leekduck.com
+ /events/max-mondays-2026-11-30/
 URL:https://leekduck.com/events/max-mondays-2026-11-30/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -604,7 +482,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-battle-day-december-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261205T140000
 DTEND:20261205T170000
 SUMMARY:Max Battle Day
@@ -624,7 +502,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-geminids-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261211T170000
 DTEND:20261216T235900
 SUMMARY:Minior Showers: Geminids 2026
@@ -644,7 +522,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:december-communityday2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261212T140000
 DTEND:20261213T170000
 SUMMARY:December Community Day 2026
@@ -671,7 +549,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raid-day-december-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261219T140000
 DTEND:20261219T170000
 SUMMARY:Raid Day
@@ -691,7 +569,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:hatch-day-december-2026@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20261226T110000
 DTEND:20261226T170000
 SUMMARY:Hatch Day
@@ -711,7 +589,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:january-communitydayclassic2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270102T140000
 DTEND:20270102T170000
 SUMMARY:January Community Day Classic
@@ -731,7 +609,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:super-mega-raid-day-january-2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270109T140000
 DTEND:20270109T170000
 SUMMARY:Super Mega Raid Day
@@ -751,7 +629,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:january-communityday2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270116T140000
 DTEND:20270116T170000
 SUMMARY:January Community Day
@@ -771,7 +649,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-battle-day-january-2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270123T140000
 DTEND:20270123T170000
 SUMMARY:Max Battle Day
@@ -791,7 +669,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:super-mega-raid-day-january-30-2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270130T140000
 DTEND:20270130T170000
 SUMMARY:Super Mega Raid Day
@@ -811,7 +689,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:february-communityday2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270206T140000
 DTEND:20270206T170000
 SUMMARY:February Community Day
@@ -831,7 +709,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raid-day-february-2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270213T140000
 DTEND:20270213T170000
 SUMMARY:Raid Day
@@ -851,7 +729,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-go-tour-alola-kaohsiung-2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270218T160000Z
 DTEND:20270221T155959Z
 SUMMARY:Pokémon GO Tour: Alola - Kaohsiung 2027
@@ -871,7 +749,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-go-tour-alola-los-angeles-2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270219T080000Z
 DTEND:20270222T075959Z
 SUMMARY:Pokémon GO Tour: Alola - Los Angeles 2027
@@ -891,7 +769,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-go-tour-alola-global-2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270227T000000
 DTEND:20270228T235959
 SUMMARY:Pokémon GO Tour: Alola - Global 2027
@@ -911,7 +789,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-eta-aquariids-2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270503T170000
 DTEND:20270508T235900
 SUMMARY:Minior Showers: Eta Aquariids 2027
@@ -931,7 +809,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-southern-delta-aquariids-2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270728T170000
 DTEND:20270802T235900
 SUMMARY:Minior Showers: Southern Delta Aquariids 2027
@@ -952,7 +830,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-perseids-2027@pogo-event-radar
-DTSTAMP:20261122T061634Z
+DTSTAMP:20261122T074410Z
 DTSTART:20270810T170000
 DTEND:20270815T235900
 SUMMARY:Minior Showers: Perseids 2027
