@@ -195,4 +195,75 @@ const events = raw
     groups.push(...(scraped.get(e.eventID)
       || previous.get(e.eventID)?.groups?.filter(g => g.key?.startsWith('p-')) || []));
     if (live && LIVE_EXTRAS.has(type)) {
-      if (!x.raidbattles?.bosses?.length) groups.push(group('raids-now', 'Raids rig
+      if (!x.raidbattles?.bosses?.length) groups.push(group('raids-now', 'Raids right now', 'shield', raids, p => p.tier));
+      groups.push(group('eggs-now', 'Eggs right now', 'egg', eggs, p => p.eggType ? p.eggType + (p.isAdventureSync ? ' · Adventure Sync' : '') : ''));
+      groups.push(group('research-now', 'Field research right now', 'map-search', research.flatMap(r => r.rewards || [])));
+    }
+
+    const bonuses = [
+      ...(x.communityday?.bonuses || []).map(b => ({ text: b.text, image: b.image || '' })),
+      ...(x.spotlight?.bonus ? [{ text: x.spotlight.bonus, image: '' }] : [])
+    ];
+    const rewards = [];
+    for (const step of x.communityday?.specialresearch || []) {
+      for (const r of step.rewards || []) rewards.push({ text: r.text, image: r.image || '' });
+      for (const t of step.tasks || []) if (t.reward?.text) rewards.push({ text: t.reward.text, image: t.reward.image || '' });
+    }
+
+    let official = findOfficial(e.name, posts);
+    if (!official && officialStatus !== 'ok') official = previous.get(e.eventID)?.official || null; // keep old match if check failed
+
+    return {
+      id: e.eventID, name: e.name, type, heading: e.heading || '', link: e.link, image: e.image || '',
+      start: e.start, end: e.end, main: !MINOR.has(type), scope, tz, official,
+      groups: groups.filter(Boolean), bonuses,
+      disclaimers: x.communityday?.bonusDisclaimers || [],
+      rewards: rewards.filter((r, i, a) => r.text && a.findIndex(o => o.text === r.text) === i)
+    };
+  })
+  .sort((a, b) => Date.parse(a.start) - Date.parse(b.start));
+
+await mkdir('data', { recursive: true });
+await writeFile('data/events.json', JSON.stringify({
+  updatedAt: new Date().toISOString(),
+  sources: { feed: 'LeekDuck via ScrapedDuck', official: officialStatus },
+  events
+}));
+
+/* ---------- calendars ---------- */
+const icsFloat = s => s.replace(/[-:]/g, '').slice(0, 15);
+const icsUTC = t => new Date(t).toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+const esc = s => String(s ?? '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+const fold = l => (l.match(/.{1,73}/gu) || ['']).join('\r\n ');
+function icsTimes(e) {
+  if (e.scope === 'local') return [icsFloat(e.start), icsFloat(e.end)];       // same clock time everywhere
+  if (e.scope === 'global') return [icsUTC(Date.parse(e.start)), icsUTC(Date.parse(e.end))];
+  return [icsUTC(wallStr(e.start, e.tz)), icsUTC(wallStr(e.end, e.tz))];     // venue time → exact moment
+}
+function describe(e) {
+  const out = [e.heading];
+  for (const g of e.groups) out.push(`${g.label}: ${g.items.map(p => p.name + (p.shiny ? ' ✨' : '')).join(', ')}`);
+  if (e.bonuses.length) out.push('Bonuses: ' + e.bonuses.map(b => b.text).join('; '));
+  if (e.official) out.push('Official post: ' + e.official);
+  out.push('Details: ' + e.link);
+  return out.join('\n');
+}
+function ics(list, calName) {
+  const stamp = icsUTC(Date.now());
+  const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//pogo-event-radar//EN', 'CALSCALE:GREGORIAN',
+    `X-WR-CALNAME:${calName}`, 'REFRESH-INTERVAL;VALUE=DURATION:PT6H', 'X-PUBLISHED-TTL:PT6H'];
+  for (const e of list) {
+    const [s, en] = icsTimes(e);
+    L.push('BEGIN:VEVENT', `UID:${e.id}@pogo-event-radar`, `DTSTAMP:${stamp}`, `DTSTART:${s}`, `DTEND:${en}`,
+      `SUMMARY:${esc(e.name)}`, `DESCRIPTION:${esc(describe(e))}`, `URL:${e.link}`,
+      'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:-PT1H', `DESCRIPTION:${esc(e.name)} in 1 hour`, 'END:VALARM');
+    if (e.main) L.push('BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:-P1D', `DESCRIPTION:${esc(e.name)} tomorrow`, 'END:VALARM');
+    L.push('END:VEVENT');
+  }
+  L.push('END:VCALENDAR');
+  return L.map(fold).join('\r\n') + '\r\n';
+}
+await writeFile('data/main.ics', ics(events.filter(e => e.main), 'Pokémon GO – Main events'));
+await writeFile('data/all.ics', ics(events, 'Pokémon GO – All events'));
+
+console.log(`Saved ${events.length} events (${events.filter(e => e.main).length} main, ${events.filter(e => e.official).length} confirmed by official news)`);
