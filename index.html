@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F7F1E8">
+<title>Event Radar · Pokémon GO events</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+<style>
+:root{--bg:#F7F1E8;--ink:#1E1E1E;--mut:#7A736A;--card:#fff;--orange:#FF8A3D;--peach:#FFD4B5;--brown:#5A2A0C;--gold:#C99A12}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;line-height:1.35;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;border:none;cursor:pointer;color:inherit;background:none;padding:0}
+a{color:inherit}
+.app{max-width:480px;margin:0 auto;padding:22px 16px 120px;min-height:100vh}
+.muted{color:var(--mut)}
+.row{display:flex;align-items:center;gap:8px}
+.between{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.h1{font-size:30px;font-weight:600;letter-spacing:-.6px;line-height:1.1;margin-top:2px}
+.h2{font-size:20px;font-weight:600;letter-spacing:-.3px}
+.h3{font-size:16px;font-weight:600;margin-bottom:10px}
+.sec{background:var(--card);border-radius:24px;padding:16px;margin-top:12px}
+.tzbtn{background:#fff;border-radius:999px;padding:8px 14px;text-align:left;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12.5px;padding:7px 12px;border-radius:999px;background:var(--bg)}
+.chip.on{background:var(--ink);color:#fff}
+.chip.gold{background:#F8E39A;color:#5C4300}
+.week{display:flex;justify-content:space-between;margin-top:18px}
+.day{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:12px;color:var(--mut)}
+.dc{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--ink)}
+.day.sel .dc{background:var(--ink);color:#fff}
+.day.today:not(.sel) .dc{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.dots{display:flex;gap:2px;height:5px}.dots i{width:5px;height:5px;border-radius:50%;display:block}
+.banner{background:var(--peach);color:var(--brown);border-radius:26px;padding:18px;margin-top:18px;display:flex;gap:12px;align-items:center;cursor:pointer}
+.bell{width:76px;height:76px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:34px;color:#fff}
+.btn{border-radius:999px;padding:9px 16px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;justify-content:center}
+.seg{background:#fff;border-radius:999px;padding:3px;display:flex}
+.seg button{font-size:12.5px;padding:6px 14px;border-radius:999px}
+.seg .on{background:var(--ink);color:#fff}
+.sub{font-size:13px;color:var(--mut);margin:16px 4px 8px}
+.ev{border-radius:26px;padding:16px;margin-bottom:12px;cursor:pointer}
+.tag{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.65)}
+.ev .name{font-size:20px;font-weight:600;letter-spacing:-.3px;margin:10px 0 8px;line-height:1.2}
+.meta{display:flex;flex-direction:column;gap:3px;font-size:13.5px}
+.cd{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;border-radius:999px;padding:7px 13px;font-size:12.5px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#5DDB8F}
+.av{position:relative;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:600;overflow:hidden;flex-shrink:0}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.mpill{display:inline-flex;align-items:center;gap:6px;background:#fff;border-radius:999px;padding:3px 11px 3px 3px;font-size:12.5px;margin:0 5px 5px 0;color:var(--ink)}
+.stack{display:flex}.stack .av{margin-left:-9px;box-shadow:0 0 0 2.5px var(--ring)}.stack .av:first-child{margin-left:0}
+.src{font-size:11.5px;margin-top:12px;padding-top:9px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ok{display:inline-flex;gap:4px;align-items:center;background:rgba(255,255,255,.75);border-radius:999px;padding:3px 9px}
+.grid{display:flex;flex-wrap:wrap;gap:6px}
+.tile{width:calc(25% - 5px);text-align:center;font-size:11.5px;background:var(--bg);border-radius:18px;padding:10px 4px}
+.tile .av{margin-bottom:5px}
+.sb{display:inline-flex;gap:3px;align-items:center;font-size:10.5px;margin-top:4px;background:#F8E39A;color:#5C4300;border-radius:999px;padding:2px 7px}
+.tier{font-size:12px;color:var(--mut);margin:10px 0 6px}
+.gh{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.gi{width:28px;height:28px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.grp{border-top:1px solid #F0EAE0;margin-top:12px;padding-top:12px}
+.hero{border-radius:28px;padding:16px;margin-top:12px}
+.hero-img{height:130px;border-radius:20px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:34px;position:relative}
+.hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tiles2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mini{background:rgba(255,255,255,.65);border-radius:16px;padding:10px}
+.brow{display:flex;align-items:center;gap:10px;font-size:13.5px;padding:6px 0}
+.bic{position:relative;width:36px;height:36px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.bic img{position:absolute;inset:3px;width:30px;height:30px;object-fit:contain}
+.rw{display:inline-flex;align-items:center;gap:6px;background:var(--bg);border-radius:14px;padding:6px 11px 6px 6px;font-size:12.5px;margin:0 6px 6px 0}
+.rw img{width:24px;height:24px;object-fit:contain}
+.circle{width:42px;height:42px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:19px}
+.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:min(448px,calc(100% - 32px));background:var(--ink);border-radius:999px;padding:8px 22px;display:flex;justify-content:space-between;align-items:center;color:#fff;z-index:10}
+.nav button{font-size:22px;color:#fff;opacity:.85}
+.nav .mid{width:48px;height:48px;border-radius:50%;background:var(--orange);opacity:1;display:flex;align-items:center;justify-content:center}
+.empty{background:#fff;border-radius:22px;padding:20px;text-align:center;font-size:13.5px;color:var(--mut)}
+select{width:100%;margin-top:10px;font-family:inherit;font-size:14px;padding:10px;border-radius:14px;border:1px solid #E6DED2;background:var(--bg)}
+</style>
+</head>
+<body>
+<main class="app" id="app"><p class="muted">Loading events…</p></main>
+<nav class="nav" aria-label="Main">
+  <button data-act="home" aria-label="Home"><i class="ti ti-home"></i></button>
+  <button data-act="today" aria-label="Today's events"><i class="ti ti-calendar-event"></i></button>
+  <button class="mid" data-act="sub" aria-label="Subscribe to calendar"><i class="ti ti-bell"></i></button>
+  <button data-act="tz" aria-label="Time zone"><i class="ti ti-world"></i></button>
+  <button data-act="about" aria-label="Sources"><i class="ti ti-info-circle"></i></button>
+</nav>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const D = 864e5;
+const LS = {
+  get: (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+const BROWSER_TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+const ZONES = [['India','Asia/Kolkata'],['Japan','Asia/Tokyo'],['Mexico','America/Mexico_City'],['USA West · Pier 39','America/Los_Angeles'],['USA East','America/New_York'],['UK','Europe/London'],['Germany','Europe/Berlin'],['Australia','Australia/Sydney'],['Brazil','America/Sao_Paulo'],['Singapore','Asia/Singapore']];
+const TH = {
+  cd:     { l:'Community Day',   bg:'#D3E6AE', fg:'#2F4A12', ac:'#6E9A2E', i:'users-group' },
+  raid:   { l:'Raids',           bg:'#F7CCDC', fg:'#6B1F3D', ac:'#D4537E', i:'shield' },
+  spot:   { l:'Spotlight hour',  bg:'#F8E39A', fg:'#5C4300', ac:'#C99A12', i:'bulb' },
+  event:  { l:'Event',           bg:'#DCD6F6', fg:'#34296B', ac:'#7F77DD', i:'sparkles' },
+  global: { l:'Global event',    bg:'#CFE2F3', fg:'#1D3F63', ac:'#378ADD', i:'world' },
+  venue:  { l:'In-person event', bg:'#BFE6DA', fg:'#0E4D3D', ac:'#1D9E75', i:'ticket' }
+};
+
+let tz = LS.get('tz', BROWSER_TZ);
+let mode = LS.get('mode', 'main');
+let reminded = new Set(LS.get('reminded', []));
+let sel = null, tzOpen = false, aboutOpen = false, cameFromList = false;
+let DATA = { events: [], updatedAt: null, sources: {} };
+const freshDetail = () => ({ filter: 'all', shinyOnly: false, expanded: new Set(), shiny: new Set() });
+let det = freshDetail();
+
+/* ---------- time helpers ---------- */
+const parts = (t, z) => Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: z, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).formatToParts(t).filter(p => p.type !== 'literal').map(p => [p.type, +p.value]));
+const offset = (t, z) => { const p = parts(t, z); return Date.UTC(p.year, p.month - 1, p.day, p.hour % 24, p.minute, p.second) - Math.floor(t / 1e3) * 1e3; };
+const wall = (y, mo, d, h, mi, z) => { const g = Date.UTC(y, mo - 1, d, h, mi); return g - offset(g - offset(g, z), z); };
+const wallStr = (s, z) => { const m = s.match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/); return wall(+m[1], +m[2], +m[3], +m[4], +m[5], z); };
+const dk = (t, z) => { const p = parts(t, z); return Date.UTC(p.year, p.month - 1, p.day) / D; };
+const fD = (t, z, o = { weekday: 'short', day: 'numeric', month: 'short' }) => new Intl.DateTimeFormat(undefined, { timeZone: z, ...o }).format(t);
+const fT = (t, z) => new Intl.DateTimeFormat(undefined, { timeZone: z, hour: 'numeric', minute: '2-digit' }).format(t);
+const ab = (t, z) => (new Intl.DateTimeFormat(undefined, { timeZone: z, timeZoneName: 'short' }).formatToParts(t).find(x => x.type === 'timeZoneName') || {}).value || '';
+const left = ms => { const m = Math.max(0, Math.round(ms / 6e4)), d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60); return d ? `${d}d ${h}h` : h ? `${h}h ${m % 60}m` : `${m}m`; };
+const zoneName = z => (ZONES.find(x => x[1] === z) || [z.split('/').pop().replace(/_/g, ' ')])[0];
+
+function times(e) {
+  if (e.scope === 'global') return [Date.parse(e.start), Date.parse(e.end)];
+  const z = e.scope === 'venue' ? e.tz : tz;
+  return [wallStr(e.start, z), wallStr(e.end, z)];
+}
+function theme(e) {
+  if (e.scope === 'venue') return TH.venue;
+  if (e.scope === 'global') return TH.global;
+  const t = e.type || '';
+  if (t === 'community-day') return TH.cd;
+  if (/raid|max-|elite/.test(t)) return TH.raid;
+  if (/spotlight/.test(t)) return TH.spot;
+  return TH.event;
+}
+const find = id => DATA.events.find(e => e.id === id);
+const shinyUrl = u => u ? u.replace(/(_shiny)?\.png$/i, '_shiny.png') : u;
+
+/* ---------- small pieces ---------- */
+function av(p, th, size, shiny = false, extra = '') {
+  const src = shiny ? shinyUrl(p.image) : p.image;
+  return `<span class="av" style="width:${size}px;height:${size}px;background:${shiny ? '#FBEFC2' : th.bg};color:${th.fg};font-size:${Math.round(size * .4)}px;${extra}">${esc((p.name || '?')[0])}${src ? `<img loading="lazy" alt="${esc(p.name)}" src="${esc(src)}" onerror="this.remove()">` : ''}</span>`;
+}
+const cdText = (s, e, n = Date.now()) => n < s ? `in ${left(s - n)}` : n < e ? `Live · ${left(e - n)} left` : 'Ended';
+const cdHtml = (s, e, style = '') => `<span class="cd" style="${style}" data-s="${s}" data-e="${e}">${Date.now() >= s ? '<span class="live-dot"></span>' : '<i class="ti ti-hourglass"></i>'}<span class="cdt">${cdText(s, e)}</span></span>`;
+function allMons(e) {
+  const seen = new Map();
+  for (const g of e.groups || []) for (const p of g.items) if (!seen.has(p.name)) seen.set(p.name, p);
+  return [...seen.values()];
+}
+function scopeInfo(e) {
+  return e.scope === 'global' ? ['world', 'Same moment worldwide'] : e.scope === 'venue' ? ['map-pin', 'Happens at the venue'] : ['clock', 'Local time everywhere'];
+}
+function metaHtml(e, s, en) {
+  const multi = dk(s, tz) !== dk(en - 1, tz), sc = scopeInfo(e);
+  return `<div class="meta">
+    <span><i class="ti ti-calendar-event"></i> ${multi ? `${fD(s, tz)} → ${fD(en, tz)}` : fD(s, tz)}</span>
+    <span><i class="ti ti-clock"></i> ${fT(s, tz)} – ${fT(en, tz)} <span style="opacity:.7">${ab(s, tz)}</span></span>
+    ${e.scope === 'venue' ? `<span><i class="ti ti-map-pin"></i> At venue: ${fD(s, e.tz)}, ${fT(s, e.tz)} – ${fT(en, e.tz)} ${ab(s, e.tz)}</span>` : ''}
+    <span style="font-size:11.5px;opacity:.8"><i class="ti ti-${sc[0]}"></i> ${sc[1]}</span></div>`;
+}
+function srcHtml(e) {
+  return `<span><i class="ti ti-database"></i> Source:</span>
+    <a href="${esc(e.link)}" target="_blank" rel="noopener">LeekDuck</a>
+    ${e.official
+      ? `<a href="${esc(e.official)}" target="_blank" rel="noopener">Official post</a><span class="ok"><i class="ti ti-circle-check"></i>Confirmed</span>`
+      : `<a href="https://pokemongolive.com/news" target="_blank" rel="noopener">Official news</a>`}`;
+}
+
+/* ---------- list view ---------- */
+function card(x, tk) {
+  const { e, s, en } = x, th = theme(e), mons = allMons(e), isToday = dk(s, tz) === tk;
+  const monHtml = !mons.length
+    ? `<div style="font-size:12.5px;opacity:.8">Pokémon listed on the event page</div>`
+    : mons.length <= 4
+      ? `<div>${mons.map(p => `<span class="mpill">${av(p, th, 26)}${esc(p.name)}${p.shiny ? ` <i class="ti ti-sparkles" style="color:${th.ac}" title="Shiny available"></i>` : ''}</span>`).join('')}</div>`
+      : `<div class="row"><div class="stack" style="--ring:${th.bg}">${mons.slice(0, 5).map(p => av(p, th, 34)).join('')}</div><span style="font-size:12.5px">+${mons.length - 5} more Pokémon</span></div>`;
+  return `<div class="ev" data-open="${esc(e.id)}" style="background:${th.bg};color:${th.fg}">
+    <div class="between"><span class="tag"><i class="ti ti-${th.i}"></i>${esc(e.heading || th.l)}</span>${isToday ? '<span class="tag" style="background:var(--ink);color:#fff">Today</span>' : ''}</div>
+    <div class="name">${esc(e.name)}</div>
+    ${metaHtml(e, s, en)}
+    <div style="font-size:12px;font-weight:600;margin:12px 0 6px">Pokémon appearing</div>${monHtml}
+    <div class="between" style="margin-top:12px">${cdHtml(s, en)}<span style="font-size:12.5px">Details <i class="ti ti-arrow-right"></i></span></div>
+    <div class="src" style="border-top:1px solid ${th.fg}22">${srcHtml(e)}</div></div>`;
+}
+function bannerHtml(list, n, tk) {
+  const mains = list.filter(x => x.e.main).sort((a, b) => a.s - b.s);
+  const todayEv = mains.find(x => dk(x.s, tz) === tk && x.en > n) || mains.find(x => x.s <= n && x.en > n && dk(x.en - 1, tz) === tk);
+  const b = todayEv || mains.find(x => x.s > n);
+  if (!b) return '';
+  const live = b.s <= n, tomorrow = !todayEv && dk(b.s, tz) === tk + 1, done = reminded.has(b.e.id);
+  const label = todayEv ? (live ? 'Happening right now' : "It's event day!") : tomorrow ? 'Tomorrow' : 'Next main event';
+  const when = live ? `Ends ${fT(b.en, tz)}` : todayEv ? `Starts ${fT(b.s, tz)}` : `${fD(b.s, tz)}, ${fT(b.s, tz)}`;
+  return `<div class="banner" data-open="${esc(b.e.id)}">
+    <div style="flex:1;min-width:0"><div style="font-size:12.5px">${label}</div>
+      <div style="font-size:20px;font-weight:600;margin:3px 0 4px;line-height:1.2">${esc(b.e.name)}</div>
+      <div style="font-size:12.5px;margin-bottom:10px">${when} · <span data-s="${b.s}" data-e="${b.en}"><span class="cdt">${cdText(b.s, b.en)}</span></span></div>
+      <button class="btn" data-act="remind" data-v="${esc(b.e.id)}" style="background:var(--brown);color:#fff"><i class="ti ti-${done ? 'check' : 'bell'}"></i>${done ? 'Reminder added' : 'Remind me'}</button></div>
+    <div class="bell"><i class="ti ti-bell-ringing"></i></div></div>`;
+}
+function renderList() {
+  const n = Date.now(), tk = dk(n, tz), wd = new Date(tk * D).getUTCDay(), mon = tk - ((wd + 6) % 7);
+  const all = DATA.events.map(e => { const [s, en] = times(e); return { e, s, en }; }).filter(x => x.en > n);
+  const vis = all.filter(x => mode === 'all' || x.e.main);
+  const onDay = (x, k) => dk(x.s, tz) <= k && k <= dk(x.en - 1, tz);
+  const week = [...Array(7)].map((_, i) => {
+    const k = mon + i, d = new Date(k * D), evs = vis.filter(x => onDay(x, k));
+    const cls = ['day', k === tk ? 'today' : '', (sel === null ? k === tk : k === sel) ? 'sel' : ''].join(' ');
+    return `<button class="${cls}" data-act="day" data-v="${k}">${d.toLocaleDateString(undefined, { weekday: 'short', timeZone: 'UTC' })}<span class="dc">${d.getUTCDate()}</span><span class="dots">${evs.slice(0, 3).map(x => `<i style="background:${theme(x.e).ac}"></i>`).join('')}</span></button>`;
+  }).join('');
+  const list = vis.filter(x => sel === null || onDay(x, sel)).sort((a, b) => a.s - b.s);
+  let body;
+  if (!list.length) body = `<div class="empty">No events ${sel === null ? 'coming up' : 'this day'}. Rest up, trainer.</div>`;
+  else if (sel !== null) body = list.map(x => card(x, tk)).join('');
+  else {
+    const groups = [['Happening now', list.filter(x => x.s <= n)], ['Next 7 days', list.filter(x => x.s > n && x.s <= n + 7 * D)], ['Later', list.filter(x => x.s > n + 7 * D)]];
+    body = groups.filter(g => g[1].length).map(([t, l]) => `<div class="sub">${t} · ${l.length}</div>` + l.map(x => card(x, tk)).join('')).join('');
+  }
+  const zones = (Intl.supportedValuesOf ? Intl.supportedValuesOf('timeZone') : ZONES.map(z => z[1]));
+  const tzPanel = tzOpen ? `<div class="sec"><div class="h3">Show event times for</div>
+    <div class="chips">${ZONES.map(([l, z]) => `<button class="chip ${z === tz ? 'on' : ''}" data-act="zone" data-v="${z}">${l}</button>`).join('')}</div>
+    <select id="zsel" aria-label="Other time zone"><option value="">Other time zone…</option>${zones.map(z => `<option value="${z}" ${z === tz ? 'selected' : ''}>${z.replace(/_/g, ' ')}</option>`).join('')}</select>
+    <p class="muted" style="font-size:12px;margin:10px 0 0">Most events run on local time, so 2 PM is 2 PM wherever you are. Global and in-person events are converted to the zone you pick.</p></div>` : '';
+  const updated = DATA.updatedAt ? `Updated ${left(n - Date.parse(DATA.updatedAt))} ago` : '';
+  const aboutPanel = aboutOpen ? `<div class="sec"><div class="h3">Where the data comes from</div>
+    <div class="brow"><span class="bic"><i class="ti ti-database"></i></span><span><b>LeekDuck</b> event data and images, via the open ScrapedDuck feed. Checked every 6 hours.</span></div>
+    <div class="brow"><span class="bic"><i class="ti ti-circle-check"></i></span><span><b>Official Pokémon GO news</b> confirms events. ${DATA.sources?.official === 'ok' ? 'Last check worked.' : 'The last check could not reach the site.'}</span></div>
+    <p class="muted" style="font-size:12px">${updated}. Not affiliated with Niantic, The Pokémon Company or LeekDuck.</p>
+    <div class="chips"><button class="chip on" data-act="sub">Subscribe: main events</button><button class="chip" data-act="sub" data-v="all">Subscribe: everything</button></div></div>` : '';
+  return `<div class="between" style="align-items:flex-start">
+      <div><div class="muted" style="font-size:13.5px">${fD(n, tz, { weekday: 'long', day: 'numeric', month: 'long' })}</div><div class="h1">Event radar</div></div>
+      <button class="tzbtn" data-act="tz"><span class="row" style="gap:5px"><i class="ti ti-world"></i>${esc(zoneName(tz))}<i class="ti ti-chevron-${tzOpen ? 'up' : 'down'}"></i></span><span class="muted" style="font-size:11.5px">${fT(n, tz)} ${ab(n, tz)}</span></button></div>
+    ${tzPanel}${aboutPanel}
+    <div class="week">${week}</div>
+    ${bannerHtml(all, n, tk)}
+    <div class="between" style="margin:20px 0 4px">
+      <div class="h2">${sel === null ? 'Upcoming' : fD(sel * D, 'UTC')}${sel !== null ? ` <button data-act="clear" class="muted" style="font-size:12.5px;font-weight:400">Show all</button>` : ''}</div>
+      <div class="seg"><button class="${mode === 'main' ? 'on' : ''}" data-act="mode" data-v="main">Main</button><button class="${mode === 'all' ? 'on' : ''}" data-act="mode" data-v="all">All</button></div></div>
+    ${body}
+    <p class="muted" style="font-size:11.5px;text-align:center;margin-top:18px">${updated} · Data: LeekDuck via ScrapedDuck</p>`;
+}
+
+/* ---------- detail view ---------- */
+function tile(p, th, gk) {
+  const key = `${gk}|${p.name}|${p.tier || ''}`, on = det.shiny.has(key);
+  return `<button class="tile" data-act="tile" data-v="${esc(key)}" ${p.shiny ? '' : 'data-noshiny'} title="${p.shiny ? 'Tap to see shiny' : 'No shiny yet'}">
+    ${av(p, th, 56, on, on ? `box-shadow:0 0 0 2px var(--gold)` : '')}
+    <div style="font-weight:500">${on ? 'Shiny ' : ''}${esc(p.name)}</div>
+    ${p.shiny ? `<div class="sb"><i class="ti ti-sparkles"></i>Shiny</div>` : ''}</button>`;
+}
+function monsSection(e, th) {
+  const groups = e.groups || [];
+  if (!groups.length) return `<div class="sec"><div class="h3">Pokémon</div><p class="muted" style="font-size:13.5px;margin:0">The feed doesn't list Pokémon for this event yet. <a href="${esc(e.link)}" target="_blank" rel="noopener">See the full event page</a>.</p></div>`;
+  const G = groups.map(g => ({ ...g, items: g.items.filter(p => !det.shinyOnly || p.shiny) })).filter(g => g.items.length && (det.filter === 'all' || g.key === det.filter));
+  const total = G.reduce((a, g) => a + g.items.length, 0);
+  const chips = (groups.length > 1 ? [`<button class="chip ${det.filter === 'all' ? 'on' : ''}" data-act="gf" data-v="all">All</button>`, ...groups.map(g => `<button class="chip ${det.filter === g.key ? 'on' : ''}" data-act="gf" data-v="${esc(g.key)}">${esc(g.label)}</button>`)] : [])
+    .concat(`<button class="chip ${det.shinyOnly ? 'gold' : ''}" data-act="shonly"><i class="ti ti-sparkles"></i> Shiny only</button>`).join('');
+  const body = G.map(g => {
+    const lim = det.expanded.has(g.key) || det.filter !== 'all' ? Infinity : 8, shown = g.items.slice(0, lim);
+    const tiers = [...new Set(shown.map(p => p.tier).filter(Boolean))];
+    const grid = l => `<div class="grid" style="margin-top:8px">${l.map(p => tile(p, th, g.key)).join('')}</div>`;
+    const inner = tiers.length
+      ? tiers.map(t => `<div class="tier">${esc(t)}</div>` + grid(shown.filter(p => p.tier === t))).join('') + (shown.some(p => !p.tier) ? grid(shown.filter(p => !p.tier)) : '')
+      : grid(shown);
+    return `<div class="grp"><div class="gh"><span class="gi" style="background:${th.bg};color:${th.fg}"><i class="ti ti-${g.icon || 'pokeball'}"></i></span>${esc(g.label)}<span class="muted" style="font-weight:400;font-size:12.5px">${g.items.length}</span></div>${inner}
+      ${g.items.length > lim ? `<button class="btn" data-act="more" data-v="${esc(g.key)}" style="width:100%;background:var(--bg);margin-top:10px">Show all ${g.items.length}</button>` : ''}</div>`;
+  }).join('');
+  return `<div class="sec"><div class="between"><div class="h3" style="margin:0">Pokémon in this event</div><span class="muted" style="font-size:12.5px">${total} · tap for shiny</span></div>
+    <div class="chips" style="margin-top:10px">${chips}</div>${body || '<p class="muted" style="font-size:13px">No shiny-eligible Pokémon here.</p>'}</div>`;
+}
+function renderDetail(e) {
+  const th = theme(e), [s, en] = times(e), sc = scopeInfo(e), done = reminded.has(e.id);
+  const bonuses = (e.bonuses || []).map(b => `<div class="brow"><span class="bic"><i class="ti ti-check"></i>${b.image ? `<img alt="" src="${esc(b.image)}" onerror="this.remove()">` : ''}</span>${esc(b.text)}</div>`).join('');
+  const rewards = (e.rewards || []).map(r => `<span class="rw">${r.image ? `<img alt="" src="${esc(r.image)}" onerror="this.remove()">` : '<i class="ti ti-gift"></i>'}${esc(r.text)}</span>`).join('');
+  return `<div class="between"><button class="circle" data-act="back" aria-label="Back"><i class="ti ti-arrow-left"></i></button><button class="circle" data-act="share" data-v="${esc(e.id)}" aria-label="Share"><i class="ti ti-share"></i></button></div>
+  <div class="hero" style="background:${th.bg};color:${th.fg}">
+    <div class="hero-img" style="background:${th.ac}33"><i class="ti ti-${th.i}"></i>${e.image ? `<img alt="" src="${esc(e.image)}" onerror="this.remove()">` : ''}</div>
+    <div class="tag" style="margin-top:12px"><i class="ti ti-${th.i}"></i>${esc(e.heading || th.l)}</div>
+    <div style="font-size:25px;font-weight:600;letter-spacing:-.4px;line-height:1.15;margin:8px 0 12px">${esc(e.name)}</div>
+    <div class="tiles2">
+      <div class="mini"><div style="font-size:11.5px">Date</div><div style="font-size:14.5px;font-weight:600">${dk(s, tz) !== dk(en - 1, tz) ? `${fD(s, tz)} → ${fD(en, tz)}` : fD(s, tz)}</div></div>
+      <div class="mini"><div style="font-size:11.5px">Time · ${esc(ab(s, tz))}</div><div style="font-size:14.5px;font-weight:600">${fT(s, tz)} – ${fT(en, tz)}</div></div></div>
+    ${e.scope === 'venue' ? `<div style="font-size:13px;margin-top:8px"><i class="ti ti-map-pin"></i> At the venue: ${fD(s, e.tz)}, ${fT(s, e.tz)} – ${fT(en, e.tz)} ${ab(s, e.tz)}</div>` : ''}
+    <div style="font-size:12px;margin-top:8px"><i class="ti ti-${sc[0]}"></i> ${sc[1]}</div>
+    ${cdHtml(s, en, 'width:100%;justify-content:center;padding:12px;font-size:14px;margin-top:12px')}</div>
+  ${monsSection(e, th)}
+  ${bonuses ? `<div class="sec"><div class="h3">Bonuses</div>${bonuses}${(e.disclaimers || []).map(d => `<p class="muted" style="font-size:11.5px;margin:6px 0 0">${esc(d)}</p>`).join('')}</div>` : ''}
+  ${rewards ? `<div class="sec"><div class="h3">Research rewards</div><div>${rewards}</div></div>` : ''}
+  <div class="sec"><div class="src" style="margin:0;padding:0">${srcHtml(e)}</div>
+    <a class="btn" href="${esc(e.link)}" target="_blank" rel="noopener" style="background:var(--ink);color:#fff;margin-top:12px;width:100%;text-decoration:none">Full event page <i class="ti ti-external-link"></i></a></div>
+  <div class="tiles2" style="margin-top:12px">
+    <button class="btn" data-act="remind" data-v="${esc(e.id)}" style="background:var(--orange);color:#fff;padding:13px"><i class="ti ti-${done ? 'check' : 'bell'}"></i>${done ? 'Reminder added' : 'Remind me'}</button>
+    <button class="btn" data-act="sub" style="background:#fff;padding:13px"><i class="ti ti-calendar-plus"></i>All events</button></div>`;
+}
+
+/* ---------- actions ---------- */
+const icsFloat = s => s.replace(/[-:]/g, '').slice(0, 15);
+const icsUTC = t => new Date(t).toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+const icsEsc = s => String(s ?? '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
+function remind(e) {
+  if (!e) return;
+  const [s, en] = times(e);
+  const [a, b] = e.scope === 'local' ? [icsFloat(e.start), icsFloat(e.end)] : [icsUTC(s), icsUTC(en)];
+  const mons = allMons(e).map(p => p.name).join(', ');
+  const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//pogo-event-radar//EN', 'BEGIN:VEVENT',
+    `UID:${e.id}@pogo-event-radar`, `DTSTAMP:${icsUTC(Date.now())}`, `DTSTART:${a}`, `DTEND:${b}`,
+    `SUMMARY:${icsEsc(e.name)}`, `DESCRIPTION:${icsEsc((mons ? 'Pokémon: ' + mons + '\n' : '') + 'Details: ' + e.link)}`,
+    'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:-P1D', `DESCRIPTION:${icsEsc(e.name)} tomorrow`, 'END:VALARM',
+    'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:-PT1H', `DESCRIPTION:${icsEsc(e.name)} in 1 hour`, 'END:VALARM',
+    'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+  const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+  const link = Object.assign(document.createElement('a'), { href: url, download: e.id + '.ics' });
+  document.body.appendChild(link); link.click(); link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  reminded.add(e.id); LS.set('reminded', [...reminded]); render();
+}
+async function subscribe(which = 'main') {
+  const url = new URL(`data/${which}.ics`, location.href).href;
+  if (/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent)) { location.href = url.replace(/^https?:/, 'webcal:'); return; }
+  try { await navigator.clipboard.writeText(url); } catch {}
+  alert(`Calendar link copied:\n${url}\n\nGoogle Calendar (on a computer): Other calendars → + → From URL → paste.\nIt then syncs to your phone. Set default notifications for this calendar to get reminders.`);
+}
+async function share(e) {
+  const url = location.href, title = e ? e.name : document.title;
+  if (navigator.share) { try { await navigator.share({ title, url }); } catch {} return; }
+  try { await navigator.clipboard.writeText(url); alert('Link copied'); } catch {}
+}
+function setTz(z) { tz = z; LS.set('tz', z); sel = null; tzOpen = false; render(); }
+
+document.addEventListener('click', ev => {
+  const a = ev.target.closest('[data-act]');
+  if (!a) {
+    const c = ev.target.closest('[data-open]');
+    if (c && !ev.target.closest('a')) { cameFromList = true; location.hash = 'e=' + encodeURIComponent(c.dataset.open); }
+    return;
+  }
+  ev.stopPropagation();
+  const v = a.dataset.v;
+  switch (a.dataset.act) {
+    case 'tz': tzOpen = !tzOpen; aboutOpen = false; if (location.hash) location.hash = ''; else render(); scrollTo(0, 0); break;
+    case 'zone': setTz(v); break;
+    case 'day': sel = sel === +v ? null : +v; render(); break;
+    case 'mode': mode = v; LS.set('mode', v); render(); break;
+    case 'clear': sel = null; render(); break;
+    case 'today': sel = dk(Date.now(), tz); if (location.hash) location.hash = ''; else render(); break;
+    case 'home': sel = null; tzOpen = aboutOpen = false; if (location.hash) location.hash = ''; else render(); scrollTo(0, 0); break;
+    case 'about': aboutOpen = !aboutOpen; tzOpen = false; if (location.hash) location.hash = ''; else render(); scrollTo(0, 0); break;
+    case 'sub': subscribe(v === 'all' ? 'all' : 'main'); break;
+    case 'remind': remind(find(v)); break;
+    case 'back': if (cameFromList) history.back(); else location.hash = ''; break;
+    case 'share': share(find(v)); break;
+    case 'gf': det.filter = v; render(); break;
+    case 'shonly': det.shinyOnly = !det.shinyOnly; render(); break;
+    case 'more': det.expanded.add(v); render(); break;
+    case 'tile': if (a.hasAttribute('data-noshiny')) return; det.shiny.has(v) ? det.shiny.delete(v) : det.shiny.add(v); render(); break;
+  }
+});
+document.addEventListener('change', ev => { if (ev.target.id === 'zsel' && ev.target.value) setTz(ev.target.value); });
+window.addEventListener('hashchange', () => { det = freshDetail(); render(); scrollTo(0, 0); });
+
+function render() {
+  const m = location.hash.match(/^#e=(.+)$/), e = m && find(decodeURIComponent(m[1]));
+  $('#app').innerHTML = e ? renderDetail(e) : renderList();
+}
+function tick() {
+  document.querySelectorAll('[data-s]').forEach(el => { const t = el.querySelector('.cdt'); if (t) t.textContent = cdText(+el.dataset.s, +el.dataset.e); });
+}
+
+fetch('data/events.json', { cache: 'no-store' })
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(j => { DATA = j; render(); setInterval(tick, 30e3); setInterval(render, 5 * 60e3); })
+  .catch(() => { $('#app').innerHTML = `<div class="h1">Event radar</div><div class="empty" style="margin-top:16px">No event data yet. Open the Actions tab on GitHub and run "Update events and deploy" once.</div>`; });
+</script>
+</body>
+</html>
