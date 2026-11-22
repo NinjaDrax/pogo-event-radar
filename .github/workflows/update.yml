@@ -25,6 +25,9 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -49,7 +52,10 @@ jobs:
           git add data
           if ! git diff --cached --quiet; then
             git commit -m "Update events $(date -u +%F)"
-            git push
+            for i in 1 2 3; do
+              git pull --rebase -X theirs origin main && git push && break
+              echo "Push failed, retrying ($i)…"; sleep 5
+            done
           fi
 
       - uses: actions/configure-pages@v5
