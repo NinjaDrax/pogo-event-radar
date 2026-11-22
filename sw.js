@@ -1,5 +1,6 @@
-// Offline support: always try the network first, fall back to the last saved copy
-const CACHE = 'radar-v1';
+// Offline support: always try the network first (skipping the browser's HTTP cache),
+// fall back to the last saved copy when offline.
+const CACHE = 'radar-v2'; // bump this number whenever you want to force a fresh start
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icons/icon-192.png'];
 
 self.addEventListener('install', e => {
@@ -14,8 +15,11 @@ self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (e.request.method !== 'GET' || url.origin !== location.origin) return;
   e.respondWith(
-    fetch(e.request)
-      .then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put(e.request, copy)); return res; })
+    fetch(url.href, { cache: 'no-cache' })
+      .then(res => {
+        if (res.ok) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(e.request, copy)); }
+        return res;
+      })
       .catch(() => caches.match(e.request, { ignoreSearch: true }))
   );
 });
