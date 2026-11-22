@@ -1,6 +1,6 @@
 // Offline support: always try the network first (skipping the browser's HTTP cache),
 // fall back to the last saved copy when offline.
-const CACHE = 'radar-v2'; // bump this number whenever you want to force a fresh start
+const CACHE = 'radar-v3'; // bump this number whenever you want to force a fresh start
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg', './icons/icon-192.png'];
 
 self.addEventListener('install', e => {
