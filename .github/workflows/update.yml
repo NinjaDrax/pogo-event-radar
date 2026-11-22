@@ -33,6 +33,12 @@ jobs:
       - name: Fetch events
         run: node scripts/fetch-events.mjs
 
+      - name: Make app icons
+        run: |
+          npm install --no-save --no-package-lock sharp
+          node scripts/make-icons.mjs
+          rm -rf node_modules
+
       - name: Save updated data
         run: |
           git config user.name "github-actions[bot]"
