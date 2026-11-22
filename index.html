@@ -50,6 +50,8 @@ button:active,.tile:active{transform:scale(.92)}
 .banner{background:var(--peach);color:var(--brown);border-radius:26px;padding:18px;margin-top:18px;display:flex;gap:12px;align-items:center;cursor:pointer}
 .bell{width:76px;height:76px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:34px;color:#fff}
 .btn{border-radius:999px;padding:9px 16px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;justify-content:center}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.soft{background:var(--bg)}
 .seg{background:#fff;border-radius:999px;padding:3px;display:flex}
 .seg button{font-size:12.5px;padding:6px 14px;border-radius:999px}
 .seg .on{background:var(--ink);color:#fff}
@@ -59,7 +61,7 @@ button:active,.tile:active{transform:scale(.92)}
 .ev .name{font-size:20px;font-weight:600;letter-spacing:-.3px;margin:10px 0 8px;line-height:1.2}
 .meta{display:flex;flex-direction:column;gap:3px;font-size:13.5px}
 .cd{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;border-radius:999px;padding:7px 13px;font-size:12.5px}
-.live-dot{width:7px;height:7px;border-radius:50%;background:#5DDB8F}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#5DDB8F;flex-shrink:0}
 .av{position:relative;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:600;overflow:hidden;flex-shrink:0}
 .av img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 .mpill{display:inline-flex;align-items:center;gap:6px;background:#fff;border-radius:999px;padding:3px 11px 3px 3px;font-size:12.5px;margin:0 5px 5px 0;color:var(--ink)}
@@ -72,11 +74,17 @@ button:active,.tile:active{transform:scale(.92)}
 .sb{display:inline-flex;gap:3px;align-items:center;font-size:10.5px;margin-top:4px;background:#F8E39A;color:#5C4300;border-radius:999px;padding:2px 7px}
 .tier{font-size:12px;color:var(--mut);margin:10px 0 6px}
 .gh{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
-.gi{width:28px;height:28px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.gi{width:28px;height:28px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .grp{border-top:1px solid #F0EAE0;margin-top:12px;padding-top:12px}
+.grp.over .grid,.grp.over .gh{opacity:.55}
+.odds{margin-left:auto;font-size:11px;font-weight:500;color:#7A5A00;background:#FBF3D6;border-radius:999px;padding:3px 9px;white-space:nowrap}
+.st{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;border-radius:999px;padding:3px 10px;margin-top:7px}
+.st.live{background:#DDF5E6;color:#1B6B3A}.st.soon{background:#EAE6FB;color:#34296B}.st.over{background:#EEEAE4;color:#7A736A}
+.stitle{font-size:11.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--mut);margin:20px 0 -4px}
 .hero{border-radius:28px;padding:16px;margin-top:12px}
 .hero-img{height:130px;border-radius:20px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:34px;position:relative}
 .hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.desc{font-size:13.5px;line-height:1.45;margin:0 0 12px}
 .tiles2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .mini{background:rgba(255,255,255,.65);border-radius:16px;padding:10px}
 .brow{display:flex;align-items:center;gap:10px;font-size:13.5px;padding:6px 0}
@@ -93,7 +101,13 @@ button:active,.tile:active{transform:scale(.92)}
 .nav button:active{transform:scale(.85)}
 .install{background:var(--ink);color:#fff;border-radius:24px;padding:14px 16px;margin-top:16px;display:flex;gap:12px;align-items:center}
 .install .ic{width:44px;height:44px;border-radius:14px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.upd{width:100%;display:flex;align-items:center;gap:10px;background:var(--ink);color:#fff;border-radius:20px;padding:13px 16px;margin-top:14px;font-size:14px}
+.upd b{background:var(--orange);border-radius:999px;padding:5px 12px;font-weight:500;font-size:13px}
 .empty{background:#fff;border-radius:22px;padding:20px;text-align:center;font-size:13.5px;color:var(--mut)}
+.srow{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid #F0EAE0;font-size:13.5px}
+.srow:first-of-type{border-top:none}
+.srow b{font-weight:500;text-align:right}
+.note{font-size:12px;color:var(--mut);margin:8px 0 0}
 select{width:100%;margin-top:10px;font-family:inherit;font-size:14px;padding:10px;border-radius:14px;border:1px solid #E6DED2;background:var(--bg)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -105,9 +119,10 @@ select{width:100%;margin-top:10px;font-family:inherit;font-size:14px;padding:10p
   <button data-act="today" aria-label="Today's events"><i class="ti ti-calendar-event"></i></button>
   <button class="mid" data-act="sub" aria-label="Subscribe to calendar"><i class="ti ti-bell"></i></button>
   <button data-act="tz" aria-label="Time zone"><i class="ti ti-world"></i></button>
-  <button data-act="about" aria-label="Sources"><i class="ti ti-info-circle"></i></button>
+  <button data-act="settings" aria-label="Settings"><i class="ti ti-settings"></i></button>
 </nav>
 <script>
+const APP_VERSION = '2.0.0';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const D = 864e5;
@@ -129,9 +144,9 @@ const TH = {
 let tz = LS.get('tz', BROWSER_TZ);
 let mode = LS.get('mode', 'main');
 let reminded = new Set(LS.get('reminded', []));
-let sel = null, tzOpen = false, aboutOpen = false, cameFromList = false;
+let sel = null, tzOpen = false, cameFromList = false;
 let DATA = { events: [], updatedAt: null, sources: {} };
-let installPrompt = null;
+let installPrompt = null, updMsg = '', updReady = false, newVersion = '', lastCheck = 0;
 const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
 const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 const freshDetail = () => ({ filter: 'all', shinyOnly: false, expanded: new Set(), shiny: new Set() });
@@ -148,6 +163,8 @@ const fT = (t, z) => new Intl.DateTimeFormat(undefined, { timeZone: z, hour: 'nu
 const ab = (t, z) => (new Intl.DateTimeFormat(undefined, { timeZone: z, timeZoneName: 'short' }).formatToParts(t).find(x => x.type === 'timeZoneName') || {}).value || '';
 const left = ms => { const m = Math.max(0, Math.round(ms / 6e4)), d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60); return d ? `${d}d ${h}h` : h ? `${h}h ${m % 60}m` : `${m}m`; };
 const zoneName = z => (ZONES.find(x => x[1] === z) || [z.split('/').pop().replace(/_/g, ' ')])[0];
+const agoText = () => DATA.updatedAt ? `${left(Date.now() - Date.parse(DATA.updatedAt))} ago` : 'unknown';
+const isZoned = s => /Z$|[+-]\d{2}:?\d{2}$/.test(s || '');
 
 function times(e) {
   if (e.scope === 'global') return [Date.parse(e.start), Date.parse(e.end)];
@@ -164,12 +181,21 @@ function theme(e) {
   return TH.event;
 }
 const find = id => DATA.events.find(e => e.id === id);
-const shinyUrl = u => u ? u.replace(/(_shiny)?\.png$/i, '_shiny.png') : u;
+// LeekDuck shiny images: pm810.icon.png → pm810.s.icon.png, pokemon_icon_001_00.png → pokemon_icon_001_00_shiny.png
+const shinyUrl = u => !u ? u : /\.s\.icon\.png$|_shiny\.png$/i.test(u) ? u
+  : /\.icon\.png$/i.test(u) ? u.replace(/\.icon\.png$/i, '.s.icon.png') : u.replace(/\.png$/i, '_shiny.png');
 
 /* ---------- small pieces ---------- */
+// Letter is only shown if the picture fails to load
+function imgFail(img) {
+  if (img.dataset.fb) { img.src = img.dataset.fb; delete img.dataset.fb; return; }
+  const l = img.previousElementSibling; if (l) l.hidden = false;
+  img.remove();
+}
 function av(p, th, size, shiny = false, extra = '') {
   const src = shiny ? shinyUrl(p.image) : p.image;
-  return `<span class="av" style="width:${size}px;height:${size}px;background:${shiny ? '#FBEFC2' : th.bg};color:${th.fg};font-size:${Math.round(size * .4)}px;${extra}">${esc((p.name || '?')[0])}${src ? `<img loading="lazy" alt="${esc(p.name)}" src="${esc(src)}" onerror="this.remove()">` : ''}</span>`;
+  const fb = shiny && p.image ? ` data-fb="${esc(p.image)}"` : '';
+  return `<span class="av" style="width:${size}px;height:${size}px;background:${shiny ? '#FBEFC2' : th.bg};color:${th.fg};font-size:${Math.round(size * .4)}px;${extra}"><span${src ? ' hidden' : ''}>${esc((p.name || '?')[0])}</span>${src ? `<img loading="lazy" alt="${esc(p.name)}" src="${esc(src)}"${fb} onerror="imgFail(this)">` : ''}</span>`;
 }
 const cdText = (s, e, n = Date.now()) => n < s ? `in ${left(s - n)}` : n < e ? `Live · ${left(e - n)} left` : 'Ended';
 const cdHtml = (s, e, style = '') => `<span class="cd" style="${style}" data-s="${s}" data-e="${e}">${Date.now() >= s ? '<span class="live-dot"></span>' : '<i class="ti ti-hourglass"></i>'}<span class="cdt">${cdText(s, e)}</span></span>`;
@@ -205,6 +231,17 @@ function installHtml() {
     ${installPrompt ? '<button class="btn" data-act="install" style="background:var(--orange);color:#fff">Install</button>' : ''}
     <button data-act="hideinstall" aria-label="Dismiss" style="color:#fff;opacity:.6;font-size:18px"><i class="ti ti-x"></i></button></div>`;
 }
+const updBanner = () => updReady ? `<button class="upd" data-act="applyupd"><i class="ti ti-download"></i><span style="flex:1;text-align:left">New version ${esc(newVersion)} is ready</span><b>Install</b></button>` : '';
+
+/* ---------- shiny odds (player-community estimates; Niantic doesn't publish rates) ---------- */
+function oddsFor(label, e) {
+  const l = String(label || '').toLowerCase(), n = (e.name || '').toLowerCase(), t = e.type || '';
+  if (t === 'community-day' && /featured/.test(l)) return '≈1 in 25';
+  if (/5-star|legendary/.test(l) || (/raid boss/.test(l) && /5-star|legendary/.test(n))) return '≈1 in 20';
+  if (/max|dynamax|eternatus|mega|shadow|research|reward|breakthrough/.test(l)) return '';
+  if (/wild|spawn|encounter|egg|\bkm\b|spotlight|1-star|3-star|featured/.test(l)) return '≈1 in 500';
+  return '';
+}
 
 /* ---------- list view ---------- */
 function card(x, tk) {
@@ -237,6 +274,16 @@ function bannerHtml(list, n, tk) {
       <button class="btn" data-act="remind" data-v="${esc(b.e.id)}" style="background:var(--brown);color:#fff"><i class="ti ti-${done ? 'check' : 'bell'}"></i>${done ? 'Reminder added' : 'Remind me'}</button></div>
     <div class="bell"><i class="ti ti-bell-ringing"></i></div></div>`;
 }
+function nowCardHtml(all, n) {
+  const season = all.find(x => x.e.type === 'season' && x.s <= n && (x.e.groups || []).some(g => /-now$/.test(g.key)));
+  if (!season) return '';
+  const cnt = k => season.e.groups.find(g => g.key === k)?.items.length || 0;
+  return `<div class="ev" data-open="${esc(season.e.id)}" style="background:#CFE2F3;color:#1D3F63;margin-top:12px">
+    <div class="between"><span class="tag"><i class="ti ti-radar"></i>In the game right now</span><span style="font-size:12.5px">Open <i class="ti ti-arrow-right"></i></span></div>
+    <div class="name">Raids, eggs &amp; field research</div>
+    <div style="font-size:13px">${cnt('raids-now')} raid bosses · ${cnt('eggs-now')} egg Pokémon · ${cnt('research-now')} research encounters</div>
+    <div style="font-size:11.5px;opacity:.8;margin-top:6px">Part of ${esc(season.e.name)} · updated ${agoText()}</div></div>`;
+}
 function renderList() {
   const n = Date.now(), tk = dk(n, tz), wd = new Date(tk * D).getUTCDay(), mon = tk - ((wd + 6) % 7);
   const all = DATA.events.map(e => { const [s, en] = times(e); return { e, s, en }; }).filter(x => x.en > n);
@@ -259,27 +306,32 @@ function renderList() {
   const tzPanel = tzOpen ? `<div class="sec"><div class="h3">Show event times for</div>
     <div class="chips">${ZONES.map(([l, z]) => `<button class="chip ${z === tz ? 'on' : ''}" data-act="zone" data-v="${z}">${l}</button>`).join('')}</div>
     <select id="zsel" aria-label="Other time zone"><option value="">Other time zone…</option>${zones.map(z => `<option value="${z}" ${z === tz ? 'selected' : ''}>${z.replace(/_/g, ' ')}</option>`).join('')}</select>
-    <p class="muted" style="font-size:12px;margin:10px 0 0">Most events run on local time, so 2 PM is 2 PM wherever you are. Global and in-person events are converted to the zone you pick.</p></div>` : '';
-  const updated = DATA.updatedAt ? `Updated ${left(n - Date.parse(DATA.updatedAt))} ago` : '';
-  const aboutPanel = aboutOpen ? `<div class="sec"><div class="h3">Where the data comes from</div>
-    <div class="brow"><span class="bic"><i class="ti ti-database"></i></span><span><b>LeekDuck</b> event data and images, via the open ScrapedDuck feed. Checked every 6 hours.</span></div>
-    <div class="brow"><span class="bic"><i class="ti ti-circle-check"></i></span><span><b>Official Pokémon GO news</b> confirms events. ${DATA.sources?.official === 'ok' ? 'Last check worked.' : 'The last check could not reach the site.'}</span></div>
-    <p class="muted" style="font-size:12px">${updated}. Not affiliated with Niantic, The Pokémon Company or LeekDuck.</p>
-    <div class="chips"><button class="chip on" data-act="sub">Subscribe: main events</button><button class="chip" data-act="sub" data-v="all">Subscribe: everything</button></div></div>` : '';
+    <p class="note">Most events run on local time, so 2 PM is 2 PM wherever you are. Global and in-person events are converted to the zone you pick.</p></div>` : '';
   return `<div class="between" style="align-items:flex-start">
       <div><div class="muted" style="font-size:13.5px">${fD(n, tz, { weekday: 'long', day: 'numeric', month: 'long' })}</div><div class="h1">Event radar</div></div>
       <button class="tzbtn" data-act="tz"><span class="row" style="gap:5px"><i class="ti ti-world"></i>${esc(zoneName(tz))}<i class="ti ti-chevron-${tzOpen ? 'up' : 'down'}"></i></span><span class="muted" style="font-size:11.5px">${fT(n, tz)} ${ab(n, tz)}</span></button></div>
-    ${tzPanel}${aboutPanel}${installHtml()}
+    ${updBanner()}${tzPanel}${installHtml()}
     <div class="week">${week}</div>
     ${bannerHtml(all, n, tk)}
+    ${sel === null ? nowCardHtml(all, n) : ''}
     <div class="between" style="margin:20px 0 4px">
       <div class="h2">${sel === null ? 'Upcoming' : fD(sel * D, 'UTC')}${sel !== null ? ` <button data-act="clear" class="muted" style="font-size:12.5px;font-weight:400">Show all</button>` : ''}</div>
       <div class="seg"><button class="${mode === 'main' ? 'on' : ''}" data-act="mode" data-v="main">Main</button><button class="${mode === 'all' ? 'on' : ''}" data-act="mode" data-v="all">All</button></div></div>
     ${body}
-    <p class="muted" style="font-size:11.5px;text-align:center;margin-top:18px">${updated} · Data: LeekDuck via ScrapedDuck</p>`;
+    <p class="muted" style="font-size:11.5px;text-align:center;margin-top:18px">Updated ${agoText()} · Data: LeekDuck via ScrapedDuck</p>`;
 }
 
 /* ---------- detail view ---------- */
+function gStat(g, e, n) {
+  const [s, en] = g.start ? times({ scope: isZoned(g.start) ? 'global' : e.scope, tz: e.tz, start: g.start, end: g.end }) : times(e);
+  return { s, en, st: n < s ? 'soon' : n < en ? 'live' : 'over' };
+}
+function stPill(g) {
+  const multi = dk(g.s, tz) !== dk(g.en - 1, tz);
+  if (g.st === 'live') return `<span class="st live"><span class="live-dot"></span>On now · ends ${multi ? fD(g.en, tz) + ', ' : ''}${fT(g.en, tz)}</span>`;
+  if (g.st === 'soon') return `<span class="st soon"><i class="ti ti-hourglass"></i>Starts ${fD(g.s, tz)}, ${fT(g.s, tz)}</span>`;
+  return `<span class="st over"><i class="ti ti-check"></i>Ended ${fD(g.en - 1, tz)}</span>`;
+}
 function tile(p, th, gk) {
   const key = `${gk}|${p.name}|${p.tier || ''}`, on = det.shiny.has(key);
   return `<button class="tile" data-act="tile" data-v="${esc(key)}" ${p.shiny ? '' : 'data-noshiny'} title="${p.shiny ? 'Tap to see shiny' : 'No shiny yet'}">
@@ -288,24 +340,31 @@ function tile(p, th, gk) {
     ${p.shiny ? `<div class="sb"><i class="ti ti-sparkles"></i>Shiny</div>` : ''}</button>`;
 }
 function monsSection(e, th) {
-  const groups = e.groups || [];
-  if (!groups.length) return `<div class="sec"><div class="h3">Pokémon</div><p class="muted" style="font-size:13.5px;margin:0">The feed doesn't list Pokémon for this event yet. <a href="${esc(e.link)}" target="_blank" rel="noopener">See the full event page</a>.</p></div>`;
+  const n = Date.now(), order = { live: 0, soon: 1, over: 2 };
+  const groups = (e.groups || []).map(g => ({ ...g, ...gStat(g, e, n) })).sort((a, b) => order[a.st] - order[b.st]);
+  if (!groups.length) return `<div class="sec"><div class="h3">Pokémon</div><p class="muted" style="font-size:13.5px;margin:0">No Pokémon list for this event yet. <a href="${esc(e.link)}" target="_blank" rel="noopener">See the full event page</a>.</p></div>`;
   const G = groups.map(g => ({ ...g, items: g.items.filter(p => !det.shinyOnly || p.shiny) })).filter(g => g.items.length && (det.filter === 'all' || g.key === det.filter));
   const total = G.reduce((a, g) => a + g.items.length, 0);
-  const chips = (groups.length > 1 ? [`<button class="chip ${det.filter === 'all' ? 'on' : ''}" data-act="gf" data-v="all">All</button>`, ...groups.map(g => `<button class="chip ${det.filter === g.key ? 'on' : ''}" data-act="gf" data-v="${esc(g.key)}">${esc(g.label)}</button>`)] : [])
+  const chips = (groups.length > 1 ? [`<button class="chip ${det.filter === 'all' ? 'on' : ''}" data-act="gf" data-v="all">All</button>`, ...groups.map(g => `<button class="chip ${det.filter === g.key ? 'on' : ''}" data-act="gf" data-v="${esc(g.key)}">${esc(g.label)}${g.st === 'over' ? ' · ended' : ''}</button>`)] : [])
     .concat(`<button class="chip ${det.shinyOnly ? 'gold' : ''}" data-act="shonly"><i class="ti ti-sparkles"></i> Shiny only</button>`).join('');
+  const HEAD = { live: 'On now', soon: 'Coming up', over: 'Already over' };
+  let lastSt = null;
   const body = G.map(g => {
-    const lim = det.expanded.has(g.key) || det.filter !== 'all' ? Infinity : 8, shown = g.items.slice(0, lim);
+    const head = det.filter === 'all' && g.st !== lastSt ? `<div class="stitle">${HEAD[g.st]}</div>` : '';
+    lastSt = g.st;
+    const lim = det.expanded.has(g.key) || det.filter !== 'all' ? Infinity : g.st === 'over' ? 4 : 8, shown = g.items.slice(0, lim);
     const tiers = [...new Set(shown.map(p => p.tier).filter(Boolean))];
     const grid = l => `<div class="grid" style="margin-top:8px">${l.map(p => tile(p, th, g.key)).join('')}</div>`;
     const inner = tiers.length
-      ? tiers.map(t => `<div class="tier">${esc(t)}</div>` + grid(shown.filter(p => p.tier === t))).join('') + (shown.some(p => !p.tier) ? grid(shown.filter(p => !p.tier)) : '')
+      ? tiers.map(t => { const o = oddsFor(t, e); return `<div class="tier">${esc(t)}${o ? ` · ✨ ${o}` : ''}</div>` + grid(shown.filter(p => p.tier === t)); }).join('') + (shown.some(p => !p.tier) ? grid(shown.filter(p => !p.tier)) : '')
       : grid(shown);
-    return `<div class="grp"><div class="gh"><span class="gi" style="background:${th.bg};color:${th.fg}"><i class="ti ti-${g.icon || 'pokeball'}"></i></span>${esc(g.label)}<span class="muted" style="font-weight:400;font-size:12.5px">${g.items.length}</span></div>${inner}
-      ${g.items.length > lim ? `<button class="btn" data-act="more" data-v="${esc(g.key)}" style="width:100%;background:var(--bg);margin-top:10px">Show all ${g.items.length}</button>` : ''}</div>`;
+    const o = tiers.length ? '' : oddsFor(g.label, e);
+    return `${head}<div class="grp ${g.st}"><div class="gh"><span class="gi" style="background:${th.bg};color:${th.fg}"><i class="ti ti-${g.icon || 'pokeball'}"></i></span>${esc(g.label)}<span class="muted" style="font-weight:400;font-size:12.5px">${g.items.length}</span>${o ? `<span class="odds">✨ ${o}</span>` : ''}</div>${stPill(g)}${inner}
+      ${g.items.length > lim ? `<button class="btn soft" data-act="more" data-v="${esc(g.key)}" style="width:100%;margin-top:10px">Show all ${g.items.length}</button>` : ''}</div>`;
   }).join('');
   return `<div class="sec"><div class="between"><div class="h3" style="margin:0">Pokémon in this event</div><span class="muted" style="font-size:12.5px">${total} · tap for shiny</span></div>
-    <div class="chips" style="margin-top:10px">${chips}</div>${body || '<p class="muted" style="font-size:13px">No shiny-eligible Pokémon here.</p>'}</div>`;
+    <div class="chips" style="margin-top:10px">${chips}</div>${body || '<p class="muted" style="font-size:13px">No shiny-eligible Pokémon here.</p>'}
+    <p class="note">✨ Shiny odds are player-community estimates. Niantic doesn't publish exact rates.</p></div>`;
 }
 function renderDetail(e) {
   const th = theme(e), [s, en] = times(e), sc = scopeInfo(e), done = reminded.has(e.id);
@@ -315,7 +374,8 @@ function renderDetail(e) {
   <div class="hero" style="background:${th.bg};color:${th.fg}">
     <div class="hero-img" style="background:${th.ac}33"><i class="ti ti-${th.i}"></i>${e.image ? `<img alt="" src="${esc(e.image)}" onerror="this.remove()">` : ''}</div>
     <div class="tag" style="margin-top:12px"><i class="ti ti-${th.i}"></i>${esc(e.heading || th.l)}</div>
-    <div style="font-size:25px;font-weight:600;letter-spacing:-.4px;line-height:1.15;margin:8px 0 12px">${esc(e.name)}</div>
+    <div style="font-size:25px;font-weight:600;letter-spacing:-.4px;line-height:1.15;margin:8px 0 10px">${esc(e.name)}</div>
+    ${e.desc ? `<p class="desc">${esc(e.desc)}</p>` : ''}
     <div class="tiles2">
       <div class="mini"><div style="font-size:11.5px">Date</div><div style="font-size:14.5px;font-weight:600">${dk(s, tz) !== dk(en - 1, tz) ? `${fD(s, tz)} → ${fD(en, tz)}` : fD(s, tz)}</div></div>
       <div class="mini"><div style="font-size:11.5px">Time · ${esc(ab(s, tz))}</div><div style="font-size:14.5px;font-weight:600">${fT(s, tz)} – ${fT(en, tz)}</div></div></div>
@@ -323,13 +383,93 @@ function renderDetail(e) {
     <div style="font-size:12px;margin-top:8px"><i class="ti ti-${sc[0]}"></i> ${sc[1]}</div>
     ${cdHtml(s, en, 'width:100%;justify-content:center;padding:12px;font-size:14px;margin-top:12px')}</div>
   ${monsSection(e, th)}
-  ${bonuses ? `<div class="sec"><div class="h3">Bonuses</div>${bonuses}${(e.disclaimers || []).map(d => `<p class="muted" style="font-size:11.5px;margin:6px 0 0">${esc(d)}</p>`).join('')}</div>` : ''}
+  ${bonuses ? `<div class="sec"><div class="h3">Bonuses</div>${bonuses}${(e.disclaimers || []).map(d => `<p class="note">${esc(d)}</p>`).join('')}</div>` : ''}
   ${rewards ? `<div class="sec"><div class="h3">Research rewards</div><div>${rewards}</div></div>` : ''}
   <div class="sec"><div class="src" style="margin:0;padding:0">${srcHtml(e)}</div>
-    <a class="btn" href="${esc(e.link)}" target="_blank" rel="noopener" style="background:var(--ink);color:#fff;margin-top:12px;width:100%;text-decoration:none">Full event page <i class="ti ti-external-link"></i></a></div>
+    <p class="note"><i class="ti ti-refresh"></i> Data updated ${agoText()} · refreshes every 6 hours</p>
+    <a class="btn dark" href="${esc(e.link)}" target="_blank" rel="noopener" style="margin-top:12px;width:100%;text-decoration:none">Full event page <i class="ti ti-external-link"></i></a></div>
   <div class="tiles2" style="margin-top:12px">
     <button class="btn" data-act="remind" data-v="${esc(e.id)}" style="background:var(--orange);color:#fff;padding:13px"><i class="ti ti-${done ? 'check' : 'bell'}"></i>${done ? 'Reminder added' : 'Remind me'}</button>
     <button class="btn" data-act="sub" style="background:#fff;padding:13px"><i class="ti ti-calendar-plus"></i>All events</button></div>`;
+}
+
+/* ---------- settings view ---------- */
+function renderSettings() {
+  const n = Date.now(), up = DATA.updatedAt ? Date.parse(DATA.updatedAt) : null;
+  const row = (a, b) => `<div class="srow"><span>${a}</span><b>${b}</b></div>`;
+  const next = up ? (up + 6 * 36e5 > n ? `in about ${left(up + 6 * 36e5 - n)}` : 'any minute now') : '—';
+  const installBit = isStandalone() ? row('Installed on this device', 'Yes ✓')
+    : installPrompt ? `<button class="btn dark" data-act="install" style="margin-top:10px"><i class="ti ti-download"></i>Install app</button>`
+    : `<p class="note">${isIOS ? 'To install: tap Share, then Add to Home Screen.' : 'To install: open your browser menu and tap “Install app” or “Add to Home screen”.'}</p>`;
+  return `<div class="between"><button class="circle" data-act="home" aria-label="Back"><i class="ti ti-arrow-left"></i></button><span></span></div>
+  <div class="h1" style="margin-top:14px">Settings</div>
+  ${updBanner()}
+  <div class="sec"><div class="h3">App</div>
+    ${row('Version', esc(APP_VERSION))}
+    ${installBit}
+    <div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="btn dark" data-act="chk"><i class="ti ti-refresh"></i>Check for updates</button>
+    ${updReady ? '<button class="btn" data-act="applyupd" style="background:var(--orange);color:#fff"><i class="ti ti-download"></i>Install update</button>' : ''}</div>
+    ${updMsg ? `<p class="note">${esc(updMsg)}</p>` : ''}</div>
+  <div class="sec"><div class="h3">Event data</div>
+    ${row('Last updated', up ? `${fD(up, tz)}, ${fT(up, tz)} (${agoText()})` : '—')}
+    ${row('Next automatic update', next)}
+    ${row('Events loaded', DATA.events.length)}
+    ${row('Event pages read', DATA.sources?.pages ?? '—')}
+    ${row('Official news check', DATA.sources?.official === 'ok' ? 'Working' : 'Could not reach site')}</div>
+  <div class="sec"><div class="h3">Time zone</div>
+    ${row('Showing times for', `${esc(zoneName(tz))} · ${fT(n, tz)} ${ab(n, tz)}`)}
+    <button class="btn soft" data-act="tzset" style="margin-top:8px"><i class="ti ti-world"></i>Change time zone</button></div>
+  <div class="sec"><div class="h3">Calendar</div>
+    <p class="note" style="margin:0 0 10px">Add events to your phone calendar. It updates by itself.</p>
+    <div class="chips"><button class="chip on" data-act="sub">Subscribe: main events</button><button class="chip" data-act="sub" data-v="all">Subscribe: everything</button></div></div>
+  <div class="sec"><div class="h3">✨ Shiny odds guide</div>
+    ${row('Normal wild, eggs, most raids', '≈1 in 500')}
+    ${row('Boosted event Pokémon', '≈1 in 64–128')}
+    ${row('Community Day featured', '≈1 in 25')}
+    ${row('Legendary / 5-star raids', '≈1 in 20')}
+    ${row('Max Battles', 'Not published')}
+    <p class="note">Estimates from player research. Niantic doesn't publish exact rates, so treat these as a guide.</p></div>
+  <div class="sec"><div class="h3">Where the data comes from</div>
+    <div class="brow"><span class="bic"><i class="ti ti-database"></i></span><span><b>LeekDuck</b> event list, raids, eggs and research, via the open ScrapedDuck feed.</span></div>
+    <div class="brow"><span class="bic"><i class="ti ti-file-text"></i></span><span><b>LeekDuck event pages</b> Pokémon, Max Battles, bonuses and sub-event times for each event.</span></div>
+    <div class="brow"><span class="bic"><i class="ti ti-circle-check"></i></span><span><b>Official Pokémon GO news</b> used to confirm events.</span></div>
+    <p class="note">Not affiliated with Niantic, The Pokémon Company or LeekDuck.</p></div>
+  <div class="sec"><div class="h3">Troubleshooting</div>
+    <p class="note" style="margin:0 0 10px">Something looks old or broken? This clears saved copies and reloads the latest version.</p>
+    <button class="btn soft" data-act="reset"><i class="ti ti-trash"></i>Clear saved data and reload</button></div>`;
+}
+
+/* ---------- updates ---------- */
+async function checkUpdates(silent = false) {
+  lastCheck = Date.now();
+  if (!silent) { updMsg = 'Checking…'; render(); }
+  try {
+    const [html, j] = await Promise.all([
+      fetch('index.html?v=' + Date.now(), { cache: 'no-store' }).then(r => r.text()),
+      fetch('data/events.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json())
+    ]);
+    const v = (html.match(/APP_VERSION = '([^']+)'/) || [])[1];
+    const dataNew = j.updatedAt !== DATA.updatedAt;
+    DATA = j;
+    updReady = !!v && v !== APP_VERSION; newVersion = v || '';
+    if (!silent) updMsg = updReady ? `Version ${v} is available. Tap Install update.` : dataNew ? 'Event data refreshed. The app is up to date.' : "You're up to date.";
+  } catch { if (!silent) updMsg = "Couldn't check. Are you offline?"; }
+  render();
+}
+async function clearAll() {
+  try {
+    if (window.caches) for (const k of await caches.keys()) await caches.delete(k);
+    const reg = await navigator.serviceWorker?.getRegistration();
+    await reg?.update();
+  } catch {}
+}
+async function applyUpdate() { await clearAll(); location.reload(); }
+async function resetApp() {
+  try {
+    if (window.caches) for (const k of await caches.keys()) await caches.delete(k);
+    for (const r of (await navigator.serviceWorker?.getRegistrations()) || []) await r.unregister();
+  } catch {}
+  location.reload();
 }
 
 /* ---------- actions ---------- */
@@ -377,10 +517,11 @@ document.addEventListener('click', ev => {
   ev.stopPropagation();
   const v = a.dataset.v;
   switch (a.dataset.act) {
-    case 'tz': tzOpen = !tzOpen; aboutOpen = false; goList(); break;
-    case 'about': aboutOpen = !aboutOpen; tzOpen = false; goList(); break;
-    case 'home': sel = null; tzOpen = aboutOpen = false; goList(); break;
-    case 'today': sel = dk(Date.now(), tz); tzOpen = aboutOpen = false; goList(); break;
+    case 'tz': tzOpen = !tzOpen; goList(); break;
+    case 'tzset': tzOpen = true; goList(); break;
+    case 'settings': location.hash = 'settings'; break;
+    case 'home': sel = null; tzOpen = false; goList(); break;
+    case 'today': sel = dk(Date.now(), tz); tzOpen = false; goList(); break;
     case 'zone': setTz(v); break;
     case 'day': sel = sel === +v ? null : +v; render(); break;
     case 'mode': mode = v; LS.set('mode', v); render(); break;
@@ -393,6 +534,9 @@ document.addEventListener('click', ev => {
     case 'shonly': det.shinyOnly = !det.shinyOnly; render(); break;
     case 'more': det.expanded.add(v); render(); break;
     case 'tile': if (a.hasAttribute('data-noshiny')) return; det.shiny.has(v) ? det.shiny.delete(v) : det.shiny.add(v); render(); break;
+    case 'chk': checkUpdates(false); break;
+    case 'applyupd': applyUpdate(); break;
+    case 'reset': if (confirm('Clear saved data and reload?')) resetApp(); break;
     case 'install':
       if (installPrompt) { installPrompt.prompt(); installPrompt.userChoice.finally(() => { installPrompt = null; render(); }); }
       break;
@@ -406,11 +550,15 @@ window.addEventListener('hashchange', () => {
 });
 window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; render(); });
 window.addEventListener('appinstalled', () => { installPrompt = null; LS.set('installHidden', true); render(); });
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && Date.now() - lastCheck > 10 * 6e4) checkUpdates(true);
+});
 
 function render() {
-  const m = location.hash.match(/^#e=(.+)$/), e = m && find(decodeURIComponent(m[1]));
-  $('#app').innerHTML = e ? renderDetail(e) : renderList();
-  const cur = e ? '' : tzOpen ? 'tz' : aboutOpen ? 'about' : sel === dk(Date.now(), tz) ? 'today' : 'home';
+  const h = location.hash, m = h.match(/^#e=(.+)$/), e = m && find(decodeURIComponent(m[1]));
+  const settings = h === '#settings';
+  $('#app').innerHTML = settings ? renderSettings() : e ? renderDetail(e) : renderList();
+  const cur = settings ? 'settings' : e ? '' : tzOpen ? 'tz' : sel === dk(Date.now(), tz) ? 'today' : 'home';
   document.querySelectorAll('.nav [data-act]').forEach(b => b.classList.toggle('cur', b.dataset.act === cur));
 }
 function tick() {
@@ -419,8 +567,8 @@ function tick() {
 
 fetch('data/events.json', { cache: 'no-store' })
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then(j => { DATA = j; render(); setInterval(tick, 30e3); setInterval(render, 5 * 60e3); })
-  .catch(() => { $('#app').innerHTML = `<div class="h1">Event radar</div><div class="empty" style="margin-top:16px">Couldn't load events. Check your connection, or run "Update events and deploy" on GitHub.</div>`; });
+  .then(j => { DATA = j; render(); setInterval(tick, 30e3); setInterval(render, 5 * 60e3); setTimeout(() => checkUpdates(true), 3000); })
+  .catch(() => { $('#app').innerHTML = `<div class="h1">Event radar</div><div class="empty" style="margin-top:16px">Couldn't load events. Check your connection, then try again.<br><br><button class="btn dark" data-act="reset">Reload app</button></div>`; });
 
 if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
