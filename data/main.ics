@@ -1,0 +1,589 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//pogo-event-radar//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Pokémon GO – Main events
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:pokemon-x-adidas-2026@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20260925T100000
+DTEND:20270115T200000
+SUMMARY:adidas × Pokémon Timed Research
+DESCRIPTION:Research\nDetails: https://leekduck.com/events/pokemon-x-adid
+ as-2026/
+URL:https://leekduck.com/events/pokemon-x-adidas-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:adidas × Pokémon Timed Research in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:adidas × Pokémon Timed Research tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:dynamax-trails-2026@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20261116T100000
+DTEND:20261123T200000
+SUMMARY:Dynamax Trails
+DESCRIPTION:Event\nRaids right now: Alolan Meowth ✨\, Misdreavus ✨\, Gala
+ rian Yamask ✨\, Sandygast ✨\, Alolan Marowak ✨\, Liepard ✨\, Golurk ✨\, C
+ resselia ✨\, Darkrai ✨\, Mega Banette ✨\, Shadow Larvitar ✨\, Shadow Mudk
+ ip ✨\, Shadow Makuhita ✨\, Shadow Cranidos ✨\, Shadow Poliwhirl ✨\, Shado
+ w Piloswine ✨\, Shadow Prinplup ✨\, Shadow Tornadus (Incarnate) ✨\nEggs r
+ ight now: Bulbasaur ✨\, Charmander ✨\, Squirtle ✨\, Chikorita ✨\, Cyndaqu
+ il ✨\, Totodile ✨\, Treecko ✨\, Torchic ✨\, Mudkip ✨\, Turtwig ✨\, Chimch
+ ar ✨\, Piplup ✨\, Snivy ✨\, Tepig ✨\, Oshawott ✨\, Chespin ✨\, Fennekin ✨
+ \, Froakie ✨\, Rowlet ✨\, Litten ✨\, Popplio ✨\, Grookey ✨\, Scorbunny ✨\
+ , Sobble ✨\, Sprigatito ✨\, Fuecoco ✨\, Quaxly ✨\, Pichu ✨\, Togepi ✨\, E
+ lekid ✨\, Magby ✨\, Azurill ✨\, Tadbulb ✨\, Larvesta ✨\, Snom ✨\, Fidough
+  ✨\, Munchlax ✨\, Sizzlipede ✨\, Maschiff\, Mime Jr ✨\, Indeedee (Male) ✨
+ \, Indeedee (Female) ✨\, Larvesta ✨\, Chingling ✨\, Happiny ✨\, Budew ✨\,
+  Sableye ✨\, Tyrogue ✨\, Galarian Meowth ✨\, Galarian Darumaka ✨\, Galari
+ an Corsola ✨\, Galarian Zigzagoon ✨\, Galarian Stunfisk ✨\, Alolan Geodud
+ e ✨\, Alolan Diglett ✨\, Hisuian Sneasel ✨\, Basculin (White Striped) ✨\,
+  Hisuian Growlithe ✨\, Galarian Slowpoke ✨\, Charcadet ✨\, Tinkatink ✨\, 
+ Honedge ✨\, Frigibax ✨\, Impidimp ✨\, Dratini ✨\, Larvesta ✨\, Gible ✨\, 
+ Toxel ✨\, Druddigon ✨\, Bagon ✨\, Drampa ✨\, Sandile ✨\, Vullaby ✨\, Shro
+ odle ✨\, Pancham ✨\, Salandit ✨\, Varoom ✨\nField research right now: Bul
+ basaur\, Charmander\, Squirtle\, Grookey\, Scorbunny\, Sobble\, Magikarp\
+ , Feebas\, Eevee\, Drampa\, Duraludon\, Stufful\, Wimpod\, Dratini\, Bago
+ n\, Axew\, Psyduck\, Seaking\, Marill\, Teddiursa\, Lombre\, Stunky\, Lie
+ pard\, Darumaka\, Clauncher\, Dedenne\, Cutiefly\, Smoliv\, Sunkern\, See
+ dot\, Shroomish\, Petilil\, Skiddo\, Gastly\, Shuppet\, Duskull\, Drifloo
+ n\, Yamask\, Golett\, Murkrow\, Sneasel\, Poochyena\, Purrloin\, Inkay\, 
+ Nickit\, Vulpix\, Poliwag\, Wingull\, Hippopotas\, Snover\, Roggenrola\, 
+ Vanillite\, Alolan Geodude\, Electabuzz\, Makuhita\, Swablu\, Baltoy\, Du
+ sclops\, Staravia\, Emolga\, Ferroseed\, Lechonk\, Magmar\, Nuzleaf\, Gal
+ arian Stunfisk\, Stunfisk\, Trumbeak\, Mareanie\, Nymble\, Larvitar\, Bel
+ dum\, Gible\, Omanyte\, Kabuto\, Clamperl\, Elgyem\, Binacle\, Lileep\, A
+ norith\, Spinda 4\, Spinda 5\, Alolan Diglett\, Diglett\, Sudowoodo\, Lap
+ ras\, Vaporeon\, Jolteon\, Flareon\, Snorlax\, Piloswine\, Sealeo\, Metan
+ g\, Luxio\, Gabite\, Lampent\, Fletchinder\, Tirtouga\, Archen\, Alolan E
+ xeggutor\, Alolan Marowak\, Aerodactyl\, Growlithe\, Galarian Ponyta\, Po
+ nyta\, Galarian Slowpoke\, Slowpoke\, Houndour\, Electrike\, Wailmer\, He
+ rdier\, Scyther\, Noctowl\, Nincada\, Combee\, Audino\, Trubbish\, Cubcho
+ o\, Fidough\, Mawile\, Doduo\, Remoraid\, Ralts\, Aron\, Alolan Sandshrew
+ \, Sandshrew\, Dunsparce\, Galarian Zigzagoon\, Zigzagoon\, Snorunt\, Bid
+ oof\, Ducklett\, Dewpider\, Skwovet\, Blipbug\, Arrokuda\, Tarountula\, N
+ acli\, Hisuian Growlithe\, Trapinch\, Croagunk\, Cottonee\, Seadra\, Ursa
+ ring\, Magcargo\, Grumpig\, Whirlipede\, Eelektrik\, Diggersby\, Snivy\, 
+ Tepig\, Oshawott\, Rowlet\, Litten\, Popplio\, Jigglypuff\, Buneary\, Gla
+ meow\, Bunnelby\, Litleo\, Clefairy\, Togetic\, Poliwhirl\, Kadabra\, Mac
+ hoke\, Haunter\, Arbok\, Meowth\, Weezing\nDetails: https://leekduck.com/
+ events/dynamax-trails-2026/
+URL:https://leekduck.com/events/dynamax-trails-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Dynamax Trails in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Dynamax Trails tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:duolingo-timed-research-2026@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20261117T100000
+DTEND:20261231T235900
+SUMMARY:Pokémon GO and Duolingo Timed Research
+DESCRIPTION:Timed Research\nDetails: https://leekduck.com/events/duolingo
+ -timed-research-2026/
+URL:https://leekduck.com/events/duolingo-timed-research-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Pokémon GO and Duolingo Timed Research in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Pokémon GO and Duolingo Timed Research tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pokemon-latin-america-international-championships-2027-timed-research
+ -twitch-drops@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20261120T120000Z
+DTEND:20261122T230000Z
+SUMMARY:Twitch Drops for 2027 Pokémon Latin America International Champio
+ nships
+DESCRIPTION:Twitch Drops\nDetails: https://leekduck.com/events/pokemon-la
+ tin-america-international-championships-2027-timed-research-twitch-drops/
+URL:https://leekduck.com/events/pokemon-latin-america-international-champ
+ ionships-2027-timed-research-twitch-drops/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Twitch Drops for 2027 Pokémon Latin America International Cha
+ mpionships in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Twitch Drops for 2027 Pokémon Latin America International Cha
+ mpionships tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:eternamax-eternatus-max-battles-2026@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20261121T110000
+DTEND:20261121T140000
+SUMMARY:Eternamax Eternatus Returns
+DESCRIPTION:Max Battles\nDetails: https://leekduck.com/events/eternamax-e
+ ternatus-max-battles-2026/
+URL:https://leekduck.com/events/eternamax-eternatus-max-battles-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Eternamax Eternatus Returns in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Eternamax Eternatus Returns tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:november-communityday2026@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20261121T140000
+DTEND:20261121T170000
+SUMMARY:Pawniard Community Day
+DESCRIPTION:Community Day\nFeatured: Pawniard\nBonuses: Increased Spawns\
+ ; 1/4 Egg Hatch Distance\; 3-hour Incense\; 1-hour Lures*\; 2x Catch Cand
+ y\; 2x Chance for Trainers level 31 and up to receive Candy XL from catch
+ ing Pokémon\; One additional Special Trade can be made for a maximum of t
+ wo for the day*\; Trades made will require 50% less Stardust*\nDetails: h
+ ttps://leekduck.com/events/november-communityday2026/
+URL:https://leekduck.com/events/november-communityday2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Pawniard Community Day in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Pawniard Community Day tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:twilight-wishes-2026@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20261124T100000
+DTEND:20261130T200000
+SUMMARY:Twilight Wishes
+DESCRIPTION:Event\nDetails: https://leekduck.com/events/twilight-wishes-2
+ 026/
+URL:https://leekduck.com/events/twilight-wishes-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Twilight Wishes in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Twilight Wishes tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:clefable-super-mega-raid-day-2026@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20261128T140000
+DTEND:20261128T170000
+SUMMARY:Clefable Super Mega Raid Day
+DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/clefable-super
+ -mega-raid-day-2026/
+URL:https://leekduck.com/events/clefable-super-mega-raid-day-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Clefable Super Mega Raid Day in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Clefable Super Mega Raid Day tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:max-battle-day-december-2026@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20261205T140000
+DTEND:20261205T170000
+SUMMARY:Max Battle Day
+DESCRIPTION:Max Battles\nDetails: https://leekduck.com/events/max-battle-
+ day-december-2026/
+URL:https://leekduck.com/events/max-battle-day-december-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Max Battle Day in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Max Battle Day tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:minior-showers-geminids-2026@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20261211T170000
+DTEND:20261216T235900
+SUMMARY:Minior Showers: Geminids 2026
+DESCRIPTION:Event\nDetails: https://leekduck.com/events/minior-showers-ge
+ minids-2026/
+URL:https://leekduck.com/events/minior-showers-geminids-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Minior Showers: Geminids 2026 in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Minior Showers: Geminids 2026 tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:december-communityday2026@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20261212T140000
+DTEND:20261213T170000
+SUMMARY:December Community Day 2026
+DESCRIPTION:Community Day\nFeatured: Vulpix\, Alolan Vulpix\, Grookey\, S
+ corbunny\, Lechonk\, Tinkatink\, Piplup\, Zorua\, Pawniard\, Sobble\, Nic
+ kit\, Frigibax\, Gible\, Deino\nBonuses: Increased Spawns\; 2x XP for cat
+ ching Pokémon\; 2x Stardust for catching Pokémon\; 1/2 Hatch Distance whe
+ n Eggs are placed into Incubators during the event period\; 2x Catch Cand
+ y\; 2x Chance for Trainers level 31 and up to receive Candy XL from catch
+ ing Pokémon\; 3-hour Incense**\; 1-hour Lures*\; Up to two Special Trades
+  can be made per day*\; Trades made will require 50% less Stardust*\nDeta
+ ils: https://leekduck.com/events/december-communityday2026/
+URL:https://leekduck.com/events/december-communityday2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:December Community Day 2026 in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:December Community Day 2026 tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:raid-day-december-2026@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20261219T140000
+DTEND:20261219T170000
+SUMMARY:Raid Day
+DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/raid-day-decem
+ ber-2026/
+URL:https://leekduck.com/events/raid-day-december-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Raid Day in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Raid Day tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:hatch-day-december-2026@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20261226T110000
+DTEND:20261226T170000
+SUMMARY:Hatch Day
+DESCRIPTION:Event\nDetails: https://leekduck.com/events/hatch-day-decembe
+ r-2026/
+URL:https://leekduck.com/events/hatch-day-december-2026/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Hatch Day in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Hatch Day tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:january-communitydayclassic2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270102T140000
+DTEND:20270102T170000
+SUMMARY:January Community Day Classic
+DESCRIPTION:Community Day\nDetails: https://leekduck.com/events/january-c
+ ommunitydayclassic2027/
+URL:https://leekduck.com/events/january-communitydayclassic2027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:January Community Day Classic in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:January Community Day Classic tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:super-mega-raid-day-january-2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270109T140000
+DTEND:20270109T170000
+SUMMARY:Super Mega Raid Day
+DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/super-mega-rai
+ d-day-january-2027/
+URL:https://leekduck.com/events/super-mega-raid-day-january-2027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Super Mega Raid Day in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Super Mega Raid Day tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:january-communityday2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270116T140000
+DTEND:20270116T170000
+SUMMARY:January Community Day
+DESCRIPTION:Community Day\nDetails: https://leekduck.com/events/january-c
+ ommunityday2027/
+URL:https://leekduck.com/events/january-communityday2027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:January Community Day in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:January Community Day tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:max-battle-day-january-2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270123T140000
+DTEND:20270123T170000
+SUMMARY:Max Battle Day
+DESCRIPTION:Max Battles\nDetails: https://leekduck.com/events/max-battle-
+ day-january-2027/
+URL:https://leekduck.com/events/max-battle-day-january-2027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Max Battle Day in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Max Battle Day tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:super-mega-raid-day-january-30-2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270130T140000
+DTEND:20270130T170000
+SUMMARY:Super Mega Raid Day
+DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/super-mega-rai
+ d-day-january-30-2027/
+URL:https://leekduck.com/events/super-mega-raid-day-january-30-2027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Super Mega Raid Day in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Super Mega Raid Day tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:february-communityday2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270206T140000
+DTEND:20270206T170000
+SUMMARY:February Community Day
+DESCRIPTION:Community Day\nDetails: https://leekduck.com/events/february-
+ communityday2027/
+URL:https://leekduck.com/events/february-communityday2027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:February Community Day in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:February Community Day tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:raid-day-february-2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270213T140000
+DTEND:20270213T170000
+SUMMARY:Raid Day
+DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/raid-day-febru
+ ary-2027/
+URL:https://leekduck.com/events/raid-day-february-2027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Raid Day in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Raid Day tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pokemon-go-tour-alola-kaohsiung-2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270218T160000Z
+DTEND:20270221T155959Z
+SUMMARY:Pokémon GO Tour: Alola - Kaohsiung 2027
+DESCRIPTION:Pokémon GO Tour\nDetails: https://leekduck.com/events/pokemon
+ -go-tour-alola-kaohsiung-2027/
+URL:https://leekduck.com/events/pokemon-go-tour-alola-kaohsiung-2027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Pokémon GO Tour: Alola - Kaohsiung 2027 in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Pokémon GO Tour: Alola - Kaohsiung 2027 tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pokemon-go-tour-alola-los-angeles-2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270219T080000Z
+DTEND:20270222T075959Z
+SUMMARY:Pokémon GO Tour: Alola - Los Angeles 2027
+DESCRIPTION:Pokémon GO Tour\nDetails: https://leekduck.com/events/pokemon
+ -go-tour-alola-los-angeles-2027/
+URL:https://leekduck.com/events/pokemon-go-tour-alola-los-angeles-2027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Pokémon GO Tour: Alola - Los Angeles 2027 in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Pokémon GO Tour: Alola - Los Angeles 2027 tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:pokemon-go-tour-alola-global-2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270227T000000
+DTEND:20270228T235959
+SUMMARY:Pokémon GO Tour: Alola - Global 2027
+DESCRIPTION:Pokémon GO Tour\nDetails: https://leekduck.com/events/pokemon
+ -go-tour-alola-global-2027/
+URL:https://leekduck.com/events/pokemon-go-tour-alola-global-2027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Pokémon GO Tour: Alola - Global 2027 in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Pokémon GO Tour: Alola - Global 2027 tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:minior-showers-eta-aquariids-2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270503T170000
+DTEND:20270508T235900
+SUMMARY:Minior Showers: Eta Aquariids 2027
+DESCRIPTION:Event\nDetails: https://leekduck.com/events/minior-showers-et
+ a-aquariids-2027/
+URL:https://leekduck.com/events/minior-showers-eta-aquariids-2027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Minior Showers: Eta Aquariids 2027 in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Minior Showers: Eta Aquariids 2027 tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:minior-showers-southern-delta-aquariids-2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270728T170000
+DTEND:20270802T235900
+SUMMARY:Minior Showers: Southern Delta Aquariids 2027
+DESCRIPTION:Event\nDetails: https://leekduck.com/events/minior-showers-so
+ uthern-delta-aquariids-2027/
+URL:https://leekduck.com/events/minior-showers-southern-delta-aquariids-2
+ 027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Minior Showers: Southern Delta Aquariids 2027 in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Minior Showers: Southern Delta Aquariids 2027 tomorrow
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:minior-showers-perseids-2027@pogo-event-radar
+DTSTAMP:20261122T051049Z
+DTSTART:20270810T170000
+DTEND:20270815T235900
+SUMMARY:Minior Showers: Perseids 2027
+DESCRIPTION:Event\nDetails: https://leekduck.com/events/minior-showers-pe
+ rseids-2027/
+URL:https://leekduck.com/events/minior-showers-perseids-2027/
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT1H
+DESCRIPTION:Minior Showers: Perseids 2027 in 1 hour
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Minior Showers: Perseids 2027 tomorrow
+END:VALARM
+END:VEVENT
+END:VCALENDAR
