@@ -7,7 +7,7 @@ REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H
 BEGIN:VEVENT
 UID:season-24-twilight-trails@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20260908T100000
 DTEND:20261201T100000
 SUMMARY:Twilight Trails
@@ -97,7 +97,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-x-adidas-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20260925T100000
 DTEND:20270115T200000
 SUMMARY:adidas × Pokémon Timed Research
@@ -119,7 +119,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:go-pass-november-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261103T100000
 DTEND:20261201T100000
 SUMMARY:GO Pass: November
@@ -134,7 +134,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:cresselia-darkrai-in-5-star-raid-battles-november-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261116T060000
 DTEND:20261124T220000
 SUMMARY:Cresselia and Darkrai in 5-star Raid Battles
@@ -153,7 +153,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mega-banette-in-mega-raids-november-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261116T060000
 DTEND:20261124T220000
 SUMMARY:Mega Banette in Mega Raids
@@ -171,7 +171,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:shadow-tornadus-incarnate-forme-in-shadow-raids-november-16-2026@pogo-e
  vent-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261116T060000
 DTEND:20261201T220000
 SUMMARY:Shadow Tornadus (Incarnate Forme) in Shadow Raids
@@ -189,7 +189,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:dynamax-trails-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261116T100000
 DTEND:20261123T200000
 SUMMARY:Dynamax Trails
@@ -237,7 +237,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:duolingo-timed-research-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261117T100000
 DTEND:20261231T235900
 SUMMARY:Pokémon GO and Duolingo Timed Research
@@ -260,7 +260,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-twilight-trails_ultra-league_master-league-mega-edition_2026-go-lai
  c-cup@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261118T210000Z
 DTEND:20261125T210000Z
 SUMMARY:Ultra League\, Master League: Mega Edition\, and 2026 GO LAIC Cup |
@@ -278,7 +278,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-mondays-2026-11-23@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261123T060000
 DTEND:20261129T210000
 SUMMARY:Dynamax Espurr during Max Monday
@@ -295,24 +295,27 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:twilight-wishes-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261124T100000
 DTEND:20261130T200000
 SUMMARY:Twilight Wishes
 DESCRIPTION:Event\nCelebrate Twilight Wishes with costumed Espeon and Umbre
  on\, increased Shiny chances for Staryu and Elgyem\, and event GO Pass rew
  ards and bonuses!\nFeatured Pokémon: Espeon wearing a sun scarf\, Umbreon
-  wearing a moon scarf\, Rockruff\nSpawns: Clefairy\, Staryu\, Elgyem\, Roc
- kruff\nOne-Star Raids: Sun Crown Pikachu ✨\, Moon Crown Pikachu ✨\nThr
- ee-Star Raids: Day Scarf Espeon ✨\, Night Scarf Umbreon ✨\nFive-Star R
- aids: Cresselia ✨\, Darkrai ✨\, Deoxys (Normal) ✨\, Deoxys (Defense)
-  ✨\, Deoxys (Attack) ✨\, Deoxys (Speed) ✨\nMega Raids: Mega Beedrill
-  ✨\, Mega Houndoom ✨\, Mega Sableye ✨\, Mega Manectric ✨\nNovember
-  24 at 10:00 a.m. to November 26 at 10:00 a.m. local time: Applin\, Maschi
- ff\nNovember 26 at 10:00 a.m. to November 30 at 8:00 p.m. local time: Geng
- ar wearing a Spooky Festival costume\, Bramblin\nBonuses: Increased chance
-  to encounter Shiny Staryu and Shiny Elgyem\nDetails: https://leekduck.com
- /events/twilight-wishes-2026/
+  wearing a moon scarf\, Rockruff\nSpawns: Clefairy\, Jigglypuff\, Staryu\,
+  Chimecho\, Munna\, Elgyem\, Rockruff\nOne-Star Raids: Sun Crown Pikachu 
+ ✨\, Moon Crown Pikachu ✨\nThree-Star Raids: Day Scarf Espeon ✨\, Nig
+ ht Scarf Umbreon ✨\nFive-Star Raids: Cresselia ✨\, Darkrai ✨\, Deoxy
+ s (Normal) ✨\, Deoxys (Defense) ✨\, Deoxys (Attack) ✨\, Deoxys (Spee
+ d) ✨\nMega Raids: Mega Beedrill ✨\, Mega Houndoom ✨\, Mega Sableye 
+ ✨\, Mega Manectric ✨\nNovember 24 at 10:00 a.m. to November 26 at 10:0
+ 0 a.m. local time: Catch 10 Pokémon ✨\, Explore 1 km ✨\, Hatch an Egg
+ REWARDMaschiff\, Mega Evolve a Pokémon\nNovember 26 at 10:00 a.m. to Nove
+ mber 30 at 8:00 p.m. local time: Catch 10 Pokémon ✨\, Explore 1 km ✨\
+ , Mega Evolve a Pokémon\, ???REWARDSpooky Festival Gengar ✨\, ???REWARD
+ Halloween Drifblim ✨\, ???REWARDBramblin\nBonuses: Increased chance to e
+ ncounter Shiny Staryu and Shiny Elgyem\nDetails: https://leekduck.com/even
+ ts/twilight-wishes-2026/
 URL:https://leekduck.com/events/twilight-wishes-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -328,7 +331,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-twilight-trails_master-league_mega-catch-cup-great-league-edition@p
  ogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261124T210000Z
 DTEND:20261201T210000Z
 SUMMARY:Master League and Mega Catch Cup: Great League Edition | Twilight T
@@ -347,7 +350,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:deoxys-normal-defense-attack-speed-formes-in-5-star-raid-battles-novemb
  er-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261125T060000
 DTEND:20261201T220000
 SUMMARY:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) in 5-star Rai
@@ -369,7 +372,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mega-metagross-in-mega-raids-november-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261125T060000
 DTEND:20261201T220000
 SUMMARY:Mega Metagross in Mega Raids
@@ -386,7 +389,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raidhour20261125@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261125T180000
 DTEND:20261125T190000
 SUMMARY:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) Raid Hour
@@ -402,7 +405,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemonspotlighthour2026-11-26@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261126T180000
 DTEND:20261126T190000
 SUMMARY:Noibat Spotlight Hour
@@ -419,7 +422,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clefable-super-mega-raid-day-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261128T140000
 DTEND:20261128T170000
 SUMMARY:Clefable Super Mega Raid Day
@@ -445,7 +448,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-mondays-2026-11-30@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261130T060000
 DTEND:20261206T210000
 SUMMARY:Dynamax Cryogonal during Max Monday
@@ -462,7 +465,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-battle-day-december-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261205T140000
 DTEND:20261205T170000
 SUMMARY:Max Battle Day
@@ -483,7 +486,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-geminids-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261211T170000
 DTEND:20261216T235900
 SUMMARY:Minior Showers: Geminids 2026
@@ -503,7 +506,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:december-communityday2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261212T140000
 DTEND:20261213T170000
 SUMMARY:December Community Day 2026
@@ -530,7 +533,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raid-day-december-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261219T140000
 DTEND:20261219T170000
 SUMMARY:Raid Day
@@ -550,7 +553,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:hatch-day-december-2026@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20261226T110000
 DTEND:20261226T170000
 SUMMARY:Hatch Day
@@ -570,7 +573,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:january-communitydayclassic2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270102T140000
 DTEND:20270102T170000
 SUMMARY:January Community Day Classic
@@ -590,7 +593,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:super-mega-raid-day-january-2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270109T140000
 DTEND:20270109T170000
 SUMMARY:Super Mega Raid Day
@@ -610,7 +613,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:january-communityday2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270116T140000
 DTEND:20270116T170000
 SUMMARY:January Community Day
@@ -630,7 +633,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-battle-day-january-2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270123T140000
 DTEND:20270123T170000
 SUMMARY:Max Battle Day
@@ -650,7 +653,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:super-mega-raid-day-january-30-2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270130T140000
 DTEND:20270130T170000
 SUMMARY:Super Mega Raid Day
@@ -670,7 +673,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:february-communityday2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270206T140000
 DTEND:20270206T170000
 SUMMARY:February Community Day
@@ -690,7 +693,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raid-day-february-2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270213T140000
 DTEND:20270213T170000
 SUMMARY:Raid Day
@@ -710,7 +713,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-go-tour-alola-kaohsiung-2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270218T160000Z
 DTEND:20270221T155959Z
 SUMMARY:Pokémon GO Tour: Alola - Kaohsiung 2027
@@ -731,7 +734,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-go-tour-alola-los-angeles-2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270219T080000Z
 DTEND:20270222T075959Z
 SUMMARY:Pokémon GO Tour: Alola - Los Angeles 2027
@@ -753,7 +756,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-go-tour-alola-global-2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270227T000000
 DTEND:20270228T235959
 SUMMARY:Pokémon GO Tour: Alola - Global 2027
@@ -773,7 +776,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-eta-aquariids-2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270503T170000
 DTEND:20270508T235900
 SUMMARY:Minior Showers: Eta Aquariids 2027
@@ -793,7 +796,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-southern-delta-aquariids-2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270728T170000
 DTEND:20270802T235900
 SUMMARY:Minior Showers: Southern Delta Aquariids 2027
@@ -814,7 +817,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-perseids-2027@pogo-event-radar
-DTSTAMP:20261123T155114Z
+DTSTAMP:20261123T235103Z
 DTSTART:20270810T170000
 DTEND:20270815T235900
 SUMMARY:Minior Showers: Perseids 2027
