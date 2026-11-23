@@ -7,56 +7,87 @@ REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H
 BEGIN:VEVENT
 UID:season-24-twilight-trails@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20260908T100000
 DTEND:20261201T100000
 SUMMARY:Twilight Trails
-DESCRIPTION:Season\nRaids right now: Alolan Meowth ✨\, Misdreavus ✨\, Gal
- arian Yamask ✨\, Sandygast ✨\, Alolan Marowak ✨\, Liepard ✨\, Golurk ✨\, 
- Cresselia ✨\, Darkrai ✨\, Mega Banette ✨\, Shadow Larvitar ✨\, Shadow Mud
- kip ✨\, Shadow Makuhita ✨\, Shadow Cranidos ✨\, Shadow Poliwhirl ✨\, Shad
- ow Piloswine ✨\, Shadow Prinplup ✨\, Shadow Tornadus (Incarnate) ✨\nEggs 
- right now: Bulbasaur ✨\, Charmander ✨\, Squirtle ✨\, Chikorita ✨\, Cyndaq
- uil ✨\, Totodile ✨\, Treecko ✨\, Torchic ✨\, Mudkip ✨\, Turtwig ✨\, Chimc
- har ✨\, Piplup ✨\, Snivy ✨\, Tepig ✨\, Oshawott ✨\, Chespin ✨\, Fennekin 
- ✨\, Froakie ✨\, Rowlet ✨\, Litten ✨\, Popplio ✨\, Grookey ✨\, Scorbunny ✨
- \, Sobble ✨\, Sprigatito ✨\, Fuecoco ✨\, Quaxly ✨\, Pichu ✨\, Togepi ✨\, 
- Elekid ✨\, Magby ✨\, Azurill ✨\, Tadbulb ✨\, Larvesta ✨\, Snom ✨\, Fidoug
- h ✨\, Munchlax ✨\, Sizzlipede ✨\, Maschiff\, Mime Jr ✨\, Indeedee (Male) 
- ✨\, Indeedee (Female) ✨\, Larvesta ✨\, Chingling ✨\, Happiny ✨\, Budew ✨\
- , Sableye ✨\, Tyrogue ✨\, Galarian Meowth ✨\, Galarian Darumaka ✨\, Galar
- ian Corsola ✨\, Galarian Zigzagoon ✨\, Galarian Stunfisk ✨\, Alolan Geodu
- de ✨\, Alolan Diglett ✨\, Hisuian Sneasel ✨\, Basculin (White Striped) ✨\
- , Hisuian Growlithe ✨\, Galarian Slowpoke ✨\, Charcadet ✨\, Tinkatink ✨\,
-  Honedge ✨\, Frigibax ✨\, Impidimp ✨\, Dratini ✨\, Larvesta ✨\, Gible ✨\,
-  Toxel ✨\, Druddigon ✨\, Bagon ✨\, Drampa ✨\, Sandile ✨\, Vullaby ✨\, Shr
- oodle ✨\, Pancham ✨\, Salandit ✨\, Varoom ✨\nField research right now: Bu
- lbasaur\, Charmander\, Squirtle\, Grookey\, Scorbunny\, Sobble\, Magikarp
- \, Feebas\, Eevee\, Drampa\, Duraludon\, Pawniard\, Stufful\, Wimpod\, Dr
- atini\, Bagon\, Axew\, Psyduck\, Seaking\, Marill\, Teddiursa\, Lombre\, 
- Stunky\, Liepard\, Darumaka\, Clauncher\, Dedenne\, Cutiefly\, Smoliv\, S
- unkern\, Seedot\, Shroomish\, Petilil\, Skiddo\, Gastly\, Shuppet\, Dusku
- ll\, Drifloon\, Yamask\, Golett\, Murkrow\, Sneasel\, Poochyena\, Purrloi
- n\, Inkay\, Nickit\, Vulpix\, Poliwag\, Wingull\, Hippopotas\, Snover\, R
- oggenrola\, Vanillite\, Alolan Geodude\, Electabuzz\, Makuhita\, Swablu\,
-  Baltoy\, Dusclops\, Staravia\, Emolga\, Ferroseed\, Lechonk\, Magmar\, N
- uzleaf\, Galarian Stunfisk\, Stunfisk\, Trumbeak\, Mareanie\, Nymble\, La
- rvitar\, Beldum\, Gible\, Omanyte\, Kabuto\, Clamperl\, Elgyem\, Binacle\
- , Lileep\, Anorith\, Spinda 4\, Spinda 5\, Alolan Diglett\, Diglett\, Sud
- owoodo\, Lapras\, Vaporeon\, Jolteon\, Flareon\, Snorlax\, Piloswine\, Se
- aleo\, Metang\, Luxio\, Gabite\, Lampent\, Fletchinder\, Tirtouga\, Arche
- n\, Alolan Exeggutor\, Alolan Marowak\, Aerodactyl\, Growlithe\, Galarian
-  Ponyta\, Ponyta\, Galarian Slowpoke\, Slowpoke\, Houndour\, Electrike\, 
- Wailmer\, Herdier\, Scyther\, Noctowl\, Nincada\, Combee\, Audino\, Trubb
- ish\, Cubchoo\, Fidough\, Mawile\, Doduo\, Remoraid\, Ralts\, Aron\, Alol
- an Sandshrew\, Sandshrew\, Dunsparce\, Galarian Zigzagoon\, Zigzagoon\, S
- norunt\, Bidoof\, Ducklett\, Dewpider\, Skwovet\, Blipbug\, Arrokuda\, Ta
- rountula\, Nacli\, Hisuian Growlithe\, Trapinch\, Croagunk\, Cottonee\, S
- eadra\, Ursaring\, Magcargo\, Grumpig\, Whirlipede\, Eelektrik\, Diggersb
- y\, Snivy\, Tepig\, Oshawott\, Rowlet\, Litten\, Popplio\, Jigglypuff\, B
- uneary\, Glameow\, Bunnelby\, Litleo\, Clefairy\, Togetic\, Poliwhirl\, K
- adabra\, Machoke\, Haunter\, Arbok\, Meowth\, Weezing\nDetails: https://l
- eekduck.com/events/season-24-twilight-trails/
+DESCRIPTION:Season\nRaids right now:\n• 1-Star Raids: Alolan Meowth ✨\,
+  Misdreavus ✨\, Galarian Yamask ✨\, Sandygast ✨\, Shadow Larvitar 
+ ✨\, Shadow Mudkip ✨\, Shadow Makuhita ✨\, Shadow Cranidos ✨\n• 3
+ -Star Raids: Alolan Marowak ✨\, Liepard ✨\, Golurk ✨\, Shadow Poliwh
+ irl ✨\, Shadow Piloswine ✨\, Shadow Prinplup ✨\n• 5-Star Raids: Cr
+ esselia ✨\, Darkrai ✨\, Shadow Tornadus (Incarnate) ✨\n• Mega Raid
+ s: Mega Banette ✨\nEggs right now:\n• 1 km: Bulbasaur ✨\, Charmander
+  ✨\, Squirtle ✨\, Chikorita ✨\, Cyndaquil ✨\, Totodile ✨\, Treec
+ ko ✨\, Torchic ✨\, Mudkip ✨\, Turtwig ✨\, Chimchar ✨\, Piplup 
+ ✨\, Snivy ✨\, Tepig ✨\, Oshawott ✨\, Chespin ✨\, Fennekin ✨\, 
+ Froakie ✨\, Rowlet ✨\, Litten ✨\, Popplio ✨\, Grookey ✨\, Scorbu
+ nny ✨\, Sobble ✨\, Sprigatito ✨\, Fuecoco ✨\, Quaxly ✨\n• 2 km
+ : Pichu ✨\, Togepi ✨\, Elekid ✨\, Magby ✨\, Azurill ✨\, Tadbulb 
+ ✨\, Larvesta ✨\n• 5 km: Snom ✨\, Fidough ✨\, Munchlax ✨\, Sizz
+ lipede ✨\, Maschiff\, Mime Jr ✨\, Indeedee (Male) ✨\, Indeedee (Fema
+ le) ✨\, Larvesta ✨\n• 5 km · Adventure Sync: Chingling ✨\, Happin
+ y ✨\, Budew ✨\, Sableye ✨\, Tyrogue ✨\n• 7 km: Galarian Meowth 
+ ✨\, Galarian Darumaka ✨\, Galarian Corsola ✨\, Galarian Zigzagoon 
+ ✨\, Galarian Stunfisk ✨\, Alolan Geodude ✨\, Alolan Diglett ✨\, Hi
+ suian Sneasel ✨\, Basculin (White Striped) ✨\, Hisuian Growlithe ✨\,
+  Galarian Slowpoke ✨\n• 10 km: Charcadet ✨\, Tinkatink ✨\, Honedge
+  ✨\, Frigibax ✨\, Impidimp ✨\, Dratini ✨\, Larvesta ✨\n• 10 km
+  · Adventure Sync: Gible ✨\, Toxel ✨\, Druddigon ✨\, Bagon ✨\, Dr
+ ampa ✨\n• 12 km: Sandile ✨\, Vullaby ✨\, Shroodle ✨\, Pancham 
+ ✨\, Salandit ✨\, Varoom ✨\nField research right now:\n• <span>Catc
+ h 8 Pokémon</span>: Bulbasaur\, Charmander\, Squirtle\, Grookey\, Scorbun
+ ny\, Sobble\n• <span>Power up Pokémon 8 times</span>: Magikarp\, Feebas
+ \n• <span>Explore 1 km</span>: Eevee\n• <span>Win a Max Battle</span>:
+  Drampa\, Duraludon\n• <span>Catch 7 Pokémon</span>: Magikarp\, Stufful
+ \, Wimpod\n• <span>Catch a Dragon-type Pokémon</span>: Dratini\, Bagon\
+ , Axew\n• <span>Catch 7 different species of Pokémon</span>: Psyduck\, 
+ Seaking\, Marill\, Teddiursa\, Lombre\, Stunky\, Liepard\, Darumaka\, Clau
+ ncher\, Dedenne\, Cutiefly\, Smoliv\n• <span>Catch 10 Grass-type Pokémo
+ n</span>: Sunkern\, Seedot\, Shroomish\, Petilil\, Skiddo\, Smoliv\n• <s
+ pan>Catch 10 Ghost-type Pokémon</span>: Gastly\, Shuppet\, Duskull\, Drif
+ loon\, Yamask\, Golett\n• <span>Catch 10 Dark-type Pokémon</span>: Murk
+ row\, Sneasel\, Poochyena\, Purrloin\, Inkay\, Nickit\n• <span>Catch 5 P
+ okémon with Weather Boost</span>: Vulpix\, Poliwag\, Wingull\, Hippopotas
+ \, Snover\, Roggenrola\, Vanillite\n• <span>Make 10 Curveball Throws</sp
+ an>: Alolan Geodude\, Electabuzz\, Makuhita\, Swablu\, Baltoy\, Dusclops\,
+  Staravia\, Emolga\, Ferroseed\, Lechonk\n• <span>Make 10 Nice Throws</s
+ pan>: Magmar\, Magikarp\, Sunkern\, Nuzleaf\, Roggenrola\, Galarian Stunfi
+ sk\, Stunfisk\, Trumbeak\, Mareanie\, Nymble\n• <span>Make 2 Excellent T
+ hrows</span>: Dratini\n• <span>Make 3 Excellent Throws in a row</span>: 
+ Larvitar\, Beldum\, Gible\n• <span>Make 3 Great Throws</span>: Omanyte\,
+  Kabuto\, Clamperl\, Elgyem\, Binacle\n• <span>Make 3 Great Throws in a 
+ row</span>: Lileep\, Anorith\n• <span>Make 5 Great Curveball Throws in a
+  row</span>: Spinda 4\, Spinda 5\n• <span>Make 5 Nice Throws</span>: Alo
+ lan Diglett\, Diglett\, Sudowoodo\n• <span>Win a raid</span>: Lapras\, V
+ aporeon\, Jolteon\, Flareon\, Snorlax\, Piloswine\, Sealeo\, Metang\, Luxi
+ o\, Gabite\, Lampent\, Fletchinder\n• <span>Win a three-star raid or hig
+ her</span>: Tirtouga\, Archen\n• <span>Win 5 raids</span>: Alolan Exeggu
+ tor\, Alolan Marowak\, Aerodactyl\n• <span>Explore 2 km</span>: Growlith
+ e\, Galarian Ponyta\, Ponyta\, Galarian Slowpoke\, Slowpoke\, Lapras\, Hou
+ ndour\, Electrike\, Wailmer\, Herdier\n• <span>Hatch an Egg</span>: Alol
+ an Marowak\, Scyther\, Noctowl\, Sudowoodo\, Nincada\, Lileep\, Anorith\, 
+ Combee\, Audino\, Trubbish\, Cubchoo\, Stufful\, Wimpod\, Fidough\n• <sp
+ an>Hatch 2 Eggs</span>: Sneasel\, Mawile\, Feebas\n• <span>Spin 3 PokéS
+ tops or Gyms</span>: Doduo\, Remoraid\, Ralts\, Aron\n• <span>Spin 5 Pok
+ éStops</span>: Alolan Sandshrew\, Sandshrew\, Dunsparce\, Sneasel\, Galar
+ ian Zigzagoon\, Zigzagoon\, Snorunt\, Bidoof\, Hippopotas\, Trubbish\, Duc
+ klett\, Dewpider\, Skwovet\, Blipbug\, Arrokuda\, Tarountula\, Nacli\n• 
+ <span>Spin 5 PokéStops or Gyms</span>: Growlithe\, Hisuian Growlithe\, Ga
+ larian Slowpoke\, Slowpoke\n• <span>Take a snapshot of a wild Pokémon</
+ span>: Trapinch\, Croagunk\, Cottonee\n• <span>Evolve a Pokémon</span>:
+  Seadra\, Eevee\, Ursaring\, Magcargo\, Grumpig\, Whirlipede\, Eelektrik\,
+  Diggersby\n• <span>Power up Pokémon 3 times</span>: Bulbasaur\, Charma
+ nder\, Squirtle\n• <span>Power up Pokémon 5 times</span>: Snivy\, Tepig
+ \, Oshawott\n• <span>Power up Pokémon 7 times</span>: Rowlet\, Litten\,
+  Popplio\n• <span>Earn 2 Candies walking with your buddy</span>: Jigglyp
+ uff\, Buneary\, Glameow\, Bunnelby\, Litleo\, Dedenne\n• <span>Earn 3 Ca
+ ndies walking with your buddy</span>: Galarian Stunfisk\, Stunfisk\n• <s
+ pan>Send 3 Gifts and add a sticker to each</span>: Clefairy\, Jigglypuff\,
+  Eevee\, Togetic\n• <span>Trade a Pokémon</span>: Poliwhirl\, Kadabra\,
+  Machoke\, Haunter\n• <span>Defeat a Team GO Rocket Grunt</span>: Arbok\
+ , Meowth\, Weezing\nDetails: https://leekduck.com/events/season-24-twiligh
+ t-trails/
 URL:https://leekduck.com/events/season-24-twilight-trails/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -66,14 +97,14 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-x-adidas-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20260925T100000
 DTEND:20270115T200000
 SUMMARY:adidas × Pokémon Timed Research
-DESCRIPTION:Research\nVisit participating adidas stores to unlock Timed R
- esearch rewarding adidas avatar items\, a Lucario encounter\, Lucario Meg
- a Energy\, and more.\nDetails: https://leekduck.com/events/pokemon-x-adid
- as-2026/
+DESCRIPTION:Research\nVisit participating adidas stores to unlock Timed Res
+ earch rewarding adidas avatar items\, a Lucario encounter\, Lucario Mega E
+ nergy\, and more.\nDetails: https://leekduck.com/events/pokemon-x-adidas-2
+ 026/
 URL:https://leekduck.com/events/pokemon-x-adidas-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -88,12 +119,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:go-pass-november-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261103T100000
 DTEND:20261201T100000
 SUMMARY:GO Pass: November
-DESCRIPTION:GO Pass\nDetails: https://leekduck.com/events/go-pass-novembe
- r-2026/
+DESCRIPTION:GO Pass\nDetails: https://leekduck.com/events/go-pass-november-
+ 2026/
 URL:https://leekduck.com/events/go-pass-november-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -102,19 +133,18 @@ DESCRIPTION:GO Pass: November in 1 hour
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:cresselia-darkrai-in-5-star-raid-battles-november-2026@pogo-event-rad
- ar
-DTSTAMP:20261123T073223Z
+UID:cresselia-darkrai-in-5-star-raid-battles-november-2026@pogo-event-radar
+DTSTAMP:20261123T151841Z
 DTSTART:20261116T060000
 DTEND:20261124T220000
 SUMMARY:Cresselia and Darkrai in 5-star Raid Battles
-DESCRIPTION:Raid Battles\nCresselia and Darkrai will be in five-star raid
-  battles from November 16\, 2026 to November 24\, 2026. Raid bosses chang
- e at 6:00 a.m. local time.\nRaids: Cresselia ✨\, Darkrai ✨\nShiny: Cresse
- lia\, Darkrai\nDetails: https://leekduck.com/events/cresselia-darkrai-in-
- 5-star-raid-battles-november-2026/
-URL:https://leekduck.com/events/cresselia-darkrai-in-5-star-raid-battles-
- november-2026/
+DESCRIPTION:Raid Battles\nCresselia and Darkrai will be in five-star raid b
+ attles from November 16\, 2026 to November 24\, 2026. Raid bosses change a
+ t 6:00 a.m. local time.\nRaids: Cresselia ✨\, Darkrai ✨\nShiny: Cresse
+ lia\, Darkrai\nDetails: https://leekduck.com/events/cresselia-darkrai-in-5
+ -star-raid-battles-november-2026/
+URL:https://leekduck.com/events/cresselia-darkrai-in-5-star-raid-battles-no
+ vember-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT1H
@@ -123,14 +153,14 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mega-banette-in-mega-raids-november-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261116T060000
 DTEND:20261124T220000
 SUMMARY:Mega Banette in Mega Raids
-DESCRIPTION:Raid Battles\nMega Banette will be in Mega Raids from Novembe
- r 16\, 2026 at 6 am to November 24\, 2026 at 10 pm local time. Raid bosse
- s change at 6:00 a.m. local time.\nRaid bosses: Mega Banette ✨\nDetails: 
- https://leekduck.com/events/mega-banette-in-mega-raids-november-2026/
+DESCRIPTION:Raid Battles\nMega Banette will be in Mega Raids from November 
+ 16\, 2026 at 6 am to November 24\, 2026 at 10 pm local time. Raid bosses c
+ hange at 6:00 a.m. local time.\nRaid bosses: Mega Banette ✨\nDetails: ht
+ tps://leekduck.com/events/mega-banette-in-mega-raids-november-2026/
 URL:https://leekduck.com/events/mega-banette-in-mega-raids-november-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -139,19 +169,18 @@ DESCRIPTION:Mega Banette in Mega Raids in 1 hour
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:shadow-tornadus-incarnate-forme-in-shadow-raids-november-16-2026@pogo
- -event-radar
-DTSTAMP:20261123T073223Z
+UID:shadow-tornadus-incarnate-forme-in-shadow-raids-november-16-2026@pogo-e
+ vent-radar
+DTSTAMP:20261123T151841Z
 DTSTART:20261116T060000
 DTEND:20261201T220000
 SUMMARY:Shadow Tornadus (Incarnate Forme) in Shadow Raids
-DESCRIPTION:Raid Battles\nShadow Tornadus (Incarnate Forme) will appear i
- n five-star Shadow Raids every weekend from November 16\, 2026 to Decembe
- r 1\, 2026.\nRaid bosses: Tornadus (Incarnate)\nDetails: https://leekduck
- .com/events/shadow-tornadus-incarnate-forme-in-shadow-raids-november-16-2
- 026/
-URL:https://leekduck.com/events/shadow-tornadus-incarnate-forme-in-shadow
- -raids-november-16-2026/
+DESCRIPTION:Raid Battles\nShadow Tornadus (Incarnate Forme) will appear in 
+ five-star Shadow Raids every weekend from November 16\, 2026 to December 1
+ \, 2026.\nRaid bosses: Tornadus (Incarnate)\nDetails: https://leekduck.com
+ /events/shadow-tornadus-incarnate-forme-in-shadow-raids-november-16-2026/
+URL:https://leekduck.com/events/shadow-tornadus-incarnate-forme-in-shadow-r
+ aids-november-16-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT1H
@@ -160,37 +189,40 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:dynamax-trails-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261116T100000
 DTEND:20261123T200000
 SUMMARY:Dynamax Trails
-DESCRIPTION:Event\nDynamax Pokémon return for a week of Max Battles\, Spe
- cial Backgrounds\, and GO Pass rewards\, with Eternamax Eternatus returni
- ng on November 21.\nMax Battles: Bulbasaur ✨\, Charmander ✨\, Squirtle ✨\
- , Caterpie ✨\, Pikachu ✨\, Growlithe ✨\, Abra ✨\, Machop ✨\, Gastly ✨\, K
- rabby ✨\, Hitmonlee ✨\, Hitmonchan ✨\, Rhyhorn ✨\, Chansey ✨\, Electabuzz
-  ✨\, Magmar ✨\, Magikarp ✨\, Eevee ✨\, Omanyte ✨\, Kabuto ✨\, Hoothoot ✨\
- , Shuckle ✨\, Sneasel ✨\, Hitmontop ✨\, Ralts ✨\, Sableye ✨\, Wailmer ✨\,
-  Trapinch ✨\, Feebas ✨\, Spheal ✨\, Beldum ✨\, Combee ✨\, Pidove ✨\, Rogg
- enrola ✨\, Woobat ✨\, Drilbur ✨\, Cottonee ✨\, Darumaka ✨\, Trubbish ✨\, 
- Cryogonal ✨\, Deino ✨\, Inkay ✨\, Bounsweet ✨\, Passimian ✨\, Drampa ✨\, 
- Grookey ✨\, Scorbunny ✨\, Sobble ✨\, Skwovet ✨\, Rookidee ✨\, Wooloo ✨\, 
- Toxtricity (Amped Form) ✨\, Toxtricity (Low Key Form) ✨\, Sizzlipede ✨\, 
- Hatenna ✨\, Falinks ✨\, Duraludon ✨\nSpotlight Hour: Grookey ✨\, Scorbunn
- y ✨\, Sobble ✨\nWild Encounters: Bulbasaur ✨\, Charmander ✨\, Squirtle ✨\
- , Caterpie ✨\, Pikachu ✨\, Growlithe ✨\, Abra ✨\, Machop ✨\, Gastly ✨\, K
- rabby ✨\, Hitmonlee ✨\, Hitmonchan ✨\, Rhyhorn ✨\, Chansey ✨\, Electabuzz
-  ✨\, Magmar ✨\, Magikarp ✨\, Eevee ✨\, Omanyte ✨\, Kabuto ✨\, Hoothoot ✨\
- , Shuckle ✨\, Sneasel ✨\, Hitmontop ✨\, Ralts ✨\, Sableye ✨\, Wailmer ✨\,
-  Trapinch ✨\, Feebas ✨\, Spheal ✨\, Beldum ✨\, Combee ✨\, Pidove ✨\, Rogg
- enrola ✨\, Woobat ✨\, Drilbur ✨\, Cottonee ✨\, Darumaka ✨\, Trubbish ✨\, 
- Cryogonal ✨\, Deino ✨\, Inkay ✨\, Bounsweet ✨\, Passimian ✨\, Drampa ✨\, 
- Grookey ✨\, Scorbunny ✨\, Sobble ✨\, Skwovet ✨\, Rookidee ✨\, Wooloo ✨\, 
- Toxtricity (Amped Form) ✨\, Toxtricity (Low Key Form) ✨\, Sizzlipede ✨\, 
- Hatenna ✨\, Falinks ✨\, Duraludon ✨\nEternatus Returns: Eternamax Eternat
- us\nBonuses: Chance to receive Max Particles when catching event-themed P
- okémon in the wild or after Max Battles\; More Power Spots than usual wil
- l be active\nDetails: https://leekduck.com/events/dynamax-trails-2026/
+DESCRIPTION:Event\nDynamax Pokémon return for a week of Max Battles\, Spec
+ ial Backgrounds\, and GO Pass rewards\, with Eternamax Eternatus returning
+  on November 21.\nMax Battles: Bulbasaur ✨\, Charmander ✨\, Squirtle 
+ ✨\, Caterpie ✨\, Pikachu ✨\, Growlithe ✨\, Abra ✨\, Machop ✨\,
+  Gastly ✨\, Krabby ✨\, Hitmonlee ✨\, Hitmonchan ✨\, Rhyhorn ✨\, 
+ Chansey ✨\, Electabuzz ✨\, Magmar ✨\, Magikarp ✨\, Eevee ✨\, Oma
+ nyte ✨\, Kabuto ✨\, Hoothoot ✨\, Shuckle ✨\, Sneasel ✨\, Hitmont
+ op ✨\, Ralts ✨\, Sableye ✨\, Wailmer ✨\, Trapinch ✨\, Feebas ✨
+ \, Spheal ✨\, Beldum ✨\, Combee ✨\, Pidove ✨\, Roggenrola ✨\, Wo
+ obat ✨\, Drilbur ✨\, Cottonee ✨\, Darumaka ✨\, Trubbish ✨\, Cryo
+ gonal ✨\, Deino ✨\, Inkay ✨\, Bounsweet ✨\, Passimian ✨\, Drampa
+  ✨\, Grookey ✨\, Scorbunny ✨\, Sobble ✨\, Skwovet ✨\, Rookidee 
+ ✨\, Wooloo ✨\, Toxtricity (Amped Form) ✨\, Toxtricity (Low Key Form)
+  ✨\, Sizzlipede ✨\, Hatenna ✨\, Falinks ✨\, Duraludon ✨\nSpotlig
+ ht Hour: Grookey ✨\, Scorbunny ✨\, Sobble ✨\nWild Encounters: Bulbas
+ aur ✨\, Charmander ✨\, Squirtle ✨\, Caterpie ✨\, Pikachu ✨\, Gro
+ wlithe ✨\, Abra ✨\, Machop ✨\, Gastly ✨\, Krabby ✨\, Hitmonlee 
+ ✨\, Hitmonchan ✨\, Rhyhorn ✨\, Chansey ✨\, Electabuzz ✨\, Magmar
+  ✨\, Magikarp ✨\, Eevee ✨\, Omanyte ✨\, Kabuto ✨\, Hoothoot ✨\
+ , Shuckle ✨\, Sneasel ✨\, Hitmontop ✨\, Ralts ✨\, Sableye ✨\, Wa
+ ilmer ✨\, Trapinch ✨\, Feebas ✨\, Spheal ✨\, Beldum ✨\, Combee 
+ ✨\, Pidove ✨\, Roggenrola ✨\, Woobat ✨\, Drilbur ✨\, Cottonee 
+ ✨\, Darumaka ✨\, Trubbish ✨\, Cryogonal ✨\, Deino ✨\, Inkay ✨\
+ , Bounsweet ✨\, Passimian ✨\, Drampa ✨\, Grookey ✨\, Scorbunny ✨
+ \, Sobble ✨\, Skwovet ✨\, Rookidee ✨\, Wooloo ✨\, Toxtricity (Ampe
+ d Form) ✨\, Toxtricity (Low Key Form) ✨\, Sizzlipede ✨\, Hatenna ✨
+ \, Falinks ✨\, Duraludon ✨\nEternatus Returns: Eternamax Eternatus\nBo
+ nuses: Chance to receive Max Particles when catching event-themed Pokémon
+  in the wild or after Max Battles\; More Power Spots than usual will be ac
+ tive\nDetails: https://leekduck.com/events/dynamax-trails-2026/
 URL:https://leekduck.com/events/dynamax-trails-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -205,14 +237,14 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:duolingo-timed-research-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261117T100000
 DTEND:20261231T235900
 SUMMARY:Pokémon GO and Duolingo Timed Research
-DESCRIPTION:Timed Research\nDo a Duolingo lesson a day for seven days to 
- earn an offer code for Timed Research with Pikachu\, Meowth\, Chatot\, an
- d Lucario that have a Special Background.\nDetails: https://leekduck.com/
- events/duolingo-timed-research-2026/
+DESCRIPTION:Timed Research\nDo a Duolingo lesson a day for seven days to ea
+ rn an offer code for Timed Research with Pikachu\, Meowth\, Chatot\, and L
+ ucario that have a Special Background.\nDetails: https://leekduck.com/even
+ ts/duolingo-timed-research-2026/
 URL:https://leekduck.com/events/duolingo-timed-research-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -226,59 +258,34 @@ DESCRIPTION:Pokémon GO and Duolingo Timed Research tomorrow
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:gbl-twilight-trails_ultra-league_master-league-mega-edition_2026-go-l
- aic-cup@pogo-event-radar
-DTSTAMP:20261123T073223Z
+UID:gbl-twilight-trails_ultra-league_master-league-mega-edition_2026-go-lai
+ c-cup@pogo-event-radar
+DTSTAMP:20261123T151841Z
 DTSTART:20261118T210000Z
 DTEND:20261125T210000Z
-SUMMARY:Ultra League\, Master League: Mega Edition\, and 2026 GO LAIC Cup
-  | Twilight Trails
-DESCRIPTION:GO Battle League\nDetails: https://leekduck.com/events/gbl-tw
- ilight-trails_ultra-league_master-league-mega-edition_2026-go-laic-cup/
-URL:https://leekduck.com/events/gbl-twilight-trails_ultra-league_master-l
- eague-mega-edition_2026-go-laic-cup/
+SUMMARY:Ultra League\, Master League: Mega Edition\, and 2026 GO LAIC Cup |
+  Twilight Trails
+DESCRIPTION:GO Battle League\nDetails: https://leekduck.com/events/gbl-twil
+ ight-trails_ultra-league_master-league-mega-edition_2026-go-laic-cup/
+URL:https://leekduck.com/events/gbl-twilight-trails_ultra-league_master-lea
+ gue-mega-edition_2026-go-laic-cup/
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT1H
-DESCRIPTION:Ultra League\, Master League: Mega Edition\, and 2026 GO LAIC
-  Cup | Twilight Trails in 1 hour
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:pokemon-latin-america-international-championships-2027-timed-research
- -twitch-drops@pogo-event-radar
-DTSTAMP:20261123T073223Z
-DTSTART:20261120T120000Z
-DTEND:20261122T230000Z
-SUMMARY:Twitch Drops for 2027 Pokémon Latin America International Champio
- nships
-DESCRIPTION:Twitch Drops\nDetails: https://leekduck.com/events/pokemon-la
- tin-america-international-championships-2027-timed-research-twitch-drops/
-URL:https://leekduck.com/events/pokemon-latin-america-international-champ
- ionships-2027-timed-research-twitch-drops/
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT1H
-DESCRIPTION:Twitch Drops for 2027 Pokémon Latin America International Cha
- mpionships in 1 hour
-END:VALARM
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-P1D
-DESCRIPTION:Twitch Drops for 2027 Pokémon Latin America International Cha
- mpionships tomorrow
+DESCRIPTION:Ultra League\, Master League: Mega Edition\, and 2026 GO LAIC C
+ up | Twilight Trails in 1 hour
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-mondays-2026-11-23@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261123T060000
-DTEND:20261123T210000
+DTEND:20261129T210000
 SUMMARY:Dynamax Espurr during Max Monday
-DESCRIPTION:Max Mondays\nDynamax Espurr may appear in Max Battles from No
- vember 23\, 2026 through November 29\, 2026. These Dynamax Pokémon may ap
- pear in Max Battles throughout this se...\nMenu: Espurr ✨\nDetails: https
- ://leekduck.com/events/max-mondays-2026-11-23/
+DESCRIPTION:Max Mondays\nDynamax Espurr may appear in Max Battles from Nove
+ mber 23\, 2026 through November 29\, 2026. These Dynamax Pokémon may appe
+ ar in Max Battles throughout this se...\nMenu: Espurr ✨\nDetails: https:
+ //leekduck.com/events/max-mondays-2026-11-23/
 URL:https://leekduck.com/events/max-mondays-2026-11-23/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -288,22 +295,24 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:twilight-wishes-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261124T100000
 DTEND:20261130T200000
 SUMMARY:Twilight Wishes
-DESCRIPTION:Event\nCelebrate Twilight Wishes with costumed Espeon and Umb
- reon\, increased Shiny chances for Staryu and Elgyem\, and event GO Pass 
- rewards and bonuses!\nFeatured Pokémon: Espeon wearing a sun scarf\, Umbr
- eon wearing a moon scarf\, Rockruff\nSpawns: Clefairy\, Staryu\, Elgyem\,
-  Rockruff\nOne-Star Raids: Pikachu wearing a sun crown\, Pikachu wearing 
- a moon crown\nThree-Star Raids: Espeon wearing a sun scarf\, Umbreon wear
- ing a moon scarf\nMega Raids: Mega Beedrill\, Mega Houndoom\, Mega Sabley
- e\, Mega Manectric\nNovember 24 at 10:00 a.m. to November 26 at 10:00 a.m
- . local time: Applin\, Maschiff\nNovember 26 at 10:00 a.m. to November 30
-  at 8:00 p.m. local time: Gengar wearing a Spooky Festival costume\, Bram
- blin\nBonuses: Increased chance to encounter Shiny Staryu and Shiny Elgye
- m\nDetails: https://leekduck.com/events/twilight-wishes-2026/
+DESCRIPTION:Event\nCelebrate Twilight Wishes with costumed Espeon and Umbre
+ on\, increased Shiny chances for Staryu and Elgyem\, and event GO Pass rew
+ ards and bonuses!\nFeatured Pokémon: Espeon wearing a sun scarf\, Umbreon
+  wearing a moon scarf\, Rockruff\nSpawns: Clefairy\, Staryu\, Elgyem\, Roc
+ kruff\nOne-Star Raids: Sun Crown Pikachu ✨\, Moon Crown Pikachu ✨\nThr
+ ee-Star Raids: Day Scarf Espeon ✨\, Night Scarf Umbreon ✨\nFive-Star R
+ aids: Cresselia ✨\, Darkrai ✨\, Deoxys (Normal) ✨\, Deoxys (Defense)
+  ✨\, Deoxys (Attack) ✨\, Deoxys (Speed) ✨\nMega Raids: Mega Beedrill
+  ✨\, Mega Houndoom ✨\, Mega Sableye ✨\, Mega Manectric ✨\nNovember
+  24 at 10:00 a.m. to November 26 at 10:00 a.m. local time: Applin\, Maschi
+ ff\nNovember 26 at 10:00 a.m. to November 30 at 8:00 p.m. local time: Geng
+ ar wearing a Spooky Festival costume\, Bramblin\nBonuses: Increased chance
+  to encounter Shiny Staryu and Shiny Elgyem\nDetails: https://leekduck.com
+ /events/twilight-wishes-2026/
 URL:https://leekduck.com/events/twilight-wishes-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -317,60 +326,58 @@ DESCRIPTION:Twilight Wishes tomorrow
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:gbl-twilight-trails_master-league_mega-catch-cup-great-league-edition
- @pogo-event-radar
-DTSTAMP:20261123T073223Z
+UID:gbl-twilight-trails_master-league_mega-catch-cup-great-league-edition@p
+ ogo-event-radar
+DTSTAMP:20261123T151841Z
 DTSTART:20261124T210000Z
 DTEND:20261201T210000Z
-SUMMARY:Master League and Mega Catch Cup: Great League Edition | Twilight
-  Trails
-DESCRIPTION:GO Battle League\nDetails: https://leekduck.com/events/gbl-tw
- ilight-trails_master-league_mega-catch-cup-great-league-edition/
-URL:https://leekduck.com/events/gbl-twilight-trails_master-league_mega-ca
- tch-cup-great-league-edition/
+SUMMARY:Master League and Mega Catch Cup: Great League Edition | Twilight T
+ rails
+DESCRIPTION:GO Battle League\nDetails: https://leekduck.com/events/gbl-twil
+ ight-trails_master-league_mega-catch-cup-great-league-edition/
+URL:https://leekduck.com/events/gbl-twilight-trails_master-league_mega-catc
+ h-cup-great-league-edition/
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT1H
-DESCRIPTION:Master League and Mega Catch Cup: Great League Edition | Twil
- ight Trails in 1 hour
+DESCRIPTION:Master League and Mega Catch Cup: Great League Edition | Twilig
+ ht Trails in 1 hour
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:deoxys-normal-defense-attack-speed-formes-in-5-star-raid-battles-nove
- mber-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+UID:deoxys-normal-defense-attack-speed-formes-in-5-star-raid-battles-novemb
+ er-2026@pogo-event-radar
+DTSTAMP:20261123T151841Z
 DTSTART:20261125T060000
 DTEND:20261201T220000
-SUMMARY:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) in 5-star R
- aid Battles
-DESCRIPTION:Raid Battles\nDeoxys (Normal)\, Deoxys (Defense)\, Deoxys (At
- tack)\, and Deoxys (Speed) will be in five-star raid battles from Novembe
- r 25\, 2026 to December 1\, 2026. Raid bos...\nRaid bosses: Deoxys (Norma
- l) ✨\, Deoxys (Defense) ✨\, Deoxys (Attack) ✨\, Deoxys (Speed) ✨\nDetails
- : https://leekduck.com/events/deoxys-normal-defense-attack-speed-formes-i
+SUMMARY:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) in 5-star Rai
+ d Battles
+DESCRIPTION:Raid Battles\nDeoxys (Normal)\, Deoxys (Defense)\, Deoxys (Atta
+ ck)\, and Deoxys (Speed) will be in five-star raid battles from November 2
+ 5\, 2026 to December 1\, 2026. Raid bos...\nRaid bosses: Deoxys (Normal) 
+ ✨\, Deoxys (Defense) ✨\, Deoxys (Attack) ✨\, Deoxys (Speed) ✨\nDet
+ ails: https://leekduck.com/events/deoxys-normal-defense-attack-speed-forme
+ s-in-5-star-raid-battles-november-2026/
+URL:https://leekduck.com/events/deoxys-normal-defense-attack-speed-formes-i
  n-5-star-raid-battles-november-2026/
-URL:https://leekduck.com/events/deoxys-normal-defense-attack-speed-formes
- -in-5-star-raid-battles-november-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT1H
-DESCRIPTION:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) in 5-st
- ar Raid Battles in 1 hour
+DESCRIPTION:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) in 5-star
+  Raid Battles in 1 hour
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mega-metagross-in-mega-raids-november-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261125T060000
 DTEND:20261201T220000
 SUMMARY:Mega Metagross in Mega Raids
-DESCRIPTION:Raid Battles\nMega Metagross will be in Mega Raids from Novem
- ber 25\, 2026 at 6 am to December 1\, 2026 at 10 pm local time. Raid boss
- es change at 6:00 a.m. local time.\nRaid bosses: Mega Metagross ✨\nDetail
- s: https://leekduck.com/events/mega-metagross-in-mega-raids-november-2026
- /
-URL:https://leekduck.com/events/mega-metagross-in-mega-raids-november-202
- 6/
+DESCRIPTION:Raid Battles\nMega Metagross will be in Mega Raids from Novembe
+ r 25\, 2026 at 6 am to December 1\, 2026 at 10 pm local time. Raid bosses 
+ change at 6:00 a.m. local time.\nRaid bosses: Mega Metagross ✨\nDetails:
+  https://leekduck.com/events/mega-metagross-in-mega-raids-november-2026/
+URL:https://leekduck.com/events/mega-metagross-in-mega-raids-november-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT1H
@@ -379,30 +386,30 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raidhour20261125@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261125T180000
 DTEND:20261125T190000
 SUMMARY:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) Raid Hour
-DESCRIPTION:Raid Hour\nDetails: https://leekduck.com/events/raidhour20261
- 125/
+DESCRIPTION:Raid Hour\nDetails: https://leekduck.com/events/raidhour2026112
+ 5/
 URL:https://leekduck.com/events/raidhour20261125/
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT1H
-DESCRIPTION:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) Raid Ho
- ur in 1 hour
+DESCRIPTION:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) Raid Hour
+  in 1 hour
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemonspotlighthour2026-11-26@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261126T180000
 DTEND:20261126T190000
 SUMMARY:Noibat Spotlight Hour
 DESCRIPTION:Pokémon Spotlight Hour\nPokémon Spotlight Hour will feature N
- oibat appearing in the wild from 6:00 p.m. to 7:00 p.m. local time.\nFeat
- ured: Noibat ✨\nBonuses: 2× Catch Candy\nDetails: https://leekduck.com/ev
- ents/pokemonspotlighthour2026-11-26/
+ oibat appearing in the wild from 6:00 p.m. to 7:00 p.m. local time.\nFeatu
+ red: Noibat ✨\nBonuses: 2× Catch Candy\nDetails: https://leekduck.com/e
+ vents/pokemonspotlighthour2026-11-26/
 URL:https://leekduck.com/events/pokemonspotlighthour2026-11-26/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -412,19 +419,18 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clefable-super-mega-raid-day-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261128T140000
 DTEND:20261128T170000
 SUMMARY:Clefable Super Mega Raid Day
-DESCRIPTION:Raid Day\nMega Clefable makes its Pokémon GO debut in Super M
- ega Raids on November 28!\nEncounter after defeating Mega Clefable: Clefa
- ble ✨\nShiny: Clefable\nBonuses: Remote Raid limit increased to 20 from F
- riday\, November 27\, at 5:00 p.m. to Saturday\, November 28\, 2026\, at 
- 8:00 p.m. PST\; Receive up to six free Raid Passes from spinning Gym Phot
- o Discs\; Clefable caught from Super Mega Raids will have Mega Level 1 un
- locked\; Increased chance of encountering Shiny Clefable from Super Mega 
- Raids\nDetails: https://leekduck.com/events/clefable-super-mega-raid-day-
- 2026/
+DESCRIPTION:Raid Day\nMega Clefable makes its Pokémon GO debut in Super Me
+ ga Raids on November 28!\nEncounter after defeating Mega Clefable: Clefabl
+ e ✨\nShiny: Clefable\nBonuses: Remote Raid limit increased to 20 from Fr
+ iday\, November 27\, at 5:00 p.m. to Saturday\, November 28\, 2026\, at 8:
+ 00 p.m. PST\; Receive up to six free Raid Passes from spinning Gym Photo D
+ iscs\; Clefable caught from Super Mega Raids will have Mega Level 1 unlock
+ ed\; Increased chance of encountering Shiny Clefable from Super Mega Raids
+ \nDetails: https://leekduck.com/events/clefable-super-mega-raid-day-2026/
 URL:https://leekduck.com/events/clefable-super-mega-raid-day-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -439,14 +445,14 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-mondays-2026-11-30@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261130T060000
-DTEND:20261130T210000
+DTEND:20261206T210000
 SUMMARY:Dynamax Cryogonal during Max Monday
-DESCRIPTION:Max Mondays\nDynamax Cryogonal may appear in Max Battles from
-  November 30\, 2026 through December 6\, 2026. These Dynamax Pokémon may 
- appear in Max Battles throughout this ...\nMenu: Cryogonal ✨\nDetails: ht
- tps://leekduck.com/events/max-mondays-2026-11-30/
+DESCRIPTION:Max Mondays\nDynamax Cryogonal may appear in Max Battles from N
+ ovember 30\, 2026 through December 6\, 2026. These Dynamax Pokémon may ap
+ pear in Max Battles throughout this ...\nMenu: Cryogonal ✨\nDetails: htt
+ ps://leekduck.com/events/max-mondays-2026-11-30/
 URL:https://leekduck.com/events/max-mondays-2026-11-30/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -456,13 +462,13 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-battle-day-december-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261205T140000
 DTEND:20261205T170000
 SUMMARY:Max Battle Day
-DESCRIPTION:Max Battles\nThe Max Battle Day event will take place on Dece
- mber 5\, 2026 from 2 pm to 5 pm. Stay tuned for more details.\nDetails: h
- ttps://leekduck.com/events/max-battle-day-december-2026/
+DESCRIPTION:Max Battles\nThe Max Battle Day event will take place on Decemb
+ er 5\, 2026 from 2 pm to 5 pm. Stay tuned for more details.\nDetails: http
+ s://leekduck.com/events/max-battle-day-december-2026/
 URL:https://leekduck.com/events/max-battle-day-december-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -477,12 +483,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-geminids-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261211T170000
 DTEND:20261216T235900
 SUMMARY:Minior Showers: Geminids 2026
-DESCRIPTION:Event\nDetails: https://leekduck.com/events/minior-showers-ge
- minids-2026/
+DESCRIPTION:Event\nDetails: https://leekduck.com/events/minior-showers-gemi
+ nids-2026/
 URL:https://leekduck.com/events/minior-showers-geminids-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -497,19 +503,19 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:december-communityday2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261212T140000
 DTEND:20261213T170000
 SUMMARY:December Community Day 2026
-DESCRIPTION:Community Day\nFeatured: Vulpix\, Alolan Vulpix\, Grookey\, S
- corbunny\, Lechonk\, Tinkatink\, Piplup\, Zorua\, Pawniard\, Sobble\, Nic
- kit\, Frigibax\, Gible\, Deino\nBonuses: Increased Spawns\; 2x XP for cat
- ching Pokémon\; 2x Stardust for catching Pokémon\; 1/2 Hatch Distance whe
- n Eggs are placed into Incubators during the event period\; 2x Catch Cand
- y\; 2x Chance for Trainers level 31 and up to receive Candy XL from catch
- ing Pokémon\; 3-hour Incense**\; 1-hour Lures*\; Up to two Special Trades
-  can be made per day*\; Trades made will require 50% less Stardust*\nDeta
- ils: https://leekduck.com/events/december-communityday2026/
+DESCRIPTION:Community Day\nFeatured: Vulpix\, Alolan Vulpix\, Grookey\, Sco
+ rbunny\, Lechonk\, Tinkatink\, Piplup\, Zorua\, Pawniard\, Sobble\, Nickit
+ \, Frigibax\, Gible\, Deino\nBonuses: Increased Spawns\; 2x XP for catchin
+ g Pokémon\; 2x Stardust for catching Pokémon\; 1/2 Hatch Distance when E
+ ggs are placed into Incubators during the event period\; 2x Catch Candy\; 
+ 2x Chance for Trainers level 31 and up to receive Candy XL from catching P
+ okémon\; 3-hour Incense**\; 1-hour Lures*\; Up to two Special Trades can 
+ be made per day*\; Trades made will require 50% less Stardust*\nDetails: h
+ ttps://leekduck.com/events/december-communityday2026/
 URL:https://leekduck.com/events/december-communityday2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -524,12 +530,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raid-day-december-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261219T140000
 DTEND:20261219T170000
 SUMMARY:Raid Day
-DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/raid-day-decem
- ber-2026/
+DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/raid-day-decembe
+ r-2026/
 URL:https://leekduck.com/events/raid-day-december-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -544,12 +550,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:hatch-day-december-2026@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20261226T110000
 DTEND:20261226T170000
 SUMMARY:Hatch Day
-DESCRIPTION:Event\nDetails: https://leekduck.com/events/hatch-day-decembe
- r-2026/
+DESCRIPTION:Event\nDetails: https://leekduck.com/events/hatch-day-december-
+ 2026/
 URL:https://leekduck.com/events/hatch-day-december-2026/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -564,12 +570,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:january-communitydayclassic2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270102T140000
 DTEND:20270102T170000
 SUMMARY:January Community Day Classic
-DESCRIPTION:Community Day\nDetails: https://leekduck.com/events/january-c
- ommunitydayclassic2027/
+DESCRIPTION:Community Day\nDetails: https://leekduck.com/events/january-com
+ munitydayclassic2027/
 URL:https://leekduck.com/events/january-communitydayclassic2027/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -584,12 +590,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:super-mega-raid-day-january-2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270109T140000
 DTEND:20270109T170000
 SUMMARY:Super Mega Raid Day
-DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/super-mega-rai
- d-day-january-2027/
+DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/super-mega-raid-
+ day-january-2027/
 URL:https://leekduck.com/events/super-mega-raid-day-january-2027/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -604,12 +610,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:january-communityday2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270116T140000
 DTEND:20270116T170000
 SUMMARY:January Community Day
-DESCRIPTION:Community Day\nDetails: https://leekduck.com/events/january-c
- ommunityday2027/
+DESCRIPTION:Community Day\nDetails: https://leekduck.com/events/january-com
+ munityday2027/
 URL:https://leekduck.com/events/january-communityday2027/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -624,12 +630,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-battle-day-january-2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270123T140000
 DTEND:20270123T170000
 SUMMARY:Max Battle Day
-DESCRIPTION:Max Battles\nDetails: https://leekduck.com/events/max-battle-
- day-january-2027/
+DESCRIPTION:Max Battles\nDetails: https://leekduck.com/events/max-battle-da
+ y-january-2027/
 URL:https://leekduck.com/events/max-battle-day-january-2027/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -644,12 +650,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:super-mega-raid-day-january-30-2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270130T140000
 DTEND:20270130T170000
 SUMMARY:Super Mega Raid Day
-DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/super-mega-rai
- d-day-january-30-2027/
+DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/super-mega-raid-
+ day-january-30-2027/
 URL:https://leekduck.com/events/super-mega-raid-day-january-30-2027/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -664,12 +670,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:february-communityday2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270206T140000
 DTEND:20270206T170000
 SUMMARY:February Community Day
-DESCRIPTION:Community Day\nDetails: https://leekduck.com/events/february-
- communityday2027/
+DESCRIPTION:Community Day\nDetails: https://leekduck.com/events/february-co
+ mmunityday2027/
 URL:https://leekduck.com/events/february-communityday2027/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -684,12 +690,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raid-day-february-2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270213T140000
 DTEND:20270213T170000
 SUMMARY:Raid Day
-DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/raid-day-febru
- ary-2027/
+DESCRIPTION:Raid Day\nDetails: https://leekduck.com/events/raid-day-februar
+ y-2027/
 URL:https://leekduck.com/events/raid-day-february-2027/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -704,13 +710,14 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-go-tour-alola-kaohsiung-2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270218T160000Z
 DTEND:20270221T155959Z
 SUMMARY:Pokémon GO Tour: Alola - Kaohsiung 2027
-DESCRIPTION:Pokémon GO Tour\nDetails: https://leekduck.com/events/pokemon
- -go-tour-alola-kaohsiung-2027/
+DESCRIPTION:Pokémon GO Tour\n📍 In person: Kaohsiung\, Taiwan\nDetails: 
+ https://leekduck.com/events/pokemon-go-tour-alola-kaohsiung-2027/
 URL:https://leekduck.com/events/pokemon-go-tour-alola-kaohsiung-2027/
+LOCATION:Kaohsiung\, Taiwan
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT1H
@@ -724,13 +731,15 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-go-tour-alola-los-angeles-2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270219T080000Z
 DTEND:20270222T075959Z
 SUMMARY:Pokémon GO Tour: Alola - Los Angeles 2027
-DESCRIPTION:Pokémon GO Tour\nDetails: https://leekduck.com/events/pokemon
- -go-tour-alola-los-angeles-2027/
+DESCRIPTION:Pokémon GO Tour\n📍 In person: Los Angeles\, United States\n
+ Details: https://leekduck.com/events/pokemon-go-tour-alola-los-angeles-202
+ 7/
 URL:https://leekduck.com/events/pokemon-go-tour-alola-los-angeles-2027/
+LOCATION:Los Angeles\, United States
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT1H
@@ -744,12 +753,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-go-tour-alola-global-2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270227T000000
 DTEND:20270228T235959
 SUMMARY:Pokémon GO Tour: Alola - Global 2027
-DESCRIPTION:Pokémon GO Tour\nDetails: https://leekduck.com/events/pokemon
- -go-tour-alola-global-2027/
+DESCRIPTION:Pokémon GO Tour\nDetails: https://leekduck.com/events/pokemon-
+ go-tour-alola-global-2027/
 URL:https://leekduck.com/events/pokemon-go-tour-alola-global-2027/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -764,12 +773,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-eta-aquariids-2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270503T170000
 DTEND:20270508T235900
 SUMMARY:Minior Showers: Eta Aquariids 2027
-DESCRIPTION:Event\nDetails: https://leekduck.com/events/minior-showers-et
- a-aquariids-2027/
+DESCRIPTION:Event\nDetails: https://leekduck.com/events/minior-showers-eta-
+ aquariids-2027/
 URL:https://leekduck.com/events/minior-showers-eta-aquariids-2027/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -784,14 +793,14 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-southern-delta-aquariids-2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270728T170000
 DTEND:20270802T235900
 SUMMARY:Minior Showers: Southern Delta Aquariids 2027
-DESCRIPTION:Event\nDetails: https://leekduck.com/events/minior-showers-so
- uthern-delta-aquariids-2027/
-URL:https://leekduck.com/events/minior-showers-southern-delta-aquariids-2
- 027/
+DESCRIPTION:Event\nDetails: https://leekduck.com/events/minior-showers-sout
+ hern-delta-aquariids-2027/
+URL:https://leekduck.com/events/minior-showers-southern-delta-aquariids-202
+ 7/
 BEGIN:VALARM
 ACTION:DISPLAY
 TRIGGER:-PT1H
@@ -805,12 +814,12 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-perseids-2027@pogo-event-radar
-DTSTAMP:20261123T073223Z
+DTSTAMP:20261123T151841Z
 DTSTART:20270810T170000
 DTEND:20270815T235900
 SUMMARY:Minior Showers: Perseids 2027
-DESCRIPTION:Event\nDetails: https://leekduck.com/events/minior-showers-pe
- rseids-2027/
+DESCRIPTION:Event\nDetails: https://leekduck.com/events/minior-showers-pers
+ eids-2027/
 URL:https://leekduck.com/events/minior-showers-perseids-2027/
 BEGIN:VALARM
 ACTION:DISPLAY
