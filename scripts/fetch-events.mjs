@@ -2,13 +2,14 @@
 // 1) Reads LeekDuck event data via the ScrapedDuck feed
 // 2) Reads each upcoming event's own LeekDuck page (Pokémon, bonuses, description, sub-event times)
 // 3) Checks the official Pokémon GO news page to confirm events
-// 4) Writes data/events.json + data/main.ics + data/all.ics
+// 4) Works out WHERE each event happens: everywhere, at a city venue, or only in some countries
+// 5) Writes data/events.json + data/main.ics + data/all.ics
 import { writeFile, mkdir, readFile } from 'node:fs/promises';
 import * as cheerio from 'cheerio';
 
 const FEED = 'https://raw.githubusercontent.com/bigfoott/ScrapedDuck/data/';
 const OFFICIAL_NEWS = 'https://pokemongolive.com/news';
-const HEADERS = { 'User-Agent': 'pogo-event-radar/1.0 (personal GitHub Pages tracker)' };
+const HEADERS = { 'User-Agent': 'pogo-event-radar/1.1 (personal GitHub Pages tracker)' };
 const H = 36e5, D = 24 * H;
 
 // Routine events hidden under "Main" (new types count as main by default)
@@ -16,35 +17,80 @@ const MINOR = new Set(['raid-battles', 'raid-hour', 'pokemon-spotlight-hour', 'g
   'research-breakthrough', 'season', 'max-mondays', 'go-pass']);
 // Event types that happen at a physical location
 const IN_PERSON = new Set(['city-safari', 'safari-zone', 'pokemon-go-fest', 'pokemon-go-tour', 'live-event', 'wild-area']);
-// City keywords → time zone, for in-person events (add more when new cities appear)
-const VENUES = [
-  [/san francisco|pier 39|los angeles|las vegas|seattle|san diego/i, 'America/Los_Angeles'],
-  [/new york|jersey city|toronto|boston|philadelphia|miami/i, 'America/New_York'],
-  [/chicago|indianapolis|dallas|houston/i, 'America/Chicago'],
-  [/mexico city|ciudad de m[eé]xico|monterrey|guadalajara/i, 'America/Mexico_City'],
-  [/s[aã]o paulo|rio de janeiro/i, 'America/Sao_Paulo'],
-  [/buenos aires/i, 'America/Argentina/Buenos_Aires'],
-  [/santiago/i, 'America/Santiago'],
-  [/london|liverpool|manchester|edinburgh/i, 'Europe/London'],
-  [/paris|madrid|barcelona|valencia|berlin|amsterdam|copenhagen|stockholm|milan|rome|vienna|prague|brussels/i, 'Europe/Paris'],
-  [/tokyo|osaka|yokohama|fukuoka|sendai|sapporo|nagasaki|kyoto|japan/i, 'Asia/Tokyo'],
-  [/seoul|busan|korea/i, 'Asia/Seoul'],
-  [/taipei|taichung|tainan|taiwan/i, 'Asia/Taipei'],
-  [/hong kong/i, 'Asia/Hong_Kong'],
-  [/singapore/i, 'Asia/Singapore'],
-  [/jakarta|indonesia/i, 'Asia/Jakarta'],
-  [/bangkok|thailand/i, 'Asia/Bangkok'],
-  [/manila|philippines/i, 'Asia/Manila'],
-  [/mumbai|delhi|bengaluru|bangalore|kolkata|chennai|hyderabad|india/i, 'Asia/Kolkata'],
-  [/sydney|melbourne/i, 'Australia/Sydney'],
-  [/auckland/i, 'Pacific/Auckland']
+// Words in an event name that mean "you have to be there"
+const IN_PERSON_WORDS = /\b(?:safari zone|city safari|go fest|go tour|wild area|live event|meet-?up|in-person|ticketed)\b/i;
+
+// City → time zone + country, for in-person events.
+// If the Action log says "No city found for in-person event", add the city here.
+const CITIES = [
+  [/\b(?:san francisco|pier 39|los angeles|las vegas|seattle|san diego|portland|sacramento|san jose)\b/i, 'America/Los_Angeles', 'United States'],
+  [/\bhonolulu\b/i, 'Pacific/Honolulu', 'United States'],
+  [/\b(?:new york|jersey city|boston|philadelphia|miami|atlanta|orlando|washington,? d\.?c)\b/i, 'America/New_York', 'United States'],
+  [/\b(?:chicago|indianapolis|dallas|houston|austin|st\.? louis|minneapolis|nashville)\b/i, 'America/Chicago', 'United States'],
+  [/\b(?:denver|salt lake city)\b/i, 'America/Denver', 'United States'],
+  [/\bphoenix\b/i, 'America/Phoenix', 'United States'],
+  [/\b(?:toronto|montr[eé]al|ottawa)\b/i, 'America/Toronto', 'Canada'],
+  [/\bvancouver\b/i, 'America/Vancouver', 'Canada'],
+  [/\b(?:mexico city|ciudad de m[eé]xico|monterrey|guadalajara)\b/i, 'America/Mexico_City', 'Mexico'],
+  [/\b(?:s[aã]o paulo|rio de janeiro)\b/i, 'America/Sao_Paulo', 'Brazil'],
+  [/\bbuenos aires\b/i, 'America/Argentina/Buenos_Aires', 'Argentina'],
+  [/\bsantiago\b/i, 'America/Santiago', 'Chile'],
+  [/\bbogot[aá]\b/i, 'America/Bogota', 'Colombia'],
+  [/\blima\b/i, 'America/Lima', 'Peru'],
+  [/\b(?:london|liverpool|manchester|edinburgh|birmingham)\b/i, 'Europe/London', 'United Kingdom'],
+  [/\bdublin\b/i, 'Europe/Dublin', 'Ireland'],
+  [/\b(?:paris|lyon|marseille)\b/i, 'Europe/Paris', 'France'],
+  [/\b(?:madrid|barcelona|valencia|sevilla|seville)\b/i, 'Europe/Madrid', 'Spain'],
+  [/\b(?:berlin|hamburg|munich|m[uü]nchen|dortmund|cologne|k[oö]ln)\b/i, 'Europe/Berlin', 'Germany'],
+  [/\b(?:amsterdam|rotterdam)\b/i, 'Europe/Amsterdam', 'Netherlands'],
+  [/\bcopenhagen\b/i, 'Europe/Copenhagen', 'Denmark'],
+  [/\bstockholm\b/i, 'Europe/Stockholm', 'Sweden'],
+  [/\b(?:milan|rome|turin)\b/i, 'Europe/Rome', 'Italy'],
+  [/\bvienna\b/i, 'Europe/Vienna', 'Austria'],
+  [/\bprague\b/i, 'Europe/Prague', 'Czechia'],
+  [/\bbrussels\b/i, 'Europe/Brussels', 'Belgium'],
+  [/\blisbon\b/i, 'Europe/Lisbon', 'Portugal'],
+  [/\bwarsaw\b/i, 'Europe/Warsaw', 'Poland'],
+  [/\b(?:tokyo|osaka|yokohama|fukuoka|sendai|sapporo|nagasaki|kyoto|nagoya|kobe|hiroshima|tottori|iwate)\b/i, 'Asia/Tokyo', 'Japan'],
+  [/\b(?:seoul|busan|incheon)\b/i, 'Asia/Seoul', 'South Korea'],
+  [/\b(?:new taipei|taipei|taichung|tainan|kaohsiung)\b/i, 'Asia/Taipei', 'Taiwan'],
+  [/\bhong kong\b/i, 'Asia/Hong_Kong', 'Hong Kong'],
+  [/\bsingapore\b/i, 'Asia/Singapore', 'Singapore'],
+  [/\b(?:jakarta|surabaya|bali)\b/i, 'Asia/Jakarta', 'Indonesia'],
+  [/\bbangkok\b/i, 'Asia/Bangkok', 'Thailand'],
+  [/\b(?:manila|cebu)\b/i, 'Asia/Manila', 'Philippines'],
+  [/\bkuala lumpur\b/i, 'Asia/Kuala_Lumpur', 'Malaysia'],
+  [/\b(?:mumbai|new delhi|delhi|bengaluru|bangalore|kolkata|chennai|hyderabad|pune)\b/i, 'Asia/Kolkata', 'India'],
+  [/\b(?:sydney|melbourne)\b/i, 'Australia/Sydney', 'Australia'],
+  [/\bbrisbane\b/i, 'Australia/Brisbane', 'Australia'],
+  [/\bperth\b/i, 'Australia/Perth', 'Australia'],
+  [/\bauckland\b/i, 'Pacific/Auckland', 'New Zealand'],
+  [/\b(?:dubai|abu dhabi)\b/i, 'Asia/Dubai', 'United Arab Emirates']
 ];
+// Country names, for events only playable in certain countries (names must match the app's list)
+const COUNTRIES = [
+  ['india', 'India'], ['japan', 'Japan'], ['(?:south )?korea', 'South Korea'], ['taiwan', 'Taiwan'],
+  ['hong kong', 'Hong Kong'], ['singapore', 'Singapore'], ['indonesia', 'Indonesia'], ['thailand', 'Thailand'],
+  ['(?:the )?philippines', 'Philippines'], ['malaysia', 'Malaysia'], ['viet ?nam', 'Vietnam'], ['australia', 'Australia'],
+  ['new zealand', 'New Zealand'], ['united states(?: of america)?|usa|u\\.s\\.(?:a\\.)?', 'United States'], ['canada', 'Canada'],
+  ['mexico(?! city)', 'Mexico'], ['brazil|brasil', 'Brazil'], ['argentina', 'Argentina'], ['chile', 'Chile'],
+  ['colombia', 'Colombia'], ['peru', 'Peru'], ['united kingdom|uk|great britain', 'United Kingdom'], ['ireland', 'Ireland'],
+  ['france', 'France'], ['germany', 'Germany'], ['spain', 'Spain'], ['italy', 'Italy'], ['(?:the )?netherlands', 'Netherlands'],
+  ['belgium', 'Belgium'], ['denmark', 'Denmark'], ['sweden', 'Sweden'], ['norway', 'Norway'], ['finland', 'Finland'],
+  ['poland', 'Poland'], ['austria', 'Austria'], ['switzerland', 'Switzerland'], ['czechia|czech republic', 'Czechia'],
+  ['portugal', 'Portugal'], ['greece', 'Greece'], ['t[uü]rkiye|turkey', 'Turkey'], ['united arab emirates|uae', 'United Arab Emirates'],
+  ['saudi arabia', 'Saudi Arabia'], ['israel', 'Israel'], ['egypt', 'Egypt'], ['south africa', 'South Africa']
+].map(([src, name]) => ({ name, any: new RegExp(`\\b(?:${src})(?![a-z])`, 'i'), start: new RegExp(`^(?:${src})(?![a-z])`, 'i') }));
+// Phrases like "only in India", "trainers in Japan and Taiwan"
+const COUNTRY_TRIGGER = /\b(?:only in|exclusive(?:ly)? (?:to|in)|available (?:only )?in|across|throughout|trainers in|players in|held in|taking place in|in)\s+(?:the\s+)?(?=([^.;:!?()]{1,100}))/gi;
+
 // Global raids/eggs/research are only attached to the season itself
 const LIVE_EXTRAS = new Set(['season']);
 // Event types whose LeekDuck page is NOT read
 const SCRAPE_SKIP = new Set(['go-battle-league', 'go-pass', 'season', 'research-breakthrough', 'raid-hour', 'twitch-drops']);
 // Page sections to ignore when collecting Pokémon
 const SKIP_SECTIONS = /go pass|research|reward|sale|graphic|bonus|related|ticket|sticker|background/i;
+const MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
 
 /* ---------- helpers ---------- */
 async function getJSON(name, required = false) {
@@ -63,6 +109,8 @@ const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '
 const STOP = new Set(['the', 'and', 'with', 'for', 'pokemon', 'event', 'events', 'day', 'days', 'hour', 'hours',
   'raid', 'raids', 'featuring', 'part', 'new', 'go', 'from', 'into']);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+const pad = n => String(n).padStart(2, '0');
+const isZoned = s => /Z$|[+-]\d{2}:?\d{2}$/.test(s || '');
 
 const parts = (t, z) => Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: z, hourCycle: 'h23',
   year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' })
@@ -70,6 +118,58 @@ const parts = (t, z) => Object.fromEntries(new Intl.DateTimeFormat('en-US', { ti
 const offset = (t, z) => { const p = parts(t, z); return Date.UTC(p.year, p.month - 1, p.day, p.hour % 24, p.minute, p.second) - Math.floor(t / 1e3) * 1e3; };
 const wall = (y, mo, d, h, mi, z) => { const g = Date.UTC(y, mo - 1, d, h, mi); return g - offset(g - offset(g, z), z); };
 const wallStr = (s, z) => { const m = s.match(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/); return wall(+m[1], +m[2], +m[3], +m[4], +m[5], z); };
+
+/* ---------- where does an event happen? ---------- */
+function countriesIn(text) {
+  const found = new Set();
+  for (const m of String(text || '').matchAll(COUNTRY_TRIGGER)) {
+    let rest = m[1].replace(/^(?:(?:select|certain|some|parts of|participating)\s+)+/i, '');
+    for (let c; (c = COUNTRIES.find(k => k.start.test(rest)));) {
+      found.add(c.name);
+      rest = rest.replace(c.start, '').replace(/^\s*(?:,\s*)?(?:(?:and|or|&)\s+)?(?:the\s+)?/i, '');
+    }
+  }
+  return [...found];
+}
+function placeOf(e, desc) {
+  const name = e.name || '', text = `${name} ${e.heading || ''}`;
+  if (/\bglobal\b/i.test(name)) return null;
+  const inPerson = IN_PERSON.has(e.eventType) || IN_PERSON_WORDS.test(name);
+  if (inPerson) {
+    for (const [re, tz, country] of CITIES) {
+      const m = text.match(re);
+      if (m) return { kind: 'venue', city: m[0], country, tz };
+    }
+    const c = COUNTRIES.find(k => k.any.test(name));
+    if (c) return { kind: 'venue', city: null, country: c.name, tz: null };
+    if (IN_PERSON.has(e.eventType)) {
+      console.warn(`No city found for in-person event: "${name}" (add it to CITIES)`);
+      return { kind: 'venue', city: null, country: null, tz: null };
+    }
+    return null;
+  }
+  const countries = new Set(COUNTRIES.filter(k => k.any.test(name)).map(k => k.name));
+  for (const c of countriesIn(desc)) countries.add(c);
+  return countries.size ? { kind: 'country', countries: [...countries] } : null;
+}
+const placeLabel = e => {
+  const p = e.place;
+  if (!p) return '';
+  if (p.kind === 'venue') return [...new Set([p.city, p.country].filter(Boolean))].join(', ') || 'In person';
+  return `${(p.countries || []).join(', ')} only`;
+};
+
+// Max Mondays: "Dynamax X may appear ... through November 29, 2026" → keep it on the radar all week
+function throughEnd(e, desc) {
+  const m = String(desc || '').match(/\bthrough\s+([a-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s*(\d{4})?/i);
+  if (!m) return null;
+  const mo = MONTHS.indexOf(m[1].toLowerCase());
+  if (mo < 0) return null;
+  let y = m[3] ? +m[3] : +e.start.slice(0, 4);
+  if (!m[3] && mo + 1 < +e.start.slice(5, 7)) y++;
+  const s = `${y}-${pad(mo + 1)}-${pad(+m[2])}${e.end.slice(10)}`;
+  return s > e.end ? s : null;
+}
 
 /* ---------- event page reader ---------- */
 async function scrapeEventPage(url) {
@@ -95,7 +195,6 @@ async function scrapeEventPage(url) {
       if (m && !links.has(label)) links.set(label, m[1]);
       return;
     }
-    // li: one Pokémon per list item
     if ($(el).parents('li').length) return;
     const imgs = $(el).find('img');
     const img = imgs.filter((_, i) => /\/pokemon_icons/.test($(i).attr('src') || '')).first();
@@ -134,6 +233,7 @@ async function getOfficialPosts() {
   };
   for (const m of html.matchAll(/<a[^>]+href="([^"]*\/post\/[^"#?]+)"[^>]*>([\s\S]*?)<\/a>/gi)) add(m[1], m[2]);
   for (const m of html.matchAll(/["'](\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?post\/[a-z0-9-]+\/?)["']/gi)) add(m[1]);
+  console.log(`Official news page: HTTP ${r.status}, ${html.length} bytes, ${posts.size} post links`);
   return [...posts.values()];
 }
 function findOfficial(name, posts) {
@@ -161,7 +261,18 @@ try { posts = await getOfficialPosts(); console.log(`Official news: ${posts.leng
 catch (err) { officialStatus = 'unavailable'; console.warn(`Official news check failed: ${err.message}`); }
 if (!posts.length) officialStatus = 'unavailable';
 
-const mon = (p, tier) => p && p.name ? { name: p.name, image: p.image || '', shiny: !!p.canBeShiny, ...(tier ? { tier } : {}) } : null;
+const names = l => (l || []).map(x => typeof x === 'string' ? x : x?.name).filter(Boolean);
+// Keeps CP (100% IV), weather boost and types when the feed has them
+function mon(p, tier) {
+  if (!p?.name) return null;
+  const c = p.combatPower || {};
+  const cp = c.normal?.max ?? c.max ?? null, cpB = c.boosted?.max ?? null;
+  const w = names(p.boostedWeather), types = names(p.types);
+  return {
+    name: p.name, image: p.image || '', shiny: !!p.canBeShiny, ...(tier ? { tier } : {}),
+    ...(cp > 0 ? { cp } : {}), ...(cpB > 0 ? { cpB } : {}), ...(w.length ? { w } : {}), ...(types.length ? { types } : {})
+  };
+}
 function group(key, label, icon, list, tierFn) {
   const seen = new Set(), items = [];
   for (const p of list || []) {
@@ -176,7 +287,6 @@ function group(key, label, icon, list, tierFn) {
 const now = Date.now();
 const rawById = new Map(raw.filter(e => e?.eventID).map(e => [e.eventID, e]));
 
-// A page section that links to another event (e.g. "Eternatus Returns") gets that event's times
 function timeGroup(g, e) {
   const { linked, ...rest } = g;
   const L = linked && linked !== e.eventID ? rawById.get(linked) : null;
@@ -200,16 +310,26 @@ for (const e of raw) {
 }
 
 const events = raw
-  .filter(e => e?.eventID && e.start && e.end && Date.parse(e.end) > now - 2 * D)
+  .filter(e => e?.eventID && e.start && e.end)
   .map(e => {
     const x = e.extraData || {}, type = e.eventType || 'event';
-    const isGlobal = /Z$|[+-]\d{2}:?\d{2}$/.test(e.start);
-    let scope = isGlobal ? 'global' : 'local', tz = null;
-    if (!isGlobal && IN_PERSON.has(type) && !/global/i.test(e.name)) {
-      const hit = VENUES.find(([re]) => re.test(`${e.name} ${e.heading || ''}`));
-      if (hit) { scope = 'venue'; tz = hit[1]; }
-    }
-    const live = Date.parse(e.start) - 14 * H <= now && now <= Date.parse(e.end) + 14 * H;
+    const prev = previous.get(e.eventID);
+    const page = scraped.get(e.eventID) || (prev ? {
+      desc: prev.desc || '', bonuses: prev.pageBonuses || [],
+      groups: (prev.groups || []).filter(g => g.key?.startsWith('p-'))
+    } : null);
+    const desc = page?.desc || '';
+
+    // Where it happens
+    const place = placeOf(e, `${desc} ${e.heading || ''}`);
+    let scope = isZoned(e.start) ? 'global' : 'local', tz = null;
+    if (place?.kind === 'venue' && place.tz) { scope = 'venue'; tz = place.tz; }
+
+    // Max Mondays stay on the radar until the "through" date
+    let end = e.end, extendedEnd = false;
+    if (type === 'max-mondays') { const t = throughEnd(e, desc); if (t) { end = t; extendedEnd = true; } }
+
+    const live = Date.parse(e.start) - 14 * H <= now && now <= Date.parse(end) + 14 * H;
 
     const groups = [
       group('featured', 'Featured', 'star', [
@@ -220,18 +340,14 @@ const events = raw
       group('breakthrough', 'Research breakthrough', 'map-search', x.breakthrough ? (x.breakthrough.list?.length ? x.breakthrough.list : [x.breakthrough]) : [])
     ].filter(Boolean);
 
-    // Event page data (or the last good copy if the page couldn't be read this time)
-    const prev = previous.get(e.eventID);
-    const page = scraped.get(e.eventID) || (prev ? {
-      desc: prev.desc || '', bonuses: prev.pageBonuses || [],
-      groups: (prev.groups || []).filter(g => g.key?.startsWith('p-'))
-    } : null);
     if (page && !groups.length) groups.push(...page.groups.map(g => timeGroup(g, e)));
 
     if (live && LIVE_EXTRAS.has(type)) {
       if (!x.raidbattles?.bosses?.length) groups.push(group('raids-now', 'Raids right now', 'shield', raids, p => p.tier));
       groups.push(group('eggs-now', 'Eggs right now', 'egg', eggs, p => p.eggType ? p.eggType + (p.isAdventureSync ? ' · Adventure Sync' : '') : ''));
-      groups.push(group('research-now', 'Field research right now', 'map-search', research.flatMap(r => r.rewards || [])));
+      // Each research task becomes a heading with its reward Pokémon under it
+      const tasks = research.flatMap(r => (r.rewards || []).map(p => ({ ...p, task: r.text || '' })));
+      groups.push(group('research-now', 'Field research right now', 'map-search', tasks, p => p.task));
     }
 
     let bonuses = [
@@ -246,18 +362,32 @@ const events = raw
     }
 
     let official = findOfficial(e.name, posts);
-    if (!official && officialStatus !== 'ok') official = prev?.official || null; // keep old match if check failed
+    if (!official && officialStatus !== 'ok') official = prev?.official || null;
+
+    const placeOut = !place ? null : place.kind === 'venue'
+      ? { kind: 'venue', city: place.city, country: place.country }
+      : { kind: 'country', countries: place.countries };
 
     return {
       id: e.eventID, name: e.name, type, heading: e.heading || '', link: e.link, image: e.image || '',
-      start: e.start, end: e.end, main: !MINOR.has(type), scope, tz, official,
-      desc: page?.desc || '', pageBonuses: page?.bonuses || [],
+      start: e.start, end, ...(extendedEnd ? { extendedEnd: true } : {}),
+      main: !MINOR.has(type), scope, tz, place: placeOut, official,
+      desc, pageBonuses: page?.bonuses || [],
       groups: groups.filter(Boolean), bonuses,
       disclaimers: x.communityday?.bonusDisclaimers || [],
       rewards: rewards.filter((r, i, a) => r.text && a.findIndex(o => o.text === r.text) === i)
     };
   })
-  .sort((a, b) => Date.parse(a.start) - Date.parse(b.start));
+  .filter(e => Date.parse(e.end) > now - 2 * D);
+
+// Keep week-long Max Mondays even if the feed already dropped them
+for (const p of previous.values()) {
+  if (p.extendedEnd && !rawById.has(p.id) && Date.parse(p.end) > now) events.push(p);
+}
+events.sort((a, b) => Date.parse(a.start) - Date.parse(b.start));
+
+const placed = events.filter(e => e.place);
+if (placed.length) console.log(`Special-place events: ${placed.map(e => `${e.name} → ${placeLabel(e)}`).join(' | ')}`);
 
 await mkdir('data', { recursive: true });
 await writeFile('data/events.json', JSON.stringify({
@@ -270,20 +400,44 @@ await writeFile('data/events.json', JSON.stringify({
 const icsFloat = s => s.replace(/[-:]/g, '').slice(0, 15);
 const icsUTC = t => new Date(t).toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
 const esc = s => String(s ?? '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
-const fold = l => (l.match(/.{1,73}/gu) || ['']).join('\r\n ');
+// iCalendar lines must be at most 75 BYTES (✨ is 3 bytes), continuation lines start with a space
+function fold(line) {
+  const out = [];
+  let cur = '', bytes = 0, limit = 75;
+  for (const ch of line) {
+    const b = Buffer.byteLength(ch);
+    if (bytes + b > limit) { out.push(cur); cur = ''; bytes = 0; limit = 74; }
+    cur += ch; bytes += b;
+  }
+  out.push(cur);
+  return out.join('\r\n ');
+}
 function icsTimes(e) {
-  if (e.scope === 'local') return [icsFloat(e.start), icsFloat(e.end)];       // same clock time everywhere
-  if (e.scope === 'global') return [icsUTC(Date.parse(e.start)), icsUTC(Date.parse(e.end))];
-  return [icsUTC(wallStr(e.start, e.tz)), icsUTC(wallStr(e.end, e.tz))];     // venue time → exact moment
+  if (isZoned(e.start)) return [icsUTC(Date.parse(e.start)), icsUTC(Date.parse(e.end))];       // exact moment
+  if (e.scope === 'venue' && e.tz) return [icsUTC(wallStr(e.start, e.tz)), icsUTC(wallStr(e.end, e.tz))]; // venue clock
+  return [icsFloat(e.start), icsFloat(e.end)];                                                  // same clock time everywhere
 }
 function describe(e) {
   const out = [e.heading];
+  if (e.place) out.push(e.place.kind === 'venue' ? `📍 In person: ${placeLabel(e)}` : `📍 ${placeLabel(e)}`);
   if (e.desc) out.push(e.desc);
-  for (const g of e.groups) out.push(`${g.label}: ${g.items.map(p => p.name + (p.shiny ? ' ✨' : '')).join(', ')}`);
+  const list = l => l.map(p => p.name + (p.shiny ? ' ✨' : '')).join(', ');
+  for (const g of e.groups) {
+    const tiers = [...new Set(g.items.map(p => p.tier || ''))];
+    if (tiers.length > 1) out.push(`${g.label}:` + tiers.map(t => `\n• ${t ? t + ': ' : ''}${list(g.items.filter(p => (p.tier || '') === t))}`).join(''));
+    else out.push(`${g.label}: ${list(g.items)}`);
+  }
   if (e.bonuses.length) out.push('Bonuses: ' + e.bonuses.map(b => b.text).join('; '));
   if (e.official) out.push('Official post: ' + e.official);
   out.push('Details: ' + e.link);
   return out.join('\n');
+}
+function summary(e) {
+  const p = placeLabel(e);
+  if (!p) return e.name;
+  const n = e.name.toLowerCase();
+  const already = e.place.kind === 'venue' ? [e.place.city, e.place.country].some(x => x && n.includes(x.toLowerCase())) : false;
+  return already ? e.name : `${e.name} (${p})`;
 }
 function ics(list, calName) {
   const stamp = icsUTC(Date.now());
@@ -292,8 +446,9 @@ function ics(list, calName) {
   for (const e of list) {
     const [s, en] = icsTimes(e);
     L.push('BEGIN:VEVENT', `UID:${e.id}@pogo-event-radar`, `DTSTAMP:${stamp}`, `DTSTART:${s}`, `DTEND:${en}`,
-      `SUMMARY:${esc(e.name)}`, `DESCRIPTION:${esc(describe(e))}`, `URL:${e.link}`,
-      'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:-PT1H', `DESCRIPTION:${esc(e.name)} in 1 hour`, 'END:VALARM');
+      `SUMMARY:${esc(summary(e))}`, `DESCRIPTION:${esc(describe(e))}`, `URL:${e.link}`);
+    if (e.place?.kind === 'venue' && placeLabel(e) !== 'In person') L.push(`LOCATION:${esc(placeLabel(e))}`);
+    L.push('BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:-PT1H', `DESCRIPTION:${esc(e.name)} in 1 hour`, 'END:VALARM');
     if (e.main) L.push('BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:-P1D', `DESCRIPTION:${esc(e.name)} tomorrow`, 'END:VALARM');
     L.push('END:VEVENT');
   }
@@ -303,4 +458,4 @@ function ics(list, calName) {
 await writeFile('data/main.ics', ics(events.filter(e => e.main), 'Pokémon GO – Main events'));
 await writeFile('data/all.ics', ics(events, 'Pokémon GO – All events'));
 
-console.log(`Saved ${events.length} events (${events.filter(e => e.main).length} main, ${scraped.size} pages read, ${events.filter(e => e.official).length} confirmed by official news)`);
+console.log(`Saved ${events.length} events (${events.filter(e => e.main).length} main, ${placed.length} special-place, ${scraped.size} pages read, ${events.filter(e => e.official).length} confirmed by official news)`);
