@@ -114,6 +114,21 @@ button:active,.tile:active{transform:scale(.92)}
 .srow b{font-weight:500;text-align:right}
 .note{font-size:12px;color:var(--mut);margin:8px 0 0}
 select{width:100%;margin-top:10px;font-family:inherit;font-size:14px;padding:10px;border-radius:14px;border:1px solid #E6DED2;background:var(--bg)}
+/* locations page */
+.lbl{display:block;font-size:12px;font-weight:500;color:var(--mut);margin:14px 0 6px}
+.inp{width:100%;font-family:inherit;font-size:16px;padding:11px 13px;border-radius:14px;border:1px solid #E6DED2;background:var(--bg);color:var(--ink);margin:0}
+.inp:focus{outline:2px solid var(--orange);outline-offset:1px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px}
+.res{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.res button{text-align:left;background:var(--bg);border-radius:14px;padding:10px 12px;font-size:13px;line-height:1.35}
+.res button span{font-size:11.5px}
+.swatch{width:42px;height:42px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:19px}
+.coord{display:flex;align-items:center;justify-content:space-between;gap:8px;background:rgba(255,255,255,.75);border-radius:14px;padding:6px 6px 6px 12px;margin-top:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;color:var(--ink)}
+.icb{width:38px;height:38px;border-radius:50%;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.icb.done{background:#1B6B3A}
+.pbtn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.65);display:inline-flex;align-items:center;justify-content:center;font-size:16px}
+.pcard{cursor:default}
+.pdot{width:8px;height:8px;border-radius:50%;display:inline-block}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -121,13 +136,13 @@ select{width:100%;margin-top:10px;font-family:inherit;font-size:14px;padding:10p
 <main class="app" id="app"><p class="muted">Loading events…</p></main>
 <nav class="nav" aria-label="Main">
   <button data-act="home" aria-label="Home"><i class="ti ti-home"></i></button>
-  <button data-act="today" aria-label="Today's events"><i class="ti ti-calendar-event"></i></button>
+  <button data-act="places" aria-label="My locations"><i class="ti ti-map-pin"></i></button>
   <button class="mid" data-act="sub" aria-label="Subscribe to calendar"><i class="ti ti-bell"></i></button>
   <button data-act="tz" aria-label="Time zone"><i class="ti ti-world"></i></button>
   <button data-act="settings" aria-label="Settings"><i class="ti ti-settings"></i></button>
 </nav>
 <script>
-const APP_VERSION = '2.1.0';
+const APP_VERSION = '2.2.0';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const D = 864e5;
@@ -145,6 +160,12 @@ const TH = {
   global: { l:'Global event',    bg:'#CFE2F3', fg:'#1D3F63', ac:'#378ADD', i:'world' },
   venue:  { l:'In-person event', bg:'#BFE6DA', fg:'#0E4D3D', ac:'#1D9E75', i:'ticket' },
   region: { l:'Regional event',  bg:'#FDDCC4', fg:'#6B3410', ac:'#E07B39', i:'flag' }
+};
+// Saved-location types: each has its own colour
+const PT = {
+  coins:  { l:'Coins',  e:'🟡', bg:'#F8E39A', fg:'#5C4300', ac:'#C99A12', i:'coin' },
+  raids:  { l:'Raids',  e:'🔴', bg:'#F7CCDC', fg:'#6B1F3D', ac:'#D4537E', i:'shield' },
+  events: { l:'Events', e:'🟣', bg:'#DCD6F6', fg:'#34296B', ac:'#7F77DD', i:'sparkles' }
 };
 
 /* ---------- countries (names must match fetch-events.mjs) ---------- */
@@ -173,6 +194,12 @@ const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
 const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 const freshDetail = () => ({ filter: 'all', shinyOnly: false, expanded: new Set(), shiny: new Set() });
 let det = freshDetail();
+
+/* ---------- saved locations state ---------- */
+let places = LS.get('places', []);
+const freshPlaceForm = () => ({ editing: null, name: '', q: '', addr: '', coords: '', type: 'raids', results: [], searching: false, msg: '' });
+let pf = freshPlaceForm();
+let pFilter = 'all', copiedId = null;
 
 /* ---------- time helpers ---------- */
 const parts = (t, z) => Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: z, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).formatToParts(t).filter(p => p.type !== 'literal').map(p => [p.type, +p.value]));
@@ -455,6 +482,131 @@ function renderDetail(e) {
     <button class="btn" data-act="sub" style="background:#fff;padding:13px"><i class="ti ti-calendar-plus"></i>All events</button></div>`;
 }
 
+/* ---------- locations view ---------- */
+const coordStr = p => `${(+p.lat).toFixed(6)}, ${(+p.lng).toFixed(6)}`;
+function parseCoords(s) {
+  const m = String(s || '').match(/(-?\d+(?:\.\d+)?)\s*[,\s]\s*(-?\d+(?:\.\d+)?)/);
+  if (!m) return null;
+  const lat = +m[1], lng = +m[2];
+  if (!isFinite(lat) || !isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180) return null;
+  return { lat: +lat.toFixed(6), lng: +lng.toFixed(6) };
+}
+async function searchPlace() {
+  const q = pf.q.trim();
+  if (!q) { pf.msg = 'Type a place first, like Pier 39 or Tokyo.'; render(); return; }
+  pf.searching = true; pf.msg = ''; pf.results = []; render();
+  try {
+    const r = await fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&accept-language=en&q=${encodeURIComponent(q)}`);
+    if (!r.ok) throw new Error(r.status);
+    const j = await r.json();
+    pf.results = j.map(x => ({ name: x.name || x.display_name.split(',')[0], addr: x.display_name, lat: +x.lat, lng: +x.lon }));
+    if (!pf.results.length) pf.msg = 'No match. Try adding the city or country, or paste coordinates below.';
+  } catch { pf.msg = "Couldn't search. Check your connection, or paste coordinates below."; }
+  pf.searching = false; render();
+}
+function pickResult(i) {
+  const r = pf.results[i];
+  if (!r) return;
+  pf.coords = coordStr(r);
+  pf.addr = r.addr;
+  if (!pf.name.trim()) pf.name = r.name;
+  pf.results = [];
+  pf.msg = '✓ Coordinates filled in. Pick a type and save.';
+  render();
+}
+function savePlace() {
+  const c = parseCoords(pf.coords);
+  if (!c) { pf.msg = 'Add coordinates: tap Find, or paste them like 37.808674, -122.409821'; render(); return; }
+  const name = pf.name.trim() || pf.q.trim() || 'My spot';
+  const item = { id: pf.editing || Date.now().toString(36), name, place: pf.q.trim(), addr: pf.addr || '', lat: c.lat, lng: c.lng, type: pf.type, at: Date.now() };
+  if (pf.editing) places = places.map(p => p.id === pf.editing ? { ...item, at: p.at } : p);
+  else places.unshift(item);
+  LS.set('places', places);
+  const type = item.type;
+  pf = freshPlaceForm(); pf.type = type; pf.msg = `Saved “${name}”.`;
+  render();
+}
+function editPlace(id) {
+  const p = places.find(x => x.id === id);
+  if (!p) return;
+  pf = { ...freshPlaceForm(), editing: p.id, name: p.name, q: p.place || '', addr: p.addr || '', coords: coordStr(p), type: p.type };
+  render(); scrollTo(0, 0);
+}
+function deletePlace(id) {
+  const p = places.find(x => x.id === id);
+  if (!p || !confirm(`Delete “${p.name}”?`)) return;
+  places = places.filter(x => x.id !== id);
+  LS.set('places', places);
+  if (pf.editing === id) pf = freshPlaceForm();
+  render();
+}
+async function copyText(t) {
+  try { await navigator.clipboard.writeText(t); return true; } catch {}
+  const ta = Object.assign(document.createElement('textarea'), { value: t });
+  ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;top:0;opacity:0';
+  document.body.appendChild(ta); ta.select();
+  let ok = false; try { ok = document.execCommand('copy'); } catch {}
+  ta.remove(); return ok;
+}
+async function copyPlace(id) {
+  const p = places.find(x => x.id === id);
+  if (!p) return;
+  const ok = await copyText(coordStr(p));
+  if (!ok) { prompt('Copy these coordinates:', coordStr(p)); return; }
+  copiedId = id; render();
+  setTimeout(() => { if (copiedId === id) { copiedId = null; softRender(); } }, 1600);
+}
+function placeCard(p) {
+  const t = PT[p.type] || PT.events, copied = copiedId === p.id;
+  return `<div class="ev pcard" style="background:${t.bg};color:${t.fg}">
+    <div class="between"><span class="tag"><i class="ti ti-${t.i}"></i>${t.l}</span>
+      <div class="row" style="gap:6px"><button class="pbtn" data-act="pedit" data-v="${esc(p.id)}" aria-label="Edit"><i class="ti ti-pencil"></i></button><button class="pbtn" data-act="pdel" data-v="${esc(p.id)}" aria-label="Delete"><i class="ti ti-trash"></i></button></div></div>
+    <div class="name">${esc(p.name)}</div>
+    ${p.place && p.place !== p.name ? `<div style="font-size:13.5px"><i class="ti ti-map-pin"></i> ${esc(p.place)}</div>` : ''}
+    ${p.addr ? `<div style="font-size:11.5px;opacity:.75;margin-top:3px">${esc(p.addr)}</div>` : ''}
+    <div class="coord"><span>${coordStr(p)}</span><button class="icb${copied ? ' done' : ''}" data-act="pcopy" data-v="${esc(p.id)}" aria-label="Copy coordinates"><i class="ti ti-${copied ? 'check' : 'copy'}"></i></button></div>
+    <div class="between" style="margin-top:10px;font-size:12.5px">
+      <a href="https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}" target="_blank" rel="noopener"><i class="ti ti-map-2"></i> Open in Maps</a>
+      <span>${copied ? 'Copied!' : ''}</span></div></div>`;
+}
+function renderPlaces() {
+  const t = PT[pf.type];
+  const counts = Object.fromEntries(Object.keys(PT).map(k => [k, places.filter(p => p.type === k).length]));
+  const shown = places.filter(p => pFilter === 'all' || p.type === pFilter);
+  const results = pf.results.length ? `<div class="res">${pf.results.map((r, i) => `<button data-act="ppick" data-v="${i}"><b>${esc(r.name)}</b><br><span class="muted">${esc(r.addr)}</span></button>`).join('')}</div>` : '';
+  const filters = places.length ? `<div class="chips wchips" style="margin:18px 0 10px">
+    <button class="chip ${pFilter === 'all' ? 'on' : ''}" data-act="pfilter" data-v="all">All · ${places.length}</button>
+    ${Object.entries(PT).map(([k, v]) => `<button class="chip ${pFilter === k ? 'on' : ''}" data-act="pfilter" data-v="${k}"><span class="pdot" style="background:${v.ac}"></span> ${v.l} · ${counts[k]}</button>`).join('')}</div>` : '';
+  const list = !places.length
+    ? `<div class="empty" style="margin-top:16px">No saved locations yet. Add your first one above.</div>`
+    : shown.length ? shown.map(placeCard).join('')
+    : `<div class="empty">No ${PT[pFilter].l.toLowerCase()} locations yet.</div>`;
+  return `<div class="between"><button class="circle" data-act="home" aria-label="Back"><i class="ti ti-arrow-left"></i></button><span></span></div>
+  <div class="h1" style="margin-top:14px">My locations</div>
+  <p class="muted" style="font-size:13.5px;margin:6px 0 0">Save spots for coins, raids and events. Copy the coordinates with one tap.</p>
+  ${updBanner()}
+  <div class="sec"><div class="h3" style="margin:0">${pf.editing ? 'Edit location' : 'Add a location'}</div>
+    <label class="lbl" for="pname">Name</label>
+    <input class="inp" id="pname" data-pf="name" value="${esc(pf.name)}" placeholder="e.g. Pier 39 raids" autocomplete="off">
+    <label class="lbl" for="pq">Place</label>
+    <div class="row"><input class="inp" id="pq" data-pf="q" value="${esc(pf.q)}" placeholder="USA, Tokyo, Pier 39, Mexico City…" autocomplete="off" enterkeyhint="search">
+      <button class="btn dark" data-act="psearch" style="flex-shrink:0;padding:12px 16px">${pf.searching ? '<i class="ti ti-loader-2"></i>…' : '<i class="ti ti-search"></i>Find'}</button></div>
+    ${results}
+    <label class="lbl" for="pcoords">Coordinates</label>
+    <input class="inp mono" id="pcoords" data-pf="coords" value="${esc(pf.coords)}" placeholder="Filled in by Find, or paste: 37.808674, -122.409821" autocomplete="off">
+    <label class="lbl" for="ptype">Type</label>
+    <div class="row"><span class="swatch" style="background:${t.ac}"><i class="ti ti-${t.i}"></i></span>
+      <select class="inp" id="ptype" style="margin:0">${Object.entries(PT).map(([k, v]) => `<option value="${k}" ${k === pf.type ? 'selected' : ''}>${v.e} ${v.l}</option>`).join('')}</select></div>
+    ${pf.msg ? `<p class="note" style="color:var(--ink)">${esc(pf.msg)}</p>` : ''}
+    <div class="row" style="margin-top:14px">
+      <button class="btn" data-act="psave" style="background:var(--orange);color:#fff;flex:1;padding:13px;font-size:14px"><i class="ti ti-device-floppy"></i>${pf.editing ? 'Save changes' : 'Save location'}</button>
+      ${pf.editing || pf.name || pf.q || pf.coords ? '<button class="btn soft" data-act="pcancel" style="padding:13px 16px">Clear</button>' : ''}</div>
+    <p class="note">Place search by OpenStreetMap. Locations are saved on this device only.</p></div>
+  ${places.length ? `<div class="h2" style="margin-top:22px">Saved</div>` : ''}
+  ${filters}
+  ${list}`;
+}
+
 /* ---------- settings view ---------- */
 function renderSettings() {
   const n = Date.now(), up = DATA.updatedAt ? Date.parse(DATA.updatedAt) : null;
@@ -479,7 +631,8 @@ function renderSettings() {
     ${row('Events loaded', DATA.events.length)}
     ${row('City or country events', DATA.events.filter(e => e.place).length)}
     ${row('Event pages read', DATA.sources?.pages ?? '—')}
-    ${row('Official news check', DATA.sources?.official === 'ok' ? 'Working' : 'Could not reach site')}</div>
+    ${row('Official news check', DATA.sources?.official === 'ok' ? 'Working' : 'Could not reach site')}
+    ${row('Saved locations', places.length)}</div>
   <div class="sec"><div class="h3">Time zone</div>
     ${row('Showing times for', `${esc(zoneName(tz))} · ${fT(n, tz)} ${ab(n, tz)}`)}
     <button class="btn soft" data-act="tzset" style="margin-top:8px"><i class="ti ti-world"></i>Change time zone</button></div>
@@ -503,9 +656,10 @@ function renderSettings() {
     <div class="brow"><span class="bic"><i class="ti ti-database"></i></span><span><b>LeekDuck</b> event list, raids, eggs and research, via the open ScrapedDuck feed.</span></div>
     <div class="brow"><span class="bic"><i class="ti ti-file-text"></i></span><span><b>LeekDuck event pages</b> Pokémon, Max Battles, bonuses and sub-event times for each event.</span></div>
     <div class="brow"><span class="bic"><i class="ti ti-circle-check"></i></span><span><b>Official Pokémon GO news</b> used to confirm events.</span></div>
+    <div class="brow"><span class="bic"><i class="ti ti-map-pin"></i></span><span><b>OpenStreetMap</b> place search for My locations. © OpenStreetMap contributors.</span></div>
     <p class="note">Not affiliated with Niantic, The Pokémon Company or LeekDuck.</p></div>
   <div class="sec"><div class="h3">Troubleshooting</div>
-    <p class="note" style="margin:0 0 10px">Something looks old or broken? This clears saved copies and reloads the latest version.</p>
+    <p class="note" style="margin:0 0 10px">Something looks old or broken? This clears saved copies and reloads the latest version. Your saved locations are kept.</p>
     <button class="btn soft" data-act="reset"><i class="ti ti-trash"></i>Clear saved data and reload</button></div>`;
 }
 
@@ -524,7 +678,7 @@ async function checkUpdates(silent = false) {
     updReady = !!v && v !== APP_VERSION; newVersion = v || '';
     if (!silent) updMsg = updReady ? `Version ${v} is available. Tap Install update.` : dataNew ? 'Event data refreshed. The app is up to date.' : "You're up to date.";
   } catch { if (!silent) updMsg = "Couldn't check. Are you offline?"; }
-  render();
+  silent ? softRender() : render();
 }
 async function clearAll() {
   try {
@@ -593,8 +747,8 @@ document.addEventListener('click', ev => {
     case 'tz': tzOpen = !tzOpen; goList(); break;
     case 'tzset': tzOpen = true; goList(); break;
     case 'settings': location.hash = 'settings'; break;
+    case 'places': tzOpen = false; location.hash = 'places'; break;
     case 'home': sel = null; tzOpen = false; goList(); break;
-    case 'today': sel = dk(Date.now(), tz); tzOpen = false; goList(); break;
     case 'zone': setTz(v); break;
     case 'day': sel = sel === +v ? null : +v; render(); break;
     case 'mode': mode = v; LS.set('mode', v); render(); break;
@@ -608,6 +762,14 @@ document.addEventListener('click', ev => {
     case 'shonly': det.shinyOnly = !det.shinyOnly; render(); break;
     case 'more': det.expanded.add(v); render(); break;
     case 'tile': if (a.hasAttribute('data-noshiny')) return; det.shiny.has(v) ? det.shiny.delete(v) : det.shiny.add(v); render(); break;
+    case 'psearch': searchPlace(); break;
+    case 'ppick': pickResult(+v); break;
+    case 'psave': savePlace(); break;
+    case 'pcancel': pf = freshPlaceForm(); render(); break;
+    case 'pedit': editPlace(v); break;
+    case 'pdel': deletePlace(v); break;
+    case 'pcopy': copyPlace(v); break;
+    case 'pfilter': pFilter = v; render(); break;
     case 'chk': checkUpdates(false); break;
     case 'applyupd': applyUpdate(); break;
     case 'reset': if (confirm('Clear saved data and reload?')) resetApp(); break;
@@ -617,15 +779,26 @@ document.addEventListener('click', ev => {
     case 'hideinstall': LS.set('installHidden', true); render(); break;
   }
 });
+// Typing in the locations form: remember values without redrawing (keeps the keyboard open)
+document.addEventListener('input', ev => {
+  const k = ev.target.dataset?.pf;
+  if (!k) return;
+  pf[k] = ev.target.value;
+  if (k === 'q') pf.addr = '';
+});
+document.addEventListener('keydown', ev => {
+  if (ev.key === 'Enter' && ev.target.dataset?.pf === 'q') { ev.preventDefault(); ev.target.blur(); searchPlace(); }
+});
 document.addEventListener('change', ev => {
   if (ev.target.id === 'zsel' && ev.target.value) setTz(ev.target.value);
   if (ev.target.id === 'csel') { countryPref = ev.target.value; LS.set('country', countryPref); render(); }
+  if (ev.target.id === 'ptype') { pf.type = ev.target.value; render(); }
 });
 window.addEventListener('hashchange', () => {
   det = freshDetail(); render(); scrollTo(0, 0);
   const app = $('#app'); app.classList.remove('enter'); void app.offsetWidth; app.classList.add('enter');
 });
-window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; render(); });
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; softRender(); });
 window.addEventListener('appinstalled', () => { installPrompt = null; LS.set('installHidden', true); render(); });
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible' && Date.now() - lastCheck > 10 * 6e4) checkUpdates(true);
@@ -633,10 +806,15 @@ document.addEventListener('visibilitychange', () => {
 
 function render() {
   const h = location.hash, m = h.match(/^#e=(.+)$/), e = m && find(decodeURIComponent(m[1]));
-  const settings = h === '#settings';
-  $('#app').innerHTML = settings ? renderSettings() : e ? renderDetail(e) : renderList();
-  const cur = settings ? 'settings' : e ? '' : tzOpen ? 'tz' : sel === dk(Date.now(), tz) ? 'today' : 'home';
+  const settings = h === '#settings', placesPage = h === '#places';
+  $('#app').innerHTML = settings ? renderSettings() : placesPage ? renderPlaces() : e ? renderDetail(e) : renderList();
+  const cur = settings ? 'settings' : placesPage ? 'places' : e ? '' : tzOpen ? 'tz' : 'home';
   document.querySelectorAll('.nav [data-act]').forEach(b => b.classList.toggle('cur', b.dataset.act === cur));
+}
+// Background redraws skip while you're typing, so the form doesn't lose focus
+function softRender() {
+  if (document.activeElement?.matches?.('input, textarea')) return;
+  render();
 }
 function tick() {
   document.querySelectorAll('[data-s]').forEach(el => { const t = el.querySelector('.cdt'); if (t) t.textContent = cdText(+el.dataset.s, +el.dataset.e); });
@@ -644,8 +822,11 @@ function tick() {
 
 fetch('data/events.json', { cache: 'no-store' })
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then(j => { DATA = j; render(); setInterval(tick, 30e3); setInterval(render, 5 * 60e3); setTimeout(() => checkUpdates(true), 3000); })
-  .catch(() => { $('#app').innerHTML = `<div class="h1">Event radar</div><div class="empty" style="margin-top:16px">Couldn't load events. Check your connection, then try again.<br><br><button class="btn dark" data-act="reset">Reload app</button></div>`; });
+  .then(j => { DATA = j; render(); setInterval(tick, 30e3); setInterval(softRender, 5 * 60e3); setTimeout(() => checkUpdates(true), 3000); })
+  .catch(() => {
+    if (location.hash === '#places') { render(); return; } // locations work even without event data
+    $('#app').innerHTML = `<div class="h1">Event radar</div><div class="empty" style="margin-top:16px">Couldn't load events. Check your connection, then try again.<br><br><button class="btn dark" data-act="reset">Reload app</button></div>`;
+  });
 
 if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
