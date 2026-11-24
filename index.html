@@ -115,14 +115,18 @@ button:active,.tile:active{transform:scale(.92)}
 .note{font-size:12px;color:var(--mut);margin:8px 0 0}
 select{width:100%;margin-top:10px;font-family:inherit;font-size:14px;padding:10px;border-radius:14px;border:1px solid #E6DED2;background:var(--bg)}
 /* locations page */
-.lbl{display:block;font-size:12px;font-weight:500;color:var(--mut);margin:14px 0 6px}
-.inp{width:100%;font-family:inherit;font-size:16px;padding:11px 13px;border-radius:14px;border:1px solid #E6DED2;background:var(--bg);color:var(--ink);margin:0}
+.lbl{display:block;font-size:12px;font-weight:500;color:var(--mut);margin:12px 0 6px}
+.inp{width:100%;min-width:0;font-family:inherit;font-size:16px;padding:10px 12px;border-radius:14px;border:1px solid #E6DED2;background:var(--bg);color:var(--ink);margin:0}
 .inp:focus{outline:2px solid var(--orange);outline-offset:1px}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px}
+.pform{padding:14px;margin-top:18px}
+.pform .row{margin-top:8px}
+.pform .inp{padding:9px 12px;border-radius:12px}
+.pform .btn{padding:10px 14px;flex-shrink:0}
+.ptype{flex:0 0 116px;width:116px}
 .res{display:flex;flex-direction:column;gap:6px;margin-top:8px}
-.res button{text-align:left;background:var(--bg);border-radius:14px;padding:10px 12px;font-size:13px;line-height:1.35}
+.res button{text-align:left;background:var(--bg);border-radius:12px;padding:9px 12px;font-size:13px;line-height:1.35}
 .res button span{font-size:11.5px}
-.swatch{width:42px;height:42px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:19px}
 .coord{display:flex;align-items:center;justify-content:space-between;gap:8px;background:rgba(255,255,255,.75);border-radius:14px;padding:6px 6px 6px 12px;margin-top:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;color:var(--ink)}
 .icb{width:38px;height:38px;border-radius:50%;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
 .icb.done{background:#1B6B3A}
@@ -144,7 +148,7 @@ select{width:100%;margin-top:10px;font-family:inherit;font-size:14px;padding:10p
   <button data-act="settings" aria-label="Settings"><i class="ti ti-settings"></i></button>
 </nav>
 <script>
-const APP_VERSION = '2.3.0';
+const APP_VERSION = '2.4.0';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const D = 864e5;
@@ -189,7 +193,7 @@ let mode = LS.get('mode', 'main');
 let where = LS.get('where', 'all');
 let countryPref = LS.get('country', '');
 let reminded = new Set(LS.get('reminded', []));
-let sel = null, tzOpen = false, cameFromList = false, ready = false;
+let sel = null, tzOpen = false, cameFromList = false, ready = false, goSheet = false;
 let DATA = { events: [], updatedAt: null, sources: {} };
 let installPrompt = null, updMsg = '', updReady = false, newVersion = '', lastCheck = 0;
 const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
@@ -542,31 +546,34 @@ function disconnectSheet() {
   render();
 }
 function syncChip() {
-  if (!sync) return `<button class="sync warn" data-act="psheet"><i class="ti ti-cloud-off"></i>Not backed up · set up Google Sheets</button>`;
+  if (!sync) return `<button class="sync warn" data-act="psheet"><i class="ti ti-cloud-off"></i>Not backed up · set up in Settings</button>`;
   const w = queue.length ? ` · ${queue.length} waiting` : '';
   if (syncBusy) return `<span class="sync busy"><i class="ti ti-cloud-up"></i>Syncing…${w}</span>`;
   if (syncErr) return `<button class="sync warn" data-act="psync"><i class="ti ti-alert-triangle"></i>${esc(syncErr)}${w} · tap to retry</button>`;
   const ago = syncAt ? ' · ' + (Date.now() - syncAt < 6e4 ? 'just now' : left(Date.now() - syncAt) + ' ago') : '';
   return `<button class="sync ok" data-act="psync"><i class="ti ti-cloud-check"></i>Backed up to Google Sheets${ago}</button>`;
 }
+// Settings card, same style as the other settings sections
 function sheetSection() {
+  const row = (a, b) => `<div class="srow"><span>${a}</span><b>${b}</b></div>`;
   if (sync) return `<div class="sec" id="sheetsec"><div class="h3">Google Sheets backup</div>
-    <div class="srow"><span>Status</span><b>${syncBusy ? 'Syncing…' : syncErr ? esc(syncErr) : 'Connected ✓'}</b></div>
-    <div class="srow"><span>Last synced</span><b>${syncAt ? `${fD(syncAt, tz)}, ${fT(syncAt, tz)}` : 'Not yet'}</b></div>
-    <div class="srow"><span>Changes waiting</span><b>${queue.length}</b></div>
+    ${row('Status', syncBusy ? 'Syncing…' : syncErr ? esc(syncErr) : 'Connected ✓')}
+    ${row('Last synced', syncAt ? `${fD(syncAt, tz)}, ${fT(syncAt, tz)}` : 'Not yet')}
+    ${row('Changes waiting', queue.length)}
     <div class="row" style="margin-top:10px;flex-wrap:wrap">
       <button class="btn dark" data-act="psync"><i class="ti ti-refresh"></i>Sync now</button>
       ${sync.sheet ? `<a class="btn soft" href="${esc(sync.sheet)}" target="_blank" rel="noopener" style="text-decoration:none"><i class="ti ti-table"></i>Open sheet</a>` : ''}
       <button class="btn soft" data-act="punsync"><i class="ti ti-plug-connected-x"></i>Disconnect</button></div>
-    <p class="note">The sheet is the main copy. Rows you add or edit in the sheet show up here on the next sync.</p></div>`;
+    <p class="note">The sheet is the main copy of your locations. Rows you add or edit there show up in the app on the next sync.</p></div>`;
   return `<div class="sec" id="sheetsec"><div class="h3">Google Sheets backup</div>
-    <p class="note" style="margin:0">Connect your Google Sheet so your locations are never lost, and so they show up on any phone you connect.</p>
+    ${row('Status', 'Not connected')}
+    <p class="note" style="margin:4px 0 0">Connect a Google Sheet so your locations are never lost and show up on any phone you connect.</p>
     <label class="lbl" for="scurl">Web app URL</label>
     <input class="inp" id="scurl" data-sc="url" value="${esc(sc.url)}" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off" inputmode="url">
     <label class="lbl" for="sckey">Sync key</label>
     <input class="inp mono" id="sckey" data-sc="key" value="${esc(sc.key)}" placeholder="From the Apps Script log" autocomplete="off">
     ${syncErr ? `<p class="note" style="color:#6B3410">${esc(syncErr)}</p>` : ''}
-    <button class="btn dark" data-act="pconnect" style="margin-top:12px;width:100%;padding:12px;font-size:14px"><i class="ti ti-cloud-up"></i>Connect</button></div>`;
+    <button class="btn dark" data-act="pconnect" style="margin-top:12px"><i class="ti ti-cloud-up"></i>Connect</button></div>`;
 }
 
 /* ---------- locations view ---------- */
@@ -587,8 +594,8 @@ async function searchPlace() {
     if (!r.ok) throw new Error(r.status);
     const j = await r.json();
     pf.results = j.map(x => ({ name: x.name || x.display_name.split(',')[0], addr: x.display_name, lat: +x.lat, lng: +x.lon }));
-    if (!pf.results.length) pf.msg = 'No match. Try adding the city or country, or paste coordinates below.';
-  } catch { pf.msg = "Couldn't search. Check your connection, or paste coordinates below."; }
+    if (!pf.results.length) pf.msg = 'No match. Try adding the city or country, or paste coordinates.';
+  } catch { pf.msg = "Couldn't search. Check your connection, or paste coordinates."; }
   pf.searching = false; render();
 }
 function pickResult(i) {
@@ -598,7 +605,7 @@ function pickResult(i) {
   pf.addr = r.addr;
   if (!pf.name.trim()) pf.name = r.name;
   pf.results = [];
-  pf.msg = '✓ Coordinates filled in. Pick a type and save.';
+  pf.msg = '✓ Coordinates filled in. Tap Save.';
   render();
 }
 function savePlace() {
@@ -618,7 +625,8 @@ function editPlace(id) {
   const p = places.find(x => x.id === id);
   if (!p) return;
   pf = { ...freshPlaceForm(), editing: p.id, name: p.name, q: p.place || '', addr: p.addr || '', coords: coordStr(p), type: p.type };
-  render(); scrollTo(0, 0);
+  render();
+  document.getElementById('pform')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 function deletePlace(id) {
   const p = places.find(x => x.id === id);
@@ -658,16 +666,33 @@ function placeCard(p) {
       <a href="https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}" target="_blank" rel="noopener"><i class="ti ti-map-2"></i> Open in Maps</a>
       <span>${copied ? 'Copied!' : ''}</span></div></div>`;
 }
-function renderPlaces() {
+function placeForm() {
   const t = PT[pf.type];
+  const results = pf.results.length ? `<div class="res">${pf.results.map((r, i) => `<button data-act="ppick" data-v="${i}"><b>${esc(r.name)}</b><br><span class="muted">${esc(r.addr)}</span></button>`).join('')}</div>` : '';
+  return `<div class="sec pform" id="pform">
+    <div class="between"><div class="h3" style="margin:0">${pf.editing ? 'Edit location' : 'Add a location'}</div>
+      ${pf.editing || pf.name || pf.q || pf.coords ? '<button class="muted" data-act="pcancel" style="font-size:12.5px">Clear</button>' : ''}</div>
+    <div class="row">
+      <input class="inp" data-pf="name" aria-label="Name" value="${esc(pf.name)}" placeholder="Name" autocomplete="off">
+      <select class="inp ptype" id="ptype" aria-label="Type" style="box-shadow:inset 4px 0 0 ${t.ac}">${Object.entries(PT).map(([k, v]) => `<option value="${k}" ${k === pf.type ? 'selected' : ''}>${v.e} ${v.l}</option>`).join('')}</select></div>
+    <div class="row">
+      <input class="inp" data-pf="q" aria-label="Place" value="${esc(pf.q)}" placeholder="Place: Tokyo, Pier 39…" autocomplete="off" enterkeyhint="search">
+      <button class="btn dark" data-act="psearch">${pf.searching ? '<i class="ti ti-loader-2"></i>' : '<i class="ti ti-search"></i>'}Find</button></div>
+    ${results}
+    <div class="row">
+      <input class="inp mono" data-pf="coords" aria-label="Coordinates" value="${esc(pf.coords)}" placeholder="lat, lng" autocomplete="off">
+      <button class="btn" data-act="psave" style="background:var(--orange);color:#fff"><i class="ti ti-device-floppy"></i>${pf.editing ? 'Update' : 'Save'}</button></div>
+    ${pf.msg ? `<p class="note" style="color:var(--ink)">${esc(pf.msg)}</p>` : ''}
+    <p class="note" style="font-size:11px">Find uses OpenStreetMap. You can also paste coordinates from Google Maps.</p></div>`;
+}
+function renderPlaces() {
   const counts = Object.fromEntries(Object.keys(PT).map(k => [k, places.filter(p => p.type === k).length]));
   const shown = places.filter(p => pFilter === 'all' || p.type === pFilter);
-  const results = pf.results.length ? `<div class="res">${pf.results.map((r, i) => `<button data-act="ppick" data-v="${i}"><b>${esc(r.name)}</b><br><span class="muted">${esc(r.addr)}</span></button>`).join('')}</div>` : '';
-  const filters = places.length ? `<div class="chips wchips" style="margin:18px 0 10px">
+  const filters = places.length ? `<div class="chips wchips" style="margin:14px 0 10px">
     <button class="chip ${pFilter === 'all' ? 'on' : ''}" data-act="pfilter" data-v="all">All · ${places.length}</button>
     ${Object.entries(PT).map(([k, v]) => `<button class="chip ${pFilter === k ? 'on' : ''}" data-act="pfilter" data-v="${k}"><span class="pdot" style="background:${v.ac}"></span> ${v.l} · ${counts[k]}</button>`).join('')}</div>` : '';
   const list = !places.length
-    ? `<div class="empty" style="margin-top:16px">No saved locations yet. Add your first one above.</div>`
+    ? `<div class="empty" style="margin-top:16px">No saved locations yet. Add one below.</div>`
     : shown.length ? shown.map(placeCard).join('')
     : `<div class="empty">No ${PT[pFilter].l.toLowerCase()} locations yet.</div>`;
   return `<div class="between"><button class="circle" data-act="home" aria-label="Back"><i class="ti ti-arrow-left"></i></button><span></span></div>
@@ -675,27 +700,9 @@ function renderPlaces() {
   <p class="muted" style="font-size:13.5px;margin:6px 0 0">Save spots for coins, raids and events. Copy the coordinates with one tap.</p>
   ${syncChip()}
   ${updBanner()}
-  <div class="sec"><div class="h3" style="margin:0">${pf.editing ? 'Edit location' : 'Add a location'}</div>
-    <label class="lbl" for="pname">Name</label>
-    <input class="inp" id="pname" data-pf="name" value="${esc(pf.name)}" placeholder="e.g. Pier 39 raids" autocomplete="off">
-    <label class="lbl" for="pq">Place</label>
-    <div class="row"><input class="inp" id="pq" data-pf="q" value="${esc(pf.q)}" placeholder="USA, Tokyo, Pier 39, Mexico City…" autocomplete="off" enterkeyhint="search">
-      <button class="btn dark" data-act="psearch" style="flex-shrink:0;padding:12px 16px">${pf.searching ? '<i class="ti ti-loader-2"></i>…' : '<i class="ti ti-search"></i>Find'}</button></div>
-    ${results}
-    <label class="lbl" for="pcoords">Coordinates</label>
-    <input class="inp mono" id="pcoords" data-pf="coords" value="${esc(pf.coords)}" placeholder="Filled in by Find, or paste: 37.808674, -122.409821" autocomplete="off">
-    <label class="lbl" for="ptype">Type</label>
-    <div class="row"><span class="swatch" style="background:${t.ac}"><i class="ti ti-${t.i}"></i></span>
-      <select class="inp" id="ptype" style="margin:0">${Object.entries(PT).map(([k, v]) => `<option value="${k}" ${k === pf.type ? 'selected' : ''}>${v.e} ${v.l}</option>`).join('')}</select></div>
-    ${pf.msg ? `<p class="note" style="color:var(--ink)">${esc(pf.msg)}</p>` : ''}
-    <div class="row" style="margin-top:14px">
-      <button class="btn" data-act="psave" style="background:var(--orange);color:#fff;flex:1;padding:13px;font-size:14px"><i class="ti ti-device-floppy"></i>${pf.editing ? 'Save changes' : 'Save location'}</button>
-      ${pf.editing || pf.name || pf.q || pf.coords ? '<button class="btn soft" data-act="pcancel" style="padding:13px 16px">Clear</button>' : ''}</div>
-    <p class="note">Place search by OpenStreetMap.</p></div>
-  ${places.length ? `<div class="h2" style="margin-top:22px">Saved</div>` : ''}
   ${filters}
   ${list}
-  ${sheetSection()}`;
+  ${placeForm()}`;
 }
 
 /* ---------- settings view ---------- */
@@ -725,8 +732,9 @@ function renderSettings() {
     ${row('Official news check', DATA.sources?.official === 'ok' ? 'Working' : 'Could not reach site')}</div>
   <div class="sec"><div class="h3">My locations</div>
     ${row('Saved locations', places.length)}
-    ${row('Google Sheets backup', sync ? (queue.length ? `On · ${queue.length} waiting` : 'On ✓') : 'Off')}
+    ${Object.entries(PT).map(([k, v]) => row(`<span class="pdot" style="background:${v.ac}"></span> ${v.l}`, places.filter(p => p.type === k).length)).join('')}
     <button class="btn soft" data-act="places" style="margin-top:8px"><i class="ti ti-map-pin"></i>Open My locations</button></div>
+  ${sheetSection()}
   <div class="sec"><div class="h3">Time zone</div>
     ${row('Showing times for', `${esc(zoneName(tz))} · ${fT(n, tz)} ${ab(n, tz)}`)}
     <button class="btn soft" data-act="tzset" style="margin-top:8px"><i class="ti ti-world"></i>Change time zone</button></div>
@@ -867,7 +875,7 @@ document.addEventListener('click', ev => {
     case 'psync': syncErr = ''; syncNow(); break;
     case 'pconnect': connectSheet(); break;
     case 'punsync': disconnectSheet(); break;
-    case 'psheet': document.getElementById('sheetsec')?.scrollIntoView({ behavior: 'smooth' }); break;
+    case 'psheet': goSheet = true; location.hash = 'settings'; break;
     case 'chk': checkUpdates(false); break;
     case 'applyupd': applyUpdate(); break;
     case 'reset': if (confirm('Clear saved data and reload?')) resetApp(); break;
@@ -894,8 +902,12 @@ document.addEventListener('change', ev => {
   if (ev.target.id === 'ptype') { pf.type = ev.target.value; render(); }
 });
 window.addEventListener('hashchange', () => {
-  det = freshDetail(); render(); scrollTo(0, 0);
+  det = freshDetail(); render();
   const app = $('#app'); app.classList.remove('enter'); void app.offsetWidth; app.classList.add('enter');
+  if (goSheet && location.hash === '#settings') {
+    goSheet = false;
+    setTimeout(() => document.getElementById('sheetsec')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+  } else scrollTo(0, 0);
   if (location.hash === '#places') syncNow();
 });
 window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; softRender(); });
@@ -927,7 +939,7 @@ fetch('data/events.json', { cache: 'no-store' })
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
   .then(j => { DATA = j; ready = true; render(); setInterval(tick, 30e3); setInterval(softRender, 5 * 60e3); setTimeout(() => checkUpdates(true), 3000); })
   .catch(() => {
-    if (location.hash === '#places') { ready = true; render(); return; } // locations work even without event data
+    if (location.hash === '#places' || location.hash === '#settings') { ready = true; render(); return; } // these pages work without event data
     $('#app').innerHTML = `<div class="h1">Event radar</div><div class="empty" style="margin-top:16px">Couldn't load events. Check your connection, then try again.<br><br><button class="btn dark" data-act="reset">Reload app</button></div>`;
   });
 
