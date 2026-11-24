@@ -129,6 +129,8 @@ select{width:100%;margin-top:10px;font-family:inherit;font-size:14px;padding:10p
 .pbtn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.65);display:inline-flex;align-items:center;justify-content:center;font-size:16px}
 .pcard{cursor:default}
 .pdot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.sync{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:7px 12px;border-radius:999px;margin-top:10px;text-align:left}
+.sync.ok{background:#DDF5E6;color:#1B6B3A}.sync.busy{background:#EAE6FB;color:#34296B}.sync.warn{background:#FDDCC4;color:#6B3410}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -142,7 +144,7 @@ select{width:100%;margin-top:10px;font-family:inherit;font-size:14px;padding:10p
   <button data-act="settings" aria-label="Settings"><i class="ti ti-settings"></i></button>
 </nav>
 <script>
-const APP_VERSION = '2.2.0';
+const APP_VERSION = '2.3.0';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const D = 864e5;
@@ -187,7 +189,7 @@ let mode = LS.get('mode', 'main');
 let where = LS.get('where', 'all');
 let countryPref = LS.get('country', '');
 let reminded = new Set(LS.get('reminded', []));
-let sel = null, tzOpen = false, cameFromList = false;
+let sel = null, tzOpen = false, cameFromList = false, ready = false;
 let DATA = { events: [], updatedAt: null, sources: {} };
 let installPrompt = null, updMsg = '', updReady = false, newVersion = '', lastCheck = 0;
 const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
@@ -195,11 +197,15 @@ const isStandalone = () => matchMedia('(display-mode: standalone)').matches || n
 const freshDetail = () => ({ filter: 'all', shinyOnly: false, expanded: new Set(), shiny: new Set() });
 let det = freshDetail();
 
-/* ---------- saved locations state ---------- */
+/* ---------- saved locations + Google Sheets sync state ---------- */
 let places = LS.get('places', []);
 const freshPlaceForm = () => ({ editing: null, name: '', q: '', addr: '', coords: '', type: 'raids', results: [], searching: false, msg: '' });
 let pf = freshPlaceForm();
 let pFilter = 'all', copiedId = null;
+let sync = LS.get('sheetSync', null);          // { url, key, sheet }
+let queue = LS.get('placeQueue', []);          // changes not yet saved to the sheet
+let syncAt = LS.get('syncAt', 0), syncBusy = false, syncErr = '';
+let sc = { url: '', key: '' };                 // connect-form values
 
 /* ---------- time helpers ---------- */
 const parts = (t, z) => Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: z, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).formatToParts(t).filter(p => p.type !== 'literal').map(p => [p.type, +p.value]));
@@ -482,6 +488,87 @@ function renderDetail(e) {
     <button class="btn" data-act="sub" style="background:#fff;padding:13px"><i class="ti ti-calendar-plus"></i>All events</button></div>`;
 }
 
+/* ---------- Google Sheets sync ---------- */
+const byNewest = l => l.slice().sort((a, b) => (b.at || 0) - (a.at || 0));
+function applyOps(list, ops) {
+  let out = list.slice();
+  for (const o of ops) {
+    if (o.op === 'upsert') { const i = out.findIndex(p => p.id === o.item.id); if (i >= 0) out[i] = o.item; else out.unshift(o.item); }
+    else if (o.op === 'delete') out = out.filter(p => p.id !== o.id);
+  }
+  return out;
+}
+function queueOp(op) {
+  if (!sync) return;
+  queue.push(op); LS.set('placeQueue', queue);
+  syncNow();
+}
+async function syncNow() {
+  if (!sync || syncBusy) return;
+  if (!navigator.onLine) { syncErr = 'Offline · will sync when you are back online'; softRender(); return; }
+  syncBusy = true; syncErr = ''; softRender();
+  const ops = queue.slice();
+  try {
+    const r = await fetch(sync.url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ key: sync.key, ops }) });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    let j;
+    try { j = await r.json(); } catch { throw new Error("The link isn't a working web app. Check the deployment is set to “Anyone”."); }
+    if (!j.ok) throw new Error(j.error || 'The sheet refused the change');
+    queue = queue.slice(ops.length); LS.set('placeQueue', queue);
+    places = byNewest(applyOps(j.places || [], queue)); LS.set('places', places);
+    if (j.sheet && sync.sheet !== j.sheet) { sync.sheet = j.sheet; LS.set('sheetSync', sync); }
+    syncAt = Date.now(); LS.set('syncAt', syncAt);
+  } catch (err) {
+    syncErr = /fetch|Load failed|NetworkError/i.test(err.message) ? "Can't reach Google right now. Will retry." : err.message;
+  } finally { syncBusy = false; }
+  softRender();
+  if (!syncErr && queue.length) syncNow();
+}
+function connectSheet() {
+  const url = sc.url.trim(), key = sc.key.trim();
+  if (!/^https:\/\/script\.google(?:usercontent)?\.com\/.+\/exec\b/.test(url)) { syncErr = 'Paste the Web app URL. It starts with https://script.google.com and ends in /exec'; render(); return; }
+  if (!key) { syncErr = 'Paste your sync key from the Apps Script log.'; render(); return; }
+  sync = { url, key }; LS.set('sheetSync', sync);
+  // Upload what's already on this phone; the sheet then sends back the full list
+  queue = [...places.map(p => ({ op: 'upsert', item: p })), ...queue.filter(o => o.op === 'delete')];
+  LS.set('placeQueue', queue);
+  sc = { url: '', key: '' }; syncErr = '';
+  syncNow();
+}
+function disconnectSheet() {
+  if (!confirm('Stop syncing on this device? Your Google Sheet keeps everything.')) return;
+  sync = null; queue = []; syncErr = '';
+  LS.set('sheetSync', null); LS.set('placeQueue', []);
+  render();
+}
+function syncChip() {
+  if (!sync) return `<button class="sync warn" data-act="psheet"><i class="ti ti-cloud-off"></i>Not backed up · set up Google Sheets</button>`;
+  const w = queue.length ? ` · ${queue.length} waiting` : '';
+  if (syncBusy) return `<span class="sync busy"><i class="ti ti-cloud-up"></i>Syncing…${w}</span>`;
+  if (syncErr) return `<button class="sync warn" data-act="psync"><i class="ti ti-alert-triangle"></i>${esc(syncErr)}${w} · tap to retry</button>`;
+  const ago = syncAt ? ' · ' + (Date.now() - syncAt < 6e4 ? 'just now' : left(Date.now() - syncAt) + ' ago') : '';
+  return `<button class="sync ok" data-act="psync"><i class="ti ti-cloud-check"></i>Backed up to Google Sheets${ago}</button>`;
+}
+function sheetSection() {
+  if (sync) return `<div class="sec" id="sheetsec"><div class="h3">Google Sheets backup</div>
+    <div class="srow"><span>Status</span><b>${syncBusy ? 'Syncing…' : syncErr ? esc(syncErr) : 'Connected ✓'}</b></div>
+    <div class="srow"><span>Last synced</span><b>${syncAt ? `${fD(syncAt, tz)}, ${fT(syncAt, tz)}` : 'Not yet'}</b></div>
+    <div class="srow"><span>Changes waiting</span><b>${queue.length}</b></div>
+    <div class="row" style="margin-top:10px;flex-wrap:wrap">
+      <button class="btn dark" data-act="psync"><i class="ti ti-refresh"></i>Sync now</button>
+      ${sync.sheet ? `<a class="btn soft" href="${esc(sync.sheet)}" target="_blank" rel="noopener" style="text-decoration:none"><i class="ti ti-table"></i>Open sheet</a>` : ''}
+      <button class="btn soft" data-act="punsync"><i class="ti ti-plug-connected-x"></i>Disconnect</button></div>
+    <p class="note">The sheet is the main copy. Rows you add or edit in the sheet show up here on the next sync.</p></div>`;
+  return `<div class="sec" id="sheetsec"><div class="h3">Google Sheets backup</div>
+    <p class="note" style="margin:0">Connect your Google Sheet so your locations are never lost, and so they show up on any phone you connect.</p>
+    <label class="lbl" for="scurl">Web app URL</label>
+    <input class="inp" id="scurl" data-sc="url" value="${esc(sc.url)}" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off" inputmode="url">
+    <label class="lbl" for="sckey">Sync key</label>
+    <input class="inp mono" id="sckey" data-sc="key" value="${esc(sc.key)}" placeholder="From the Apps Script log" autocomplete="off">
+    ${syncErr ? `<p class="note" style="color:#6B3410">${esc(syncErr)}</p>` : ''}
+    <button class="btn dark" data-act="pconnect" style="margin-top:12px;width:100%;padding:12px;font-size:14px"><i class="ti ti-cloud-up"></i>Connect</button></div>`;
+}
+
 /* ---------- locations view ---------- */
 const coordStr = p => `${(+p.lat).toFixed(6)}, ${(+p.lng).toFixed(6)}`;
 function parseCoords(s) {
@@ -518,13 +605,14 @@ function savePlace() {
   const c = parseCoords(pf.coords);
   if (!c) { pf.msg = 'Add coordinates: tap Find, or paste them like 37.808674, -122.409821'; render(); return; }
   const name = pf.name.trim() || pf.q.trim() || 'My spot';
-  const item = { id: pf.editing || Date.now().toString(36), name, place: pf.q.trim(), addr: pf.addr || '', lat: c.lat, lng: c.lng, type: pf.type, at: Date.now() };
-  if (pf.editing) places = places.map(p => p.id === pf.editing ? { ...item, at: p.at } : p);
-  else places.unshift(item);
+  const old = pf.editing ? places.find(p => p.id === pf.editing) : null;
+  const item = { id: old ? old.id : Date.now().toString(36), name, place: pf.q.trim(), addr: pf.addr || '', lat: c.lat, lng: c.lng, type: pf.type, at: old?.at || Date.now() };
+  places = old ? places.map(p => p.id === old.id ? item : p) : [item, ...places];
   LS.set('places', places);
   const type = item.type;
   pf = freshPlaceForm(); pf.type = type; pf.msg = `Saved “${name}”.`;
   render();
+  queueOp({ op: 'upsert', item });
 }
 function editPlace(id) {
   const p = places.find(x => x.id === id);
@@ -539,6 +627,7 @@ function deletePlace(id) {
   LS.set('places', places);
   if (pf.editing === id) pf = freshPlaceForm();
   render();
+  queueOp({ op: 'delete', id });
 }
 async function copyText(t) {
   try { await navigator.clipboard.writeText(t); return true; } catch {}
@@ -584,6 +673,7 @@ function renderPlaces() {
   return `<div class="between"><button class="circle" data-act="home" aria-label="Back"><i class="ti ti-arrow-left"></i></button><span></span></div>
   <div class="h1" style="margin-top:14px">My locations</div>
   <p class="muted" style="font-size:13.5px;margin:6px 0 0">Save spots for coins, raids and events. Copy the coordinates with one tap.</p>
+  ${syncChip()}
   ${updBanner()}
   <div class="sec"><div class="h3" style="margin:0">${pf.editing ? 'Edit location' : 'Add a location'}</div>
     <label class="lbl" for="pname">Name</label>
@@ -601,10 +691,11 @@ function renderPlaces() {
     <div class="row" style="margin-top:14px">
       <button class="btn" data-act="psave" style="background:var(--orange);color:#fff;flex:1;padding:13px;font-size:14px"><i class="ti ti-device-floppy"></i>${pf.editing ? 'Save changes' : 'Save location'}</button>
       ${pf.editing || pf.name || pf.q || pf.coords ? '<button class="btn soft" data-act="pcancel" style="padding:13px 16px">Clear</button>' : ''}</div>
-    <p class="note">Place search by OpenStreetMap. Locations are saved on this device only.</p></div>
+    <p class="note">Place search by OpenStreetMap.</p></div>
   ${places.length ? `<div class="h2" style="margin-top:22px">Saved</div>` : ''}
   ${filters}
-  ${list}`;
+  ${list}
+  ${sheetSection()}`;
 }
 
 /* ---------- settings view ---------- */
@@ -631,8 +722,11 @@ function renderSettings() {
     ${row('Events loaded', DATA.events.length)}
     ${row('City or country events', DATA.events.filter(e => e.place).length)}
     ${row('Event pages read', DATA.sources?.pages ?? '—')}
-    ${row('Official news check', DATA.sources?.official === 'ok' ? 'Working' : 'Could not reach site')}
-    ${row('Saved locations', places.length)}</div>
+    ${row('Official news check', DATA.sources?.official === 'ok' ? 'Working' : 'Could not reach site')}</div>
+  <div class="sec"><div class="h3">My locations</div>
+    ${row('Saved locations', places.length)}
+    ${row('Google Sheets backup', sync ? (queue.length ? `On · ${queue.length} waiting` : 'On ✓') : 'Off')}
+    <button class="btn soft" data-act="places" style="margin-top:8px"><i class="ti ti-map-pin"></i>Open My locations</button></div>
   <div class="sec"><div class="h3">Time zone</div>
     ${row('Showing times for', `${esc(zoneName(tz))} · ${fT(n, tz)} ${ab(n, tz)}`)}
     <button class="btn soft" data-act="tzset" style="margin-top:8px"><i class="ti ti-world"></i>Change time zone</button></div>
@@ -659,7 +753,7 @@ function renderSettings() {
     <div class="brow"><span class="bic"><i class="ti ti-map-pin"></i></span><span><b>OpenStreetMap</b> place search for My locations. © OpenStreetMap contributors.</span></div>
     <p class="note">Not affiliated with Niantic, The Pokémon Company or LeekDuck.</p></div>
   <div class="sec"><div class="h3">Troubleshooting</div>
-    <p class="note" style="margin:0 0 10px">Something looks old or broken? This clears saved copies and reloads the latest version. Your saved locations are kept.</p>
+    <p class="note" style="margin:0 0 10px">Something looks old or broken? This clears saved copies and reloads the latest version. Your saved locations and sheet connection are kept.</p>
     <button class="btn soft" data-act="reset"><i class="ti ti-trash"></i>Clear saved data and reload</button></div>`;
 }
 
@@ -770,6 +864,10 @@ document.addEventListener('click', ev => {
     case 'pdel': deletePlace(v); break;
     case 'pcopy': copyPlace(v); break;
     case 'pfilter': pFilter = v; render(); break;
+    case 'psync': syncErr = ''; syncNow(); break;
+    case 'pconnect': connectSheet(); break;
+    case 'punsync': disconnectSheet(); break;
+    case 'psheet': document.getElementById('sheetsec')?.scrollIntoView({ behavior: 'smooth' }); break;
     case 'chk': checkUpdates(false); break;
     case 'applyupd': applyUpdate(); break;
     case 'reset': if (confirm('Clear saved data and reload?')) resetApp(); break;
@@ -779,12 +877,13 @@ document.addEventListener('click', ev => {
     case 'hideinstall': LS.set('installHidden', true); render(); break;
   }
 });
-// Typing in the locations form: remember values without redrawing (keeps the keyboard open)
+// Typing in forms: remember values without redrawing (keeps the keyboard open)
 document.addEventListener('input', ev => {
-  const k = ev.target.dataset?.pf;
-  if (!k) return;
-  pf[k] = ev.target.value;
-  if (k === 'q') pf.addr = '';
+  const d = ev.target.dataset || {};
+  if (d.sc) { sc[d.sc] = ev.target.value; return; }
+  if (!d.pf) return;
+  pf[d.pf] = ev.target.value;
+  if (d.pf === 'q') pf.addr = '';
 });
 document.addEventListener('keydown', ev => {
   if (ev.key === 'Enter' && ev.target.dataset?.pf === 'q') { ev.preventDefault(); ev.target.blur(); searchPlace(); }
@@ -797,11 +896,15 @@ document.addEventListener('change', ev => {
 window.addEventListener('hashchange', () => {
   det = freshDetail(); render(); scrollTo(0, 0);
   const app = $('#app'); app.classList.remove('enter'); void app.offsetWidth; app.classList.add('enter');
+  if (location.hash === '#places') syncNow();
 });
 window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; softRender(); });
 window.addEventListener('appinstalled', () => { installPrompt = null; LS.set('installHidden', true); render(); });
+window.addEventListener('online', () => syncNow());
 document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible' && Date.now() - lastCheck > 10 * 6e4) checkUpdates(true);
+  if (document.visibilityState !== 'visible') return;
+  if (Date.now() - lastCheck > 10 * 6e4) checkUpdates(true);
+  syncNow();
 });
 
 function render() {
@@ -811,9 +914,9 @@ function render() {
   const cur = settings ? 'settings' : placesPage ? 'places' : e ? '' : tzOpen ? 'tz' : 'home';
   document.querySelectorAll('.nav [data-act]').forEach(b => b.classList.toggle('cur', b.dataset.act === cur));
 }
-// Background redraws skip while you're typing, so the form doesn't lose focus
+// Background redraws wait until the app has loaded, and skip while you're typing
 function softRender() {
-  if (document.activeElement?.matches?.('input, textarea')) return;
+  if (!ready || document.activeElement?.matches?.('input, textarea')) return;
   render();
 }
 function tick() {
@@ -822,11 +925,13 @@ function tick() {
 
 fetch('data/events.json', { cache: 'no-store' })
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then(j => { DATA = j; render(); setInterval(tick, 30e3); setInterval(softRender, 5 * 60e3); setTimeout(() => checkUpdates(true), 3000); })
+  .then(j => { DATA = j; ready = true; render(); setInterval(tick, 30e3); setInterval(softRender, 5 * 60e3); setTimeout(() => checkUpdates(true), 3000); })
   .catch(() => {
-    if (location.hash === '#places') { render(); return; } // locations work even without event data
+    if (location.hash === '#places') { ready = true; render(); return; } // locations work even without event data
     $('#app').innerHTML = `<div class="h1">Event radar</div><div class="empty" style="margin-top:16px">Couldn't load events. Check your connection, then try again.<br><br><button class="btn dark" data-act="reset">Reload app</button></div>`;
   });
+
+syncNow(); // pull the latest locations from Google Sheets (does nothing until connected)
 
 if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
