@@ -111,6 +111,7 @@ const STOP = new Set(['the', 'and', 'with', 'for', 'pokemon', 'event', 'events',
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const pad = n => String(n).padStart(2, '0');
 const isZoned = s => /Z$|[+-]\d{2}:?\d{2}$/.test(s || '');
+const stripTags = s => String(s || '').replace(/<[^>]+>/g, '').trim();
 
 const parts = (t, z) => Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: z, hourCycle: 'h23',
   year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' })
@@ -345,8 +346,8 @@ const events = raw
     if (live && LIVE_EXTRAS.has(type)) {
       if (!x.raidbattles?.bosses?.length) groups.push(group('raids-now', 'Raids right now', 'shield', raids, p => p.tier));
       groups.push(group('eggs-now', 'Eggs right now', 'egg', eggs, p => p.eggType ? p.eggType + (p.isAdventureSync ? ' · Adventure Sync' : '') : ''));
-      // Each research task becomes a heading with its reward Pokémon under it
-      const tasks = research.flatMap(r => (r.rewards || []).map(p => ({ ...p, task: r.text || '' })));
+      // Each research task becomes a heading with its reward Pokémon under it (HTML tags removed)
+      const tasks = research.flatMap(r => (r.rewards || []).map(p => ({ ...p, task: stripTags(r.text) })));
       groups.push(group('research-now', 'Field research right now', 'map-search', tasks, p => p.task));
     }
 
@@ -424,7 +425,7 @@ function describe(e) {
   const list = l => l.map(p => p.name + (p.shiny ? ' ✨' : '')).join(', ');
   for (const g of e.groups) {
     const tiers = [...new Set(g.items.map(p => p.tier || ''))];
-    if (tiers.length > 1) out.push(`${g.label}:` + tiers.map(t => `\n• ${t ? t + ': ' : ''}${list(g.items.filter(p => (p.tier || '') === t))}`).join(''));
+    if (tiers.length > 1) out.push(`${g.label}:` + tiers.map(t => `\n• ${t ? stripTags(t) + ': ' : ''}${list(g.items.filter(p => (p.tier || '') === t))}`).join(''));
     else out.push(`${g.label}: ${list(g.items)}`);
   }
   if (e.bonuses.length) out.push('Bonuses: ' + e.bonuses.map(b => b.text).join('; '));
