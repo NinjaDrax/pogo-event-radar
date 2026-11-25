@@ -44,8 +44,9 @@ button:active,.tile:active{transform:scale(.92)}
 .chip.gold{background:#F8E39A;color:#5C4300}
 .wchips .chip{background:#fff}
 .wchips .chip.on{background:var(--ink);color:#fff}
-.week{display:flex;justify-content:space-between;margin-top:18px}
-.day{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:12px;color:var(--mut)}
+.week{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-top:18px;padding-bottom:2px}
+.week::-webkit-scrollbar{display:none}
+.day{flex:0 0 calc(100% / 7);scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:12px;color:var(--mut)}
 .dc{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--ink);transition:background-color .2s,color .2s}
 .day.sel .dc{background:var(--ink);color:#fff}
 .day.today:not(.sel) .dc{box-shadow:inset 0 0 0 1.5px var(--ink)}
@@ -135,6 +136,23 @@ select{width:100%;margin-top:10px;font-family:inherit;font-size:14px;padding:10p
 .pdot{width:8px;height:8px;border-radius:50%;display:inline-block}
 .sync{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:7px 12px;border-radius:999px;margin-top:10px;text-align:left}
 .sync.ok{background:#DDF5E6;color:#1B6B3A}.sync.busy{background:#EAE6FB;color:#34296B}.sync.warn{background:#FDDCC4;color:#6B3410}
+/* day overview */
+.today{background:#fff;border-radius:26px;padding:16px;margin-top:14px}
+.verdict{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;font-size:14px;margin:10px 0 2px}
+.verdict.hot{background:#FFE3CF;color:#6B3410}
+.verdict.calm{background:var(--bg);color:var(--ink)}
+.tl{font-size:11.5px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--mut);margin:16px 0 4px}
+.tmore{display:flex;justify-content:space-between;align-items:center;width:100%}
+.trow{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid #F0EAE0;cursor:pointer}
+.tl + .trow{border-top:none}
+.tic{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.tmain{flex:1;min-width:0}
+.tname{font-size:14.5px;font-weight:600;line-height:1.25}
+.tsub{font-size:12px;color:var(--mut);margin-top:2px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.tchip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;padding:4px 10px;border-radius:999px;white-space:nowrap;flex-shrink:0}
+.tchip.live{background:#DDF5E6;color:#1B6B3A}
+.tchip.soon{background:#EAE6FB;color:#34296B}
+.tchip.new{background:#FFE3CF;color:#6B3410}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -148,7 +166,7 @@ select{width:100%;margin-top:10px;font-family:inherit;font-size:14px;padding:10p
   <button data-act="settings" aria-label="Settings"><i class="ti ti-settings"></i></button>
 </nav>
 <script>
-const APP_VERSION = '2.4.0';
+const APP_VERSION = '2.5.0';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const D = 864e5;
@@ -224,6 +242,7 @@ const left = ms => { const m = Math.max(0, Math.round(ms / 6e4)), d = Math.floor
 const zoneName = z => (ZONES.find(x => x[1] === z) || [z.split('/').pop().replace(/_/g, ' ')])[0];
 const agoText = () => DATA.updatedAt ? `${left(Date.now() - Date.parse(DATA.updatedAt))} ago` : 'unknown';
 const isZoned = s => /Z$|[+-]\d{2}:?\d{2}$/.test(s || '');
+const clean = s => String(s ?? '').replace(/<[^>]*>/g, '').trim();
 
 function times(e) {
   if (e.scope === 'global' || isZoned(e.start)) return [Date.parse(e.start), Date.parse(e.end)];
@@ -370,28 +389,111 @@ function nowCardHtml(all, n) {
     <div style="font-size:13px">${cnt('raids-now')} raid bosses · ${cnt('eggs-now')} egg Pokémon · ${tasks} research tasks</div>
     <div style="font-size:11.5px;opacity:.8;margin-top:6px">Part of ${esc(season.e.name)} · updated ${agoText()}</div></div>`;
 }
+
+/* ---------- day overview: what's worth it ---------- */
+const TIMED_MAX = 12 * 36e5;
+const BIG_RAID = /legendary|5-star|five-star|mega|shadow|elite|super/i;
+const BACKGROUND = new Set(['season', 'go-pass', 'go-battle-league', 'research', 'timed-research', 'research-breakthrough']);
+const NOT_MON = /^(?:catch|explore|hatch|evolve|mega evolve|win|make|spin|power|use|trade|send|earn|take|defeat)\b|REWARD|\?\?\?/i;
+let bgOpen = false, shownDay = null;
+
+const onDay = (x, k) => dk(x.s, tz) <= k && k <= dk(x.en - 1, tz);
+const keyMons = e => allMons(e).filter(p => !NOT_MON.test(p.name));
+const byRank = (a, b) => b.r.score - a.r.score || a.x.s - b.x.s;
+
+function rankEv(x, k) {
+  const { e, s, en } = x, t = e.type || '';
+  if (BACKGROUND.has(t)) return { tier: 'bg', score: e.main ? 15 : 10 };
+  if (en - s <= TIMED_MAX) return { tier: 'timed', score: 100 };      // Raid Hour, Spotlight, Raid Day…
+  let score = 55;
+  if (t === 'community-day') score = 95;
+  else if (/raid/.test(t) && BIG_RAID.test(e.name)) score = 85;       // legendary / mega / shadow raids
+  else if (e.place) score = isMine(e) ? 85 : 40;
+  else if (e.main) score = 75;
+  else if (t === 'max-mondays') score = 60;
+  if (dk(s, tz) === k) score += 5;                                     // new on this day
+  return { tier: 'top', score };
+}
+function rowSub({ x, r }, k) {
+  const { e, s, en } = x, bits = [];
+  if (r.tier === 'timed') bits.push(`${fT(s, tz)} – ${fT(en, tz)}`);
+  else if (dk(en - 1, tz) === k) bits.push(`Ends ${fT(en, tz)}`);
+  else bits.push(`Until ${fD(en, tz)}`);
+  if (e.place) bits.push('📍 ' + placeLabel(e));
+  const m = keyMons(e);
+  if (m.length) bits.push(m.slice(0, 3).map(p => p.name).join(', ') + (m.length > 3 ? ` +${m.length - 3}` : ''));
+  else if (e.bonuses?.length) bits.push(e.bonuses[0].text);
+  return bits.join(' · ');
+}
+function rowChip({ x, r }, n, k) {
+  const { s, en } = x;
+  if (s > n || r.tier === 'timed') return `<span class="tchip ${s > n ? 'soon' : 'live'}" data-s="${s}" data-e="${en}"><span class="cdt">${cdText(s, en)}</span></span>`;
+  const fresh = dk(s, tz) === k;
+  return `<span class="tchip ${fresh ? 'new' : 'live'}"><span class="live-dot"></span>${fresh ? 'New · live' : 'Live'}</span>`;
+}
+function rowHtml(o, n, k) {
+  const e = o.x.e, th = theme(e), m = keyMons(e)[0];
+  const pic = m ? av(m, th, 42) : `<span class="tic" style="background:${th.bg};color:${th.fg}"><i class="ti ti-${th.i}"></i></span>`;
+  return `<div class="trow" data-open="${esc(e.id)}">${pic}<div class="tmain"><div class="tname">${esc(e.name)}</div><div class="tsub">${esc(rowSub(o, k))}</div></div>${rowChip(o, n, k)}</div>`;
+}
+function dayPanelHtml(placed, n, k, tk) {
+  const rows = placed.filter(x => onDay(x, k)).map(x => ({ x, r: rankEv(x, k) }));
+  const timed = rows.filter(o => o.r.tier === 'timed').sort((a, b) => a.x.s - b.x.s);
+  const top = rows.filter(o => o.r.tier === 'top').sort(byRank);
+  const bg = rows.filter(o => o.r.tier === 'bg').sort(byRank);
+  const isToday = k === tk, hot = timed.length > 0 || top.some(o => o.r.score >= 80);
+  const fresh = top.filter(o => dk(o.x.s, tz) === k).length;
+  const summary = [
+    timed.length && `${timed.length} limited-time ${timed.length > 1 ? 'windows' : 'window'}`,
+    top.length && `${top.length} events & raids`,
+    fresh && `${fresh} new`
+  ].filter(Boolean).join(' · ');
+  const vt = hot ? (isToday ? 'Worth opening the game today' : 'Big day')
+    : top.length ? (isToday ? 'A few things running today' : 'Some things running') : 'Quiet day';
+  const sec = (t, l) => l.length ? `<div class="tl">${t}</div>${l.map(o => rowHtml(o, n, k)).join('')}` : '';
+  const title = isToday ? 'Today' : fD(k * D, 'UTC', { weekday: 'long', day: 'numeric', month: 'short' });
+  return `<div class="today">
+    <div class="between"><div class="h2">${title}</div>${isToday ? '' : '<button class="muted" data-act="clear" style="font-size:12.5px">Back to today</button>'}</div>
+    <div class="verdict ${hot ? 'hot' : 'calm'}"><i class="ti ti-${hot ? 'flame' : top.length ? 'calendar-event' : 'moon'}" style="font-size:22px"></i>
+      <div><div style="font-weight:600">${vt}</div>${summary ? `<div style="font-size:12px;opacity:.85">${summary}</div>` : ''}</div></div>
+    ${sec('⏰ Only for a few hours', timed)}
+    ${sec(isToday ? '🔥 Running today' : '🔥 Running this day', top)}
+    ${bg.length ? `<button class="tl tmore" data-act="bgmore"><span>Also running · ${bg.length}</span><i class="ti ti-chevron-${bgOpen ? 'up' : 'down'}"></i></button>${bgOpen ? bg.map(o => rowHtml(o, n, k)).join('') : ''}` : ''}
+    ${rows.length ? '' : '<p class="muted" style="font-size:13.5px;margin:10px 0 0">Nothing scheduled.</p>'}
+  </div>`;
+}
+
 function renderList() {
-  const n = Date.now(), tk = dk(n, tz), wd = new Date(tk * D).getUTCDay(), mon = tk - ((wd + 6) % 7);
+  const n = Date.now(), tk = dk(n, tz);
+  if (sel !== null && sel <= tk) sel = null;
+  if (shownDay !== null && shownDay !== tk) bgOpen = false;
+  shownDay = tk;
+  const day = sel ?? tk;
   const all = DATA.events.map(e => { const [s, en] = times(e); return { e, s, en }; }).filter(x => x.en > n);
   const placed = all.filter(x => whereOk(x.e));
-  const vis = placed.filter(x => mode === 'all' || x.e.main);
-  const onDay = (x, k) => dk(x.s, tz) <= k && k <= dk(x.en - 1, tz);
-  const week = [...Array(7)].map((_, i) => {
-    const k = mon + i, d = new Date(k * D), evs = vis.filter(x => onDay(x, k));
-    const cls = ['day', k === tk ? 'today' : '', (sel === null ? k === tk : k === sel) ? 'sel' : ''].join(' ');
-    return `<button class="${cls}" data-act="day" data-v="${k}">${d.toLocaleDateString(undefined, { weekday: 'short', timeZone: 'UTC' })}<span class="dc">${d.getUTCDate()}</span><span class="dots">${evs.slice(0, 3).map(x => `<i style="background:${theme(x.e).ac}"></i>`).join('')}</span></button>`;
+
+  // Rolling 14 days starting today, in the chosen time zone
+  const week = [...Array(14)].map((_, i) => {
+    const k = tk + i, d = new Date(k * D);
+    const dots = placed.filter(x => onDay(x, k)).map(x => ({ x, r: rankEv(x, k) }))
+      .filter(o => o.r.tier !== 'bg').sort(byRank).slice(0, 3);
+    return `<button class="day${i === 0 ? ' today' : ''}${k === day ? ' sel' : ''}" data-act="day" data-v="${k}">${i === 0 ? 'Today' : d.toLocaleDateString(undefined, { weekday: 'short', timeZone: 'UTC' })}<span class="dc">${d.getUTCDate()}</span><span class="dots">${dots.map(o => `<i style="background:${theme(o.x.e).ac}"></i>`).join('')}</span></button>`;
   }).join('');
-  const list = vis.filter(x => sel === null || onDay(x, sel)).sort((a, b) => a.s - b.s);
-  let body;
-  if (!list.length) body = `<div class="empty">${where === 'special' ? 'No city or country events coming up right now.' : `No events ${sel === null ? 'coming up' : 'this day'}. Rest up, trainer.`}</div>`;
-  else if (sel !== null) body = list.map(x => card(x, tk)).join('');
-  else {
-    const groups = [['Happening now', list.filter(x => x.s <= n)], ['Next 7 days', list.filter(x => x.s > n && x.s <= n + 7 * D)], ['Later', list.filter(x => x.s > n + 7 * D)]];
-    body = groups.filter(g => g[1].length).map(([t, l]) => `<div class="sub">${t} · ${l.length}</div>` + l.map(x => card(x, tk)).join('')).join('');
+
+  // "Coming up" = starts after today; Main/All only applies here
+  let comingUp = '';
+  if (sel === null) {
+    const up = placed.filter(x => (mode === 'all' || x.e.main) && dk(x.s, tz) > tk).sort((a, b) => a.s - b.s);
+    const groups = [['Next 7 days', up.filter(x => x.s <= n + 7 * D)], ['Later', up.filter(x => x.s > n + 7 * D)]];
+    comingUp = `<div class="between" style="margin:24px 0 4px"><div class="h2">Coming up</div>
+      <div class="seg"><button class="${mode === 'main' ? 'on' : ''}" data-act="mode" data-v="main">Main</button><button class="${mode === 'all' ? 'on' : ''}" data-act="mode" data-v="all">All</button></div></div>`
+      + (up.length ? groups.filter(g => g[1].length).map(([t, l]) => `<div class="sub">${t} · ${l.length}</div>` + l.map(x => card(x, tk)).join('')).join('')
+        : `<div class="empty">Nothing else coming up.</div>`);
   }
+
   const mc = myCountry();
-  const specialCount = all.filter(x => x.e.place && (mode === 'all' || x.e.main)).length;
-  const whereRow = `<div class="chips wchips" style="margin:10px 0 4px">
+  const specialCount = all.filter(x => x.e.place).length;
+  const whereRow = `<div class="chips wchips" style="margin:14px 0 0">
     <button class="chip ${where === 'all' ? 'on' : ''}" data-act="where" data-v="all"><i class="ti ti-world"></i> Everywhere</button>
     <button class="chip ${where === 'mine' ? 'on' : ''}" data-act="where" data-v="mine"><i class="ti ti-home"></i> ${mc ? 'For ' + esc(mc) : 'My country'}</button>
     <button class="chip ${where === 'special' ? 'on' : ''}" data-act="where" data-v="special"><i class="ti ti-map-pin"></i> Special places${specialCount ? ' · ' + specialCount : ''}</button></div>`;
@@ -400,18 +502,16 @@ function renderList() {
     <div class="chips">${ZONES.map(([l, z]) => `<button class="chip ${z === tz ? 'on' : ''}" data-act="zone" data-v="${z}">${l}</button>`).join('')}</div>
     <select id="zsel" aria-label="Other time zone"><option value="">Other time zone…</option>${zones.map(z => `<option value="${z}" ${z === tz ? 'selected' : ''}>${z.replace(/_/g, ' ')}</option>`).join('')}</select>
     <p class="note">Most events run on local time, so 2 PM is 2 PM wherever you are. Global and in-person events are converted to the zone you pick.</p></div>` : '';
+
   return `<div class="between" style="align-items:flex-start">
-      <div><div class="muted" style="font-size:13.5px">${fD(n, tz, { weekday: 'long', day: 'numeric', month: 'long' })}</div><div class="h1">Event radar</div></div>
-      <button class="tzbtn" data-act="tz"><span class="row" style="gap:5px"><i class="ti ti-world"></i>${esc(zoneName(tz))}<i class="ti ti-chevron-${tzOpen ? 'up' : 'down'}"></i></span><span class="muted" style="font-size:11.5px">${fT(n, tz)} ${ab(n, tz)}</span></button></div>
+      <div><div class="muted" style="font-size:13.5px" data-clock="date">${fD(n, tz, { weekday: 'long', day: 'numeric', month: 'long' })}</div><div class="h1">Event radar</div></div>
+      <button class="tzbtn" data-act="tz"><span class="row" style="gap:5px"><i class="ti ti-world"></i>${esc(zoneName(tz))}<i class="ti ti-chevron-${tzOpen ? 'up' : 'down'}"></i></span><span class="muted" style="font-size:11.5px" data-clock="time">${fT(n, tz)} ${ab(n, tz)}</span></button></div>
     ${updBanner()}${tzPanel}${installHtml()}
     <div class="week">${week}</div>
-    ${bannerHtml(placed, n, tk)}
-    ${sel === null ? nowCardHtml(all, n) : ''}
-    <div class="between" style="margin:20px 0 4px">
-      <div class="h2">${sel === null ? 'Upcoming' : fD(sel * D, 'UTC')}${sel !== null ? ` <button data-act="clear" class="muted" style="font-size:12.5px;font-weight:400">Show all</button>` : ''}</div>
-      <div class="seg"><button class="${mode === 'main' ? 'on' : ''}" data-act="mode" data-v="main">Main</button><button class="${mode === 'all' ? 'on' : ''}" data-act="mode" data-v="all">All</button></div></div>
     ${whereRow}
-    ${body}
+    ${dayPanelHtml(placed, n, day, tk)}
+    ${sel === null ? nowCardHtml(all, n) + bannerHtml(placed, n, tk) : ''}
+    ${comingUp}
     <p class="muted" style="font-size:11.5px;text-align:center;margin-top:18px">Updated ${agoText()} · Data: LeekDuck via ScrapedDuck</p>`;
 }
 
@@ -453,7 +553,7 @@ function monsSection(e, th) {
     const tiers = [...new Set(shown.map(p => p.tier).filter(Boolean))];
     const grid = l => `<div class="grid" style="margin-top:8px">${l.map(p => tile(p, th, g.key)).join('')}</div>`;
     const inner = tiers.length
-      ? tiers.map(t => { const o = noOdds ? '' : oddsFor(t, e); return `<div class="tier">${esc(t)}${o ? ` · ✨ ${o}` : ''}</div>` + grid(shown.filter(p => p.tier === t)); }).join('') + (shown.some(p => !p.tier) ? grid(shown.filter(p => !p.tier)) : '')
+      ? tiers.map(t => { const o = noOdds ? '' : oddsFor(t, e); return `<div class="tier">${esc(clean(t))}${o ? ` · ✨ ${o}` : ''}</div>` + grid(shown.filter(p => p.tier === t)); }).join('') + (shown.some(p => !p.tier) ? grid(shown.filter(p => !p.tier)) : '')
       : grid(shown);
     const o = tiers.length || noOdds ? '' : oddsFor(g.label, e);
     return `${head}<div class="grp ${g.st}"><div class="gh"><span class="gi" style="background:${th.bg};color:${th.fg}"><i class="ti ti-${g.icon || 'pokeball'}"></i></span>${esc(g.label)}<span class="muted" style="font-weight:400;font-size:12.5px">${g.items.length}</span>${o ? `<span class="odds">✨ ${o}</span>` : ''}</div>${stPill(g)}${inner}
@@ -736,7 +836,7 @@ function renderSettings() {
     <button class="btn soft" data-act="places" style="margin-top:8px"><i class="ti ti-map-pin"></i>Open My locations</button></div>
   ${sheetSection()}
   <div class="sec"><div class="h3">Time zone</div>
-    ${row('Showing times for', `${esc(zoneName(tz))} · ${fT(n, tz)} ${ab(n, tz)}`)}
+    ${row('Showing times for', `${esc(zoneName(tz))} · <span data-clock="time">${fT(n, tz)} ${ab(n, tz)}</span>`)}
     <button class="btn soft" data-act="tzset" style="margin-top:8px"><i class="ti ti-world"></i>Change time zone</button></div>
   <div class="sec"><div class="h3">Your country</div>
     ${row('Using', esc(myCountry() || 'Not set'))}
@@ -833,7 +933,7 @@ async function share(e) {
   if (navigator.share) { try { await navigator.share({ title, url }); } catch {} return; }
   try { await navigator.clipboard.writeText(url); alert('Link copied'); } catch {}
 }
-function setTz(z) { tz = z; LS.set('tz', z); sel = null; tzOpen = false; render(); }
+function setTz(z) { tz = z; LS.set('tz', z); sel = null; tzOpen = false; bgOpen = false; render(); }
 function goList() { if (location.hash) location.hash = ''; else render(); scrollTo(0, 0); }
 
 document.addEventListener('click', ev => {
@@ -852,10 +952,11 @@ document.addEventListener('click', ev => {
     case 'places': tzOpen = false; location.hash = 'places'; break;
     case 'home': sel = null; tzOpen = false; goList(); break;
     case 'zone': setTz(v); break;
-    case 'day': sel = sel === +v ? null : +v; render(); break;
+    case 'day': { const k = +v; sel = (sel === k || k === dk(Date.now(), tz)) ? null : k; bgOpen = false; render(); break; }
     case 'mode': mode = v; LS.set('mode', v); render(); break;
     case 'where': where = v; LS.set('where', v); render(); break;
-    case 'clear': sel = null; render(); break;
+    case 'clear': sel = null; bgOpen = false; render(); break;
+    case 'bgmore': bgOpen = !bgOpen; render(); break;
     case 'sub': subscribe(v === 'all' ? 'all' : 'main'); break;
     case 'remind': remind(find(v)); break;
     case 'back': if (cameFromList) history.back(); else location.hash = ''; break;
@@ -915,14 +1016,17 @@ window.addEventListener('appinstalled', () => { installPrompt = null; LS.set('in
 window.addEventListener('online', () => syncNow());
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState !== 'visible') return;
+  tick();
   if (Date.now() - lastCheck > 10 * 6e4) checkUpdates(true);
   syncNow();
 });
 
 function render() {
+  const wl = document.querySelector('.week')?.scrollLeft || 0;
   const h = location.hash, m = h.match(/^#e=(.+)$/), e = m && find(decodeURIComponent(m[1]));
   const settings = h === '#settings', placesPage = h === '#places';
   $('#app').innerHTML = settings ? renderSettings() : placesPage ? renderPlaces() : e ? renderDetail(e) : renderList();
+  const w = document.querySelector('.week'); if (w) w.scrollLeft = wl;
   const cur = settings ? 'settings' : placesPage ? 'places' : e ? '' : tzOpen ? 'tz' : 'home';
   document.querySelectorAll('.nav [data-act]').forEach(b => b.classList.toggle('cur', b.dataset.act === cur));
 }
@@ -932,12 +1036,18 @@ function softRender() {
   render();
 }
 function tick() {
-  document.querySelectorAll('[data-s]').forEach(el => { const t = el.querySelector('.cdt'); if (t) t.textContent = cdText(+el.dataset.s, +el.dataset.e); });
+  const n = Date.now();
+  // Midnight passed in the chosen zone → rebuild so "Today" moves forward
+  if (shownDay !== null && dk(n, tz) !== shownDay && !location.hash) { softRender(); return; }
+  document.querySelectorAll('[data-clock]').forEach(el => {
+    el.textContent = el.dataset.clock === 'date' ? fD(n, tz, { weekday: 'long', day: 'numeric', month: 'long' }) : `${fT(n, tz)} ${ab(n, tz)}`;
+  });
+  document.querySelectorAll('[data-s]').forEach(el => { const t = el.querySelector('.cdt'); if (t) t.textContent = cdText(+el.dataset.s, +el.dataset.e, n); });
 }
 
 fetch('data/events.json', { cache: 'no-store' })
   .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then(j => { DATA = j; ready = true; render(); setInterval(tick, 30e3); setInterval(softRender, 5 * 60e3); setTimeout(() => checkUpdates(true), 3000); })
+  .then(j => { DATA = j; ready = true; render(); setInterval(tick, 15e3); setInterval(softRender, 5 * 60e3); setTimeout(() => checkUpdates(true), 3000); })
   .catch(() => {
     if (location.hash === '#places' || location.hash === '#settings') { ready = true; render(); return; } // these pages work without event data
     $('#app').innerHTML = `<div class="h1">Event radar</div><div class="empty" style="margin-top:16px">Couldn't load events. Check your connection, then try again.<br><br><button class="btn dark" data-act="reset">Reload app</button></div>`;
