@@ -7,7 +7,7 @@ REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H
 BEGIN:VEVENT
 UID:season-24-twilight-trails@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20260908T100000
 DTEND:20261201T100000
 SUMMARY:Twilight Trails
@@ -38,59 +38,56 @@ DESCRIPTION:Season\nRaids right now:\n• 1-Star Raids: Sun Crown Pikachu
  andile ✨\, Vullaby ✨\, Shroodle ✨\, Pancham ✨\, Salandit ✨\, Var
  oom ✨\nField research right now:\n• <span>Catch 10 Pokémon</span>: El
  ectrike\, Cottonee wearing a flower crown\, Greavard\, Flamigo\n• <span>
- Explore 1 km</span>: Staryu\, Elgyem\, Eevee\n• <span>Hatch an Egg</span
- >: Maschiff\, Alolan Marowak\, Scyther\, Noctowl\, Sudowoodo\, Nincada\, L
- ileep\, Anorith\, Combee\, Audino\, Trubbish\, Cubchoo\, Stufful\, Wimpod\
- , Fidough\n• <span>Use a Lure Module at a PokéStop</span>: Applin\n• 
- <span>Catch 8 Pokémon</span>: Bulbasaur\, Charmander\, Squirtle\, Grookey
- \, Scorbunny\, Sobble\n• <span>Power up Pokémon 8 times</span>: Magikar
- p\, Feebas\n• <span>Win a Max Battle</span>: Drampa\, Duraludon\n• <sp
- an>Catch 7 Pokémon</span>: Magikarp\, Stufful\, Wimpod\n• <span>Catch a
-  Dragon-type Pokémon</span>: Dratini\, Bagon\, Axew\n• <span>Catch 7 di
- fferent species of Pokémon</span>: Psyduck\, Seaking\, Marill\, Teddiursa
- \, Lombre\, Stunky\, Liepard\, Darumaka\, Clauncher\, Dedenne\, Cutiefly\,
-  Smoliv\n• <span>Catch 10 Grass-type Pokémon</span>: Sunkern\, Seedot\,
-  Shroomish\, Petilil\, Skiddo\, Smoliv\n• <span>Catch 10 Ghost-type Pok
- émon</span>: Gastly\, Shuppet\, Duskull\, Drifloon\, Yamask\, Golett\n•
-  <span>Catch 10 Dark-type Pokémon</span>: Murkrow\, Sneasel\, Poochyena\,
-  Purrloin\, Inkay\, Nickit\n• <span>Catch 5 Pokémon with Weather Boost<
- /span>: Vulpix\, Poliwag\, Wingull\, Hippopotas\, Snover\, Roggenrola\, Va
- nillite\n• <span>Make 10 Curveball Throws</span>: Alolan Geodude\, Elect
- abuzz\, Makuhita\, Swablu\, Baltoy\, Dusclops\, Staravia\, Emolga\, Ferros
- eed\, Lechonk\n• <span>Make 10 Nice Throws</span>: Magmar\, Magikarp\, S
- unkern\, Nuzleaf\, Roggenrola\, Galarian Stunfisk\, Stunfisk\, Trumbeak\, 
- Mareanie\, Nymble\n• <span>Make 2 Excellent Throws</span>: Dratini\n• 
- <span>Make 3 Excellent Throws in a row</span>: Larvitar\, Beldum\, Gible\n
- • <span>Make 3 Great Throws</span>: Omanyte\, Kabuto\, Clamperl\, Elgyem
- \, Binacle\n• <span>Make 3 Great Throws in a row</span>: Lileep\, Anorit
- h\n• <span>Make 5 Great Curveball Throws in a row</span>: Spinda 4\, Spi
- nda 5\n• <span>Make 5 Nice Throws</span>: Alolan Diglett\, Diglett\, Sud
- owoodo\n• <span>Win a raid</span>: Lapras\, Vaporeon\, Jolteon\, Flareon
- \, Snorlax\, Piloswine\, Sealeo\, Metang\, Luxio\, Gabite\, Lampent\, Flet
- chinder\n• <span>Win a three-star raid or higher</span>: Tirtouga\, Arch
- en\n• <span>Win 5 raids</span>: Alolan Exeggutor\, Alolan Marowak\, Aero
- dactyl\n• <span>Explore 2 km</span>: Growlithe\, Galarian Ponyta\, Ponyt
- a\, Galarian Slowpoke\, Slowpoke\, Lapras\, Houndour\, Electrike\, Wailmer
- \, Herdier\n• <span>Hatch 2 Eggs</span>: Sneasel\, Mawile\, Feebas\n• 
- <span>Spin 3 PokéStops or Gyms</span>: Doduo\, Remoraid\, Ralts\, Aron\n
- • <span>Spin 5 PokéStops</span>: Alolan Sandshrew\, Sandshrew\, Dunspar
- ce\, Sneasel\, Galarian Zigzagoon\, Zigzagoon\, Snorunt\, Bidoof\, Hippopo
- tas\, Trubbish\, Ducklett\, Dewpider\, Skwovet\, Blipbug\, Arrokuda\, Taro
- untula\, Nacli\n• <span>Spin 5 PokéStops or Gyms</span>: Growlithe\, Hi
- suian Growlithe\, Galarian Slowpoke\, Slowpoke\n• <span>Take a snapshot 
- of a wild Pokémon</span>: Trapinch\, Croagunk\, Cottonee\n• <span>Evolv
- e a Pokémon</span>: Seadra\, Eevee\, Ursaring\, Magcargo\, Grumpig\, Whir
- lipede\, Eelektrik\, Diggersby\n• <span>Power up Pokémon 3 times</span>
- : Bulbasaur\, Charmander\, Squirtle\n• <span>Power up Pokémon 5 times</
- span>: Snivy\, Tepig\, Oshawott\n• <span>Power up Pokémon 7 times</span
- >: Rowlet\, Litten\, Popplio\n• <span>Earn 2 Candies walking with your b
- uddy</span>: Jigglypuff\, Buneary\, Glameow\, Bunnelby\, Litleo\, Dedenne\
- n• <span>Earn 3 Candies walking with your buddy</span>: Galarian Stunfis
- k\, Stunfisk\n• <span>Send 3 Gifts and add a sticker to each</span>: Cle
- fairy\, Jigglypuff\, Eevee\, Togetic\n• <span>Trade a Pokémon</span>: P
- oliwhirl\, Kadabra\, Machoke\, Haunter\n• <span>Defeat a Team GO Rocket 
- Grunt</span>: Arbok\, Meowth\, Weezing\nDetails: https://leekduck.com/even
- ts/season-24-twilight-trails/
+ Explore 1 km</span>: Staryu\, Elgyem\n• <span>Hatch an Egg</span>: Masch
+ iff\, Alolan Marowak\, Scyther\, Noctowl\, Sudowoodo\, Nincada\, Lileep\, 
+ Anorith\, Combee\, Audino\, Trubbish\, Cubchoo\, Stufful\, Wimpod\, Fidoug
+ h\n• <span>Use a Lure Module at a PokéStop</span>: Applin\n• <span>Ca
+ tch 7 Pokémon</span>: Magikarp\, Stufful\, Wimpod\n• <span>Catch a Drag
+ on-type Pokémon</span>: Dratini\, Bagon\, Axew\n• <span>Catch 7 differe
+ nt species of Pokémon</span>: Psyduck\, Seaking\, Marill\, Teddiursa\, Lo
+ mbre\, Stunky\, Liepard\, Darumaka\, Clauncher\, Dedenne\, Cutiefly\, Smol
+ iv\n• <span>Catch 10 Grass-type Pokémon</span>: Sunkern\, Seedot\, Shro
+ omish\, Petilil\, Skiddo\, Smoliv\n• <span>Catch 10 Ghost-type Pokémon<
+ /span>: Gastly\, Shuppet\, Duskull\, Drifloon\, Yamask\, Golett\n• <span
+ >Catch 10 Dark-type Pokémon</span>: Murkrow\, Sneasel\, Poochyena\, Purrl
+ oin\, Inkay\, Nickit\n• <span>Catch 5 Pokémon with Weather Boost</span>
+ : Vulpix\, Poliwag\, Wingull\, Hippopotas\, Snover\, Roggenrola\, Vanillit
+ e\n• <span>Make 10 Curveball Throws</span>: Alolan Geodude\, Electabuzz\
+ , Makuhita\, Swablu\, Baltoy\, Dusclops\, Staravia\, Emolga\, Ferroseed\, 
+ Lechonk\n• <span>Make 10 Nice Throws</span>: Magmar\, Magikarp\, Sunkern
+ \, Nuzleaf\, Roggenrola\, Galarian Stunfisk\, Stunfisk\, Trumbeak\, Marean
+ ie\, Nymble\n• <span>Make 2 Excellent Throws</span>: Dratini\n• <span>
+ Make 3 Excellent Throws in a row</span>: Larvitar\, Beldum\, Gible\n• <s
+ pan>Make 3 Great Throws</span>: Omanyte\, Kabuto\, Clamperl\, Elgyem\, Bin
+ acle\n• <span>Make 3 Great Throws in a row</span>: Lileep\, Anorith\n•
+  <span>Make 5 Great Curveball Throws in a row</span>: Spinda 4\, Spinda 5\
+ n• <span>Make 5 Nice Throws</span>: Alolan Diglett\, Diglett\, Sudowoodo
+ \n• <span>Win a raid</span>: Lapras\, Vaporeon\, Jolteon\, Flareon\, Sno
+ rlax\, Piloswine\, Sealeo\, Metang\, Luxio\, Gabite\, Lampent\, Fletchinde
+ r\n• <span>Win a three-star raid or higher</span>: Tirtouga\, Archen\n
+ • <span>Win 5 raids</span>: Alolan Exeggutor\, Alolan Marowak\, Aerodact
+ yl\n• <span>Explore 2 km</span>: Growlithe\, Galarian Ponyta\, Ponyta\, 
+ Galarian Slowpoke\, Slowpoke\, Lapras\, Houndour\, Electrike\, Wailmer\, H
+ erdier\n• <span>Hatch 2 Eggs</span>: Sneasel\, Mawile\, Feebas\n• <spa
+ n>Spin 3 PokéStops or Gyms</span>: Doduo\, Remoraid\, Ralts\, Aron\n• <
+ span>Spin 5 PokéStops</span>: Alolan Sandshrew\, Sandshrew\, Dunsparce\, 
+ Sneasel\, Galarian Zigzagoon\, Zigzagoon\, Snorunt\, Bidoof\, Hippopotas\,
+  Trubbish\, Ducklett\, Dewpider\, Skwovet\, Blipbug\, Arrokuda\, Tarountul
+ a\, Nacli\n• <span>Spin 5 PokéStops or Gyms</span>: Growlithe\, Hisuian
+  Growlithe\, Galarian Slowpoke\, Slowpoke\n• <span>Take a snapshot of a 
+ wild Pokémon</span>: Trapinch\, Croagunk\, Cottonee\n• <span>Evolve a P
+ okémon</span>: Seadra\, Eevee\, Ursaring\, Magcargo\, Grumpig\, Whirliped
+ e\, Eelektrik\, Diggersby\n• <span>Power up Pokémon 3 times</span>: Bul
+ basaur\, Charmander\, Squirtle\n• <span>Power up Pokémon 5 times</span>
+ : Snivy\, Tepig\, Oshawott\n• <span>Power up Pokémon 7 times</span>: Ro
+ wlet\, Litten\, Popplio\n• <span>Earn 2 Candies walking with your buddy<
+ /span>: Jigglypuff\, Buneary\, Glameow\, Bunnelby\, Litleo\, Dedenne\n• 
+ <span>Earn 3 Candies walking with your buddy</span>: Galarian Stunfisk\, S
+ tunfisk\n• <span>Send 3 Gifts and add a sticker to each</span>: Clefairy
+ \, Jigglypuff\, Eevee\, Togetic\n• <span>Trade a Pokémon</span>: Poliwh
+ irl\, Kadabra\, Machoke\, Haunter\n• <span>Defeat a Team GO Rocket Grunt
+ </span>: Arbok\, Meowth\, Weezing\nDetails: https://leekduck.com/events/se
+ ason-24-twilight-trails/
 URL:https://leekduck.com/events/season-24-twilight-trails/
 BEGIN:VALARM
 ACTION:DISPLAY
@@ -100,7 +97,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-x-adidas-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20260925T100000
 DTEND:20270115T200000
 SUMMARY:adidas × Pokémon Timed Research
@@ -122,7 +119,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:go-pass-november-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261103T100000
 DTEND:20261201T100000
 SUMMARY:GO Pass: November
@@ -136,45 +133,9 @@ DESCRIPTION:GO Pass: November in 1 hour
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:cresselia-darkrai-in-5-star-raid-battles-november-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
-DTSTART:20261116T060000
-DTEND:20261124T220000
-SUMMARY:Cresselia and Darkrai in 5-star Raid Battles
-DESCRIPTION:Raid Battles\nCresselia and Darkrai will be in five-star raid b
- attles from November 16\, 2026 to November 24\, 2026. Raid bosses change a
- t 6:00 a.m. local time.\nRaids: Cresselia ✨\, Darkrai ✨\nShiny: Cresse
- lia\, Darkrai\nDetails: https://leekduck.com/events/cresselia-darkrai-in-5
- -star-raid-battles-november-2026/
-URL:https://leekduck.com/events/cresselia-darkrai-in-5-star-raid-battles-no
- vember-2026/
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT1H
-DESCRIPTION:Cresselia and Darkrai in 5-star Raid Battles in 1 hour
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
-UID:mega-banette-in-mega-raids-november-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
-DTSTART:20261116T060000
-DTEND:20261124T220000
-SUMMARY:Mega Banette in Mega Raids
-DESCRIPTION:Raid Battles\nMega Banette will be in Mega Raids from November 
- 16\, 2026 at 6 am to November 24\, 2026 at 10 pm local time. Raid bosses c
- hange at 6:00 a.m. local time.\nRaid bosses: Mega Banette ✨\nDetails: ht
- tps://leekduck.com/events/mega-banette-in-mega-raids-november-2026/
-URL:https://leekduck.com/events/mega-banette-in-mega-raids-november-2026/
-BEGIN:VALARM
-ACTION:DISPLAY
-TRIGGER:-PT1H
-DESCRIPTION:Mega Banette in Mega Raids in 1 hour
-END:VALARM
-END:VEVENT
-BEGIN:VEVENT
 UID:shadow-tornadus-incarnate-forme-in-shadow-raids-november-16-2026@pogo-e
  vent-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261116T060000
 DTEND:20261201T220000
 SUMMARY:Shadow Tornadus (Incarnate Forme) in Shadow Raids
@@ -192,7 +153,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:duolingo-timed-research-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261117T100000
 DTEND:20261231T235900
 SUMMARY:Pokémon GO and Duolingo Timed Research
@@ -214,7 +175,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:twilight-wishes-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261124T100000
 DTEND:20261130T200000
 SUMMARY:Twilight Wishes
@@ -251,7 +212,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:deoxys-normal-defense-attack-speed-formes-in-5-star-raid-battles-novemb
  er-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261125T060000
 DTEND:20261201T220000
 SUMMARY:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) in 5-star Rai
@@ -273,7 +234,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mega-metagross-in-mega-raids-november-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261125T060000
 DTEND:20261201T220000
 SUMMARY:Mega Metagross in Mega Raids
@@ -290,7 +251,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raidhour20261125@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261125T180000
 DTEND:20261125T190000
 SUMMARY:Deoxys (Normal\, Defense\, Attack\, and Speed Formes) Raid Hour
@@ -306,7 +267,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemonspotlighthour2026-11-26@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261126T180000
 DTEND:20261126T190000
 SUMMARY:Noibat Spotlight Hour
@@ -323,7 +284,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:clefable-super-mega-raid-day-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261128T140000
 DTEND:20261128T170000
 SUMMARY:Clefable Super Mega Raid Day
@@ -349,7 +310,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-mondays-2026-11-30@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261130T060000
 DTEND:20261206T210000
 SUMMARY:Dynamax Cryogonal during Max Monday
@@ -366,7 +327,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:tropical-paradise-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261201T100000
 DTEND:20261207T200000
 SUMMARY:Tropical Paradise
@@ -387,7 +348,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:go-pass-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261201T100000
 DTEND:20270105T100000
 SUMMARY:GO Pass: December
@@ -402,7 +363,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:season-25-daydream-destinations@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261201T100000
 DTEND:20270301T100000
 SUMMARY:Daydream Destinations
@@ -418,7 +379,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-daydream-destinations_great-league-mega-edition_ultra-league-mega-e
  dition_master-league-mega-edition-split-1@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261201T210000Z
 DTEND:20261208T210000Z
 SUMMARY:Great League: Mega Edition\, Ultra League: Mega Edition\, and Maste
@@ -437,7 +398,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mega-slowbro-in-mega-raids-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261202T060000
 DTEND:20261208T220000
 SUMMARY:Mega Slowbro in Mega Raids
@@ -454,7 +415,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:regidrago-in-5-star-raid-battles-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261202T060000
 DTEND:20261208T220000
 SUMMARY:Regidrago in 5-star Raid Battles
@@ -472,7 +433,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:shadow-dialga-in-shadow-raids-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261202T060000
 DTEND:20270105T220000
 SUMMARY:Shadow Dialga in Shadow Raids
@@ -490,7 +451,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raidhour20261202@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261202T180000
 DTEND:20261202T190000
 SUMMARY:Regidrago Raid Hour
@@ -505,7 +466,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemonspotlighthour2026-12-03@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261203T180000
 DTEND:20261203T190000
 SUMMARY:Wimpod Spotlight Hour
@@ -522,7 +483,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-battle-day-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261205T140000
 DTEND:20261205T170000
 SUMMARY:Max Battle Day
@@ -543,7 +504,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-mondays-2026-12-07@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261207T060000
 DTEND:20261213T210000
 SUMMARY:Dynamax Deino during Max Monday
@@ -560,7 +521,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:unannounced-event-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261208T100000
 DTEND:20261214T200000
 SUMMARY:Unannounced Event
@@ -582,7 +543,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-daydream-destinations_great-league-mega-edition_mountain-cup-great-
  league-edition@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261208T210000Z
 DTEND:20261215T210000Z
 SUMMARY:Great League: Mega Edition and Mountain Cup: Great League Edition |
@@ -601,7 +562,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mega-gengar-in-mega-raids-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261209T060000
 DTEND:20261215T220000
 SUMMARY:Mega Gengar in Mega Raids
@@ -619,7 +580,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:unannounced-pokemon-in-5-star-raid-battles-december-2026@pogo-event-rad
  ar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261209T060000
 DTEND:20261215T220000
 SUMMARY:Unannounced Pokémon in 5-star Raid Battles
@@ -637,7 +598,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raidhour20261209@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261209T180000
 DTEND:20261209T190000
 SUMMARY:Unannounced Raid Hour
@@ -652,7 +613,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemonspotlighthour2026-12-10@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261210T180000
 DTEND:20261210T190000
 SUMMARY:Starly Spotlight Hour
@@ -668,7 +629,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-geminids-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261211T170000
 DTEND:20261216T235900
 SUMMARY:Minior Showers: Geminids 2026
@@ -688,7 +649,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:december-communityday2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261212T140000
 DTEND:20261213T170000
 SUMMARY:December Community Day 2026
@@ -715,7 +676,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-mondays-2026-12-14@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261214T060000
 DTEND:20261214T210000
 SUMMARY:Dynamax Eevee during Max Monday
@@ -730,7 +691,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:choose-your-path-daydream-destinations-2026-12-15@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261215T100000
 DTEND:20261221T200000
 SUMMARY:Choose Your Path: Daydream Destinations (December 15\, 2026)
@@ -754,7 +715,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-daydream-destinations_ultra-league-mega-edition_holiday-cup-great-l
  eague-edition@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261215T210000Z
 DTEND:20261222T210000Z
 SUMMARY:Ultra League: Mega Edition and Holiday Cup: Great League Edition | 
@@ -773,7 +734,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:ho-oh-in-5-star-raid-battles-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261216T060000
 DTEND:20261222T220000
 SUMMARY:Ho-Oh in 5-star Raid Battles
@@ -788,7 +749,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mega-skarmory-in-mega-raids-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261216T060000
 DTEND:20261222T220000
 SUMMARY:Mega Skarmory in Mega Raids
@@ -803,7 +764,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raidhour20261216@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261216T180000
 DTEND:20261216T190000
 SUMMARY:Ho-Oh Raid Hour
@@ -818,7 +779,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemonspotlighthour2026-12-17@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261217T180000
 DTEND:20261217T190000
 SUMMARY:Bergmite Spotlight Hour
@@ -834,7 +795,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raid-day-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261219T140000
 DTEND:20261219T170000
 SUMMARY:Raid Day
@@ -854,7 +815,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-mondays-2026-12-21@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261221T060000
 DTEND:20261221T210000
 SUMMARY:Dynamax Alolan Sandshrew during Max Monday
@@ -869,7 +830,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:winter-holiday-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261222T100000
 DTEND:20261228T200000
 SUMMARY:Winter Holiday 2026
@@ -890,7 +851,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-daydream-destinations_master-league-mega-edition_holiday-cup-great-
  league-edition@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261222T210000Z
 DTEND:20261229T210000Z
 SUMMARY:Master League: Mega Edition and Holiday Cup: Great League Edition |
@@ -909,7 +870,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:lugia-in-5-star-raid-battles-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261223T060000
 DTEND:20261229T220000
 SUMMARY:Lugia in 5-star Raid Battles
@@ -924,7 +885,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mega-glalie-in-mega-raids-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261223T060000
 DTEND:20261229T220000
 SUMMARY:Mega Glalie in Mega Raids
@@ -939,7 +900,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raidhour20261223@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261223T180000
 DTEND:20261223T190000
 SUMMARY:Lugia Raid Hour
@@ -954,7 +915,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemonspotlighthour2026-12-24@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261224T180000
 DTEND:20261224T190000
 SUMMARY:Delibird Spotlight Hour
@@ -970,7 +931,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:hatch-day-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261226T110000
 DTEND:20261226T170000
 SUMMARY:Hatch Day
@@ -990,7 +951,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-mondays-2026-12-28@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261228T060000
 DTEND:20261228T210000
 SUMMARY:Dynamax Magikarp during Max Monday
@@ -1005,7 +966,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:new-years-2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261229T100000
 DTEND:20270104T200000
 SUMMARY:New Year's 2027
@@ -1025,7 +986,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-daydream-destinations_great-league-mega-edition_ultra-league-mega-e
  dition_master-league-mega-edition-split-2@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261229T210000Z
 DTEND:20270105T210000Z
 SUMMARY:Great League: Mega Edition\, Ultra League: Mega Edition\, and Maste
@@ -1044,7 +1005,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:mega-falinks-in-mega-raids-december-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261230T060000
 DTEND:20270105T220000
 SUMMARY:Mega Falinks in Mega Raids
@@ -1060,7 +1021,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:tornadus-thundurus-landorus-therian-formes-in-5-star-raid-battles-decem
  ber-2026@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261230T060000
 DTEND:20270105T220000
 SUMMARY:Tornadus\, Thundurus\, and Landorus (Therian Formes) in 5-star Raid
@@ -1080,7 +1041,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raidhour20261230@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261230T180000
 DTEND:20261230T190000
 SUMMARY:Tornadus (Therian Forme)\, Thundurus (Therian Forme)\, and Landorus
@@ -1097,7 +1058,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemonspotlighthour2026-12-31@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20261231T180000
 DTEND:20261231T190000
 SUMMARY:Plusle and Minun Spotlight Hour
@@ -1113,7 +1074,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:january-communitydayclassic2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270102T140000
 DTEND:20270102T170000
 SUMMARY:January Community Day Classic
@@ -1134,7 +1095,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-daydream-destinations_great-league-mega-edition_fighting-cup-great-
  league-edition@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270105T210000Z
 DTEND:20270112T210000Z
 SUMMARY:Great League: Mega Edition and Fighting Cup: Great League Edition |
@@ -1153,7 +1114,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:super-mega-raid-day-january-2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270109T140000
 DTEND:20270109T170000
 SUMMARY:Super Mega Raid Day
@@ -1173,7 +1134,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:choose-your-path-daydream-destinations-2027-01-12@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270112T100000
 DTEND:20270118T200000
 SUMMARY:Choose Your Path: Daydream Destinations (January 12\, 2027)
@@ -1197,7 +1158,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-daydream-destinations_ultra-league-mega-edition_jungle-cup-great-le
  ague-edition@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270112T210000Z
 DTEND:20270119T210000Z
 SUMMARY:Ultra League: Mega Edition and Jungle Cup: Great League Edition | D
@@ -1216,7 +1177,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:january-communityday2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270116T140000
 DTEND:20270116T170000
 SUMMARY:January Community Day
@@ -1237,7 +1198,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-daydream-destinations_master-league-mega-edition_master-league@pogo
  -event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270119T210000Z
 DTEND:20270126T210000Z
 SUMMARY:Master League: Mega Edition and Master League | Daydream Destinatio
@@ -1255,7 +1216,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:max-battle-day-january-2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270123T140000
 DTEND:20270123T170000
 SUMMARY:Max Battle Day
@@ -1275,7 +1236,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:choose-your-path-daydream-destinations-2027-01-26@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270126T100000
 DTEND:20270201T200000
 SUMMARY:Choose Your Path: Daydream Destinations (January 26\, 2027)
@@ -1299,7 +1260,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-daydream-destinations_great-league-mega-edition_ultra-league-mega-e
  dition_master-league-mega-edition-split-3@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270126T210000Z
 DTEND:20270202T210000Z
 SUMMARY:Great League: Mega Edition\, Ultra League: Mega Edition\, and Maste
@@ -1318,7 +1279,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:super-mega-raid-day-january-30-2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270130T140000
 DTEND:20270130T170000
 SUMMARY:Super Mega Raid Day
@@ -1339,7 +1300,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-daydream-destinations_great-league-mega-edition_master-league@pogo-
  event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270202T210000Z
 DTEND:20270209T210000Z
 SUMMARY:Great League: Mega Edition and Master League | Daydream Destination
@@ -1357,7 +1318,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:february-communityday2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270206T140000
 DTEND:20270206T170000
 SUMMARY:February Community Day
@@ -1378,7 +1339,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-daydream-destinations_ultra-league-mega-edition_love-cup-great-leag
  ue-edition_2027-go-euic-cup@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270209T210000Z
 DTEND:20270216T210000Z
 SUMMARY:Ultra League: Mega Edition\, Love Cup: Great League Edition\, and 2
@@ -1397,7 +1358,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:raid-day-february-2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270213T140000
 DTEND:20270213T170000
 SUMMARY:Raid Day
@@ -1417,7 +1378,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:choose-your-path-daydream-destinations-2027-02-16@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270216T100000
 DTEND:20270221T200000
 SUMMARY:Choose Your Path: Daydream Destinations (February 16\, 2027)
@@ -1441,7 +1402,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:gbl-daydream-destinations_master-league-mega-edition_mega-catch-cup-gre
  at-league-edition_2027-go-euic-cup@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270216T210000Z
 DTEND:20270223T210000Z
 SUMMARY:Master League: Mega Edition\, Mega Catch Cup: Great League Edition\
@@ -1460,7 +1421,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-go-tour-alola-kaohsiung-2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270218T160000Z
 DTEND:20270221T155959Z
 SUMMARY:Pokémon GO Tour: Alola - Kaohsiung 2027
@@ -1481,7 +1442,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-go-tour-alola-los-angeles-2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270219T080000Z
 DTEND:20270222T075959Z
 SUMMARY:Pokémon GO Tour: Alola - Los Angeles 2027
@@ -1505,7 +1466,7 @@ BEGIN:VEVENT
 UID:gbl-daydream-destinations_great-league-mega-edition_ultra-league-mega-e
  dition_master-league-mega-edition_mega-catch-cup-great-league-edition@pogo
  -event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270223T210000Z
 DTEND:20270302T210000Z
 SUMMARY:Great League: Mega Edition\, Ultra League: Mega Edition\, Master Le
@@ -1527,7 +1488,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-go-tour-alola-global-2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270227T000000
 DTEND:20270228T235959
 SUMMARY:Pokémon GO Tour: Alola - Global 2027
@@ -1547,7 +1508,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-eta-aquariids-2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270503T170000
 DTEND:20270508T235900
 SUMMARY:Minior Showers: Eta Aquariids 2027
@@ -1567,7 +1528,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-southern-delta-aquariids-2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270728T170000
 DTEND:20270802T235900
 SUMMARY:Minior Showers: Southern Delta Aquariids 2027
@@ -1588,7 +1549,7 @@ END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 UID:minior-showers-perseids-2027@pogo-event-radar
-DTSTAMP:20261125T082827Z
+DTSTAMP:20261125T162649Z
 DTSTART:20270810T170000
 DTEND:20270815T235900
 SUMMARY:Minior Showers: Perseids 2027
